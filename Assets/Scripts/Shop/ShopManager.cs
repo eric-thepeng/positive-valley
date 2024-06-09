@@ -19,28 +19,55 @@ public class ShopManager : MonoBehaviour
     [SerializeField] private Vector2Int shopGridCount;
     [SerializeField] private Vector2 shopGridDelta;
     [SerializeField] private List<SO_ShopItem> sosiToDisplay;
-
+    
     // PRIVATE VARIABLES
-    private bool isPanelOpen = false;
+    private List<ShopItemTemplate> allShopItemTemplates;
 
+    // PUBLIC STATIC VARIABLES
+    public static SO_ShopItem holdingShopItem = null;
+    
+    // SINGLETON
+    static ShopManager instance;
+    public static ShopManager i
+    {
+        get
+        {
+            if(instance == null)
+            {
+                instance = FindObjectOfType<ShopManager>();
+            }
+            return instance;
+        }
+    }
+    // ----------
+    
     private void Start()
     {
         SetUpShopItemsDisplay();
+        PlayerState.OnShopStatusChange.AddListener(onShopStatusChange);
+    }
+
+    public void SelectShopItem(ShopItemTemplate sit)
+    {
+        PlayerState.ChangeShopStatus(PlayerState.ShopStatus.Shopping);
+        holdingShopItem = sit.sosi;
+        foreach (var VARIABLE in allShopItemTemplates)
+        {
+            VARIABLE.SetDisplayToRegular();
+        }
+        sit.SetDisplayToSelected();
     }
 
     private void SetUpShopItemsDisplay()
     {
-        //Clear Current Display
-        foreach (RectTransform rt in shopItemContainer)
-        {
-            //if(rt!=shopItemContainer) Destroy(rt.gameObject);
-        }
+        allShopItemTemplates = new List<ShopItemTemplate>();
         
         //Display New Content
         shopItemTemplate.gameObject.SetActive(true);
         for (int i = 0; i < sosiToDisplay.Count; i++)
         {
             ShopItemTemplate sit = Instantiate(shopItemTemplate, shopItemContainer);
+            allShopItemTemplates.Add(sit);
             sit.SetUp(sosiToDisplay[i]);
             sit.transform.localPosition +=
                 new Vector3(i % shopGridCount.x * shopGridDelta.x, 
@@ -50,32 +77,44 @@ public class ShopManager : MonoBehaviour
         shopItemTemplate.gameObject.SetActive(false);
     }
 
-    public void OpenClosePanel()
+    public void onShopStatusChange(PlayerState.ShopStatus newShopStatus)
     {
-        if (isPanelOpen)
+        if (newShopStatus != PlayerState.ShopStatus.Shopping)
         {
-            CloseShopPanel();
-        }
-        else
-        {
-            OpenShopPanel();
+            holdingShopItem = null;
         }
     }
 
-    public bool IsPanelOpen()
+    public void OpenClosePanel()
     {
-        return isPanelOpen;
+        switch (PlayerState.shopStatus)
+        {
+            case PlayerState.ShopStatus.Shopping:
+                CloseShopPanel();
+                break;
+            case PlayerState.ShopStatus.Open:
+                CloseShopPanel();
+                break;
+            case PlayerState.ShopStatus.Close:
+                OpenShopPanel();
+                break;
+            case PlayerState.ShopStatus.Hide:
+                break;
+            default:
+                throw new ArgumentOutOfRangeException();
+        }
     }
 
     public void OpenShopPanel()
     {
         shopPanel.transform.DOLocalMoveY(shopPanelOpenY,0.5f);
-        isPanelOpen = true;
+        PlayerState.ChangeShopStatus(PlayerState.ShopStatus.Open);
     }
 
     public void CloseShopPanel()
     {
         shopPanel.transform.DOLocalMoveY(shopPanelCloseY,0.5f);
-        isPanelOpen = false;
+        PlayerState.ChangeShopStatus(PlayerState.ShopStatus.Close);
+        
     }
 }

@@ -5,5 +5,4 @@ using UnityEngine;
 public class PlayerStat : MonoBehaviour
 {
     public BroadcastStatInt money = new BroadcastStatInt(0);
-    
 }

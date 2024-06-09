@@ -12,6 +12,6 @@ public class PlayerWorldInteractable : MonoBehaviour
     
     private void OnMouseUpAsButton()
     {
-        OnPlayerTouch();
+        if(!UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject()) OnPlayerTouch();
     }
 }
