@@ -163,8 +163,13 @@ public class Field : PlayerWorldInteractable
         if (ShopManager.holdingShopItem is SOSI_Seed)
         {
             currentSeed = (SOSI_Seed)ShopManager.holdingShopItem;
-            cropSR.sprite = currentSeed.phasesSprites[0];
-            DisplayRegularHover();
+            if (PlayerStat.money.HasValue(currentSeed.buyCost))
+            {
+                PlayerStat.money.ChangeValue(-currentSeed.buyCost);
+                print("money left: " + PlayerStat.money.GetValue());
+                cropSR.sprite = currentSeed.phasesSprites[0];
+                DisplayRegularHover();
+            }
         }
     }
 }

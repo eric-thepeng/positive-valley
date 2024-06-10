@@ -52,6 +52,11 @@ public class BroadcastStat<T>
         throw new Exception("Set Value Not Implemented");
     }
     
+    //Override this
+    public virtual bool HasValue(T minimum)
+    {
+        throw new Exception("Set Value Not Implemented");
+    }
 }
 
 public class BroadcastStatInt : BroadcastStat<int>
@@ -80,5 +85,10 @@ public class BroadcastStatInt : BroadcastStat<int>
         OnAmountChangeValue.Invoke(value + delta);
         value += delta;
         return value;
+    }
+
+    public override bool HasValue(int minimum)
+    {
+        return value>=minimum;
     }
 }

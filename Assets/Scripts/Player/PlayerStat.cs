@@ -4,5 +4,5 @@ using UnityEngine;
 
 public class PlayerStat : MonoBehaviour
 {
-    public BroadcastStatInt money = new BroadcastStatInt(0);
+    public static BroadcastStatInt money = new BroadcastStatInt(100);
 }
