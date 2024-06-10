@@ -11,7 +11,7 @@ public class Field : PlayerWorldInteractable
     [Header("== Dependencies ==")]
     [SerializeField] private SpriteRenderer soilSR;
     [SerializeField] private SpriteRenderer cropSR;
-    [SerializeField] private Animator canPlantIndicationAnimator;
+    [SerializeField] private SpriteRenderer canPlantIndicationSR;
 
     [Header("[Soil Sprites]")] 
     [SerializeField] private Sprite soilSpriteLocked;
@@ -109,7 +109,7 @@ public class Field : PlayerWorldInteractable
 
     private void DisplayRegularHover()
     {
-        canPlantIndicationAnimator.gameObject.SetActive(false);
+        canPlantIndicationSR.color = Color.clear;
         hoverIndicationState = HoverIndicationState.Regular;
         print("display regular hover");
     }
@@ -119,8 +119,8 @@ public class Field : PlayerWorldInteractable
         if(hoverIndicationState == HoverIndicationState.Shopping) return;
         if(fieldGrowth != null) return;
 
-        canPlantIndicationAnimator.gameObject.SetActive(true);
-
+        canPlantIndicationSR.color = Color.white;
+        
         hoverIndicationState = HoverIndicationState.Shopping;
     }
 

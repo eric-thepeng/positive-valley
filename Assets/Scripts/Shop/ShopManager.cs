@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using TMPro;
 
 public class ShopManager : MonoBehaviour
 {
@@ -19,6 +20,10 @@ public class ShopManager : MonoBehaviour
     [SerializeField] private Vector2Int shopGridCount;
     [SerializeField] private Vector2 shopGridDelta;
     [SerializeField] private List<SO_ShopItem> sosiToDisplay;
+
+    [Header("Selected Item Info Related")] 
+    [SerializeField] private GameObject selectedItemInfoGameObject;
+    [SerializeField] private TMP_Text selectedItemInfoTMPT;
     
     // PRIVATE VARIABLES
     private List<ShopItemTemplate> allShopItemTemplates;
@@ -57,6 +62,16 @@ public class ShopManager : MonoBehaviour
             VARIABLE.SetDisplayToRegular();
         }
         sit.SetDisplayToSelected();
+        selectedItemInfoGameObject.SetActive(true);
+        if (holdingShopItem is SOSI_Seed)
+        {
+            SOSI_Seed holdingSeed = (SOSI_Seed)holdingShopItem;
+            selectedItemInfoTMPT.text = "[Cost " + holdingSeed.buyCost + "] [Harvest $$ " + holdingSeed.harvestMoney + "] [Harvest Exp " + holdingSeed.harvestExperience + "]";
+        }
+        else
+        {
+            selectedItemInfoTMPT.text = "[Cost:" + holdingShopItem.buyCost + "]";
+        }
         shoppingClickCancelAction = new ClickCancelAction(ClickCancelGround.i, DeselectShopItem);
     }
     
@@ -95,6 +110,7 @@ public class ShopManager : MonoBehaviour
             }
             shoppingClickCancelAction?.Cancel();
             shoppingClickCancelAction = null;
+            selectedItemInfoGameObject.SetActive(false);
         }
     }
 
