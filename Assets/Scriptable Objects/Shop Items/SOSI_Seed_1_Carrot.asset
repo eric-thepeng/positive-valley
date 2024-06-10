@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e82b85b56cc542b9af74eb606cf52f2, type: 3}
-  m_Name: SOSI_Seed_Carrot
+  m_Name: SOSI_Seed_1_Carrot
   m_EditorClassIdentifier: 
   itemName: Carrot
   itemIcon: {fileID: 739796099, guid: 1ba88ca4891124f4caef425c8e17ab65, type: 3}

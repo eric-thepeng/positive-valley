@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class PlayerStat : MonoBehaviour
 {
-    public static BroadcastStatInt money = new BroadcastStatInt(100);
+    public static BroadcastStatInt money = new BroadcastStatInt(0);
     public static BroadcastStatInt level = new BroadcastStatInt(1);
     public static BroadcastStatInt experience = new BroadcastStatInt(0);
 
@@ -27,6 +27,11 @@ public class PlayerStat : MonoBehaviour
 
     public static int GetLevelUpExpRequirement()
     {
-        return level.GetValue() * 20;
+        return level.GetValue() * 100;
+    }
+
+    private void Update()
+    {
+        
     }
 }

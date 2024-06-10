@@ -2715,6 +2715,10 @@ MonoBehaviour:
   sosiToDisplay:
   - {fileID: 11400000, guid: 0c80974ab72d549b8a9d79d90f07f029, type: 2}
   - {fileID: 11400000, guid: 35f8871875ff24892a4c79e9e0d1e96d, type: 2}
+  - {fileID: 11400000, guid: 13dd043868309411ea984700f0c421e5, type: 2}
+  - {fileID: 11400000, guid: 03dde147967144a8c9e63be198b40e73, type: 2}
+  - {fileID: 11400000, guid: af37672fa204d4a81880734cc3a5623d, type: 2}
+  - {fileID: 11400000, guid: a023eafb9fe5942a790059ab114604b8, type: 2}
   selectedItemInfoGameObject: {fileID: 1703456481651384784}
   selectedItemInfoTMPT: {fileID: 1404950535849859367}
 --- !u!1 &5568082890307787009
