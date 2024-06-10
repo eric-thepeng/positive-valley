@@ -252,7 +252,12 @@ MonoBehaviour:
   moneyGameObject: {fileID: 927428292226647385}
   displayMoney: 1
   moneyAmountTMPT: {fileID: 7710475175396988219}
-  moneyIconImage: {fileID: 6080175389269549996}
+  experienceGameObject: {fileID: 3995918606535820421}
+  displayExperience: 1
+  experienceAmountTMPT: {fileID: 1928336988690552735}
+  levelGameObject: {fileID: 1929581860595742186}
+  displayLevel: 1
+  levelAmountTMPT: {fileID: 2471518984763459417}
 --- !u!1 &596120521986405572
 GameObject:
   m_ObjectHideFlags: 0

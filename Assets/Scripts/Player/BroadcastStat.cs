@@ -73,17 +73,18 @@ public class BroadcastStatInt : BroadcastStat<int>
 
     public override int SetValue(int newValue)
     {
-        OnAmountChangeDelta.Invoke(newValue - value);
-        OnAmountChangeValue.Invoke(newValue);
+        int delta = newValue - value;
         value = newValue;
+        OnAmountChangeDelta.Invoke(delta);
+        OnAmountChangeValue.Invoke(value);
         return value;
     }
 
     public override int ChangeValue(int delta)
     {
-        OnAmountChangeDelta.Invoke(delta);
-        OnAmountChangeValue.Invoke(value + delta);
         value += delta;
+        OnAmountChangeDelta.Invoke(delta);
+        OnAmountChangeValue.Invoke(value);
         return value;
     }
 

@@ -188,7 +188,10 @@ public class Field : PlayerWorldInteractable
     public void HarvestCrop()
     {
         cropSR.sprite = null;
+        
         PlayerStat.money.ChangeValue(fieldGrowth.seed.harvestMoney);
+        PlayerStat.experience.ChangeValue(fieldGrowth.seed.harvestExperience);
+        
         fieldGrowth = null;
         if (PlayerState.shopStatus == PlayerState.ShopStatus.Shopping) { DisplayShoppingHover(); } // put this line after reset currentSeed
         ChangeFieldStateTo(FieldState.Empty);
