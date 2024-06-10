@@ -22,8 +22,8 @@ public class Field : PlayerWorldInteractable
     enum FieldState {Locked, Empty, PlantedWatered, PlantedDry}
     [SerializeField, Header("== View Only ==")]private FieldState fieldState = FieldState.Empty;
 
-    enum FieldDisplayState {Regular, Shopping }
-    [SerializeField]private FieldDisplayState fieldDisplayState = FieldDisplayState.Regular;
+    enum HoverIndicationState {Regular, Shopping, Harvest}
+    [SerializeField]private HoverIndicationState hoverIndicationState = HoverIndicationState.Regular;
 
     [Header("[Soil Sprites]")] 
     [SerializeField] private Sprite soilSpriteLocked;
@@ -34,6 +34,8 @@ public class Field : PlayerWorldInteractable
     [Header("[Set Up]")]
     [SerializeField, Header("== View Only ==")]private FieldState initialFieldState = FieldState.Empty;
 
+    // PRIVATE VARIABLES
+    private SOSI_Seed currentSeed = null;
 
     private void OnEnable()
     {
@@ -66,41 +68,40 @@ public class Field : PlayerWorldInteractable
         switch (newShopStatus)
         {
             case PlayerState.ShopStatus.Shopping:
-                DisplayShoppingState();
+                DisplayShoppingHover();
                 break;
             case PlayerState.ShopStatus.Open:
-                DisplayRegularState();
+                DisplayRegularHover();
                 break;
             case PlayerState.ShopStatus.Close:
-                DisplayRegularState();
+                DisplayRegularHover();
                 break;
             case PlayerState.ShopStatus.Hide:
-                DisplayRegularState();
+                DisplayRegularHover();
                 break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(newShopStatus), newShopStatus, null);
         }
     }
 
-    private void DisplayRegularState()
+    private void DisplayRegularHover()
     {
-        if(fieldDisplayState == FieldDisplayState.Regular) return;
-        
         canPlantIndicationAnimator.gameObject.SetActive(false);
-
-        
-        fieldDisplayState = FieldDisplayState.Regular;
+        hoverIndicationState = HoverIndicationState.Regular;
+        print("display regular hover");
     }
 
-    private void DisplayShoppingState()
+    private void DisplayShoppingHover()
     {
-        if(fieldDisplayState == FieldDisplayState.Shopping) return;
+        if(hoverIndicationState == HoverIndicationState.Shopping) return;
+        if(currentSeed != null) return;
 
         canPlantIndicationAnimator.gameObject.SetActive(true);
-        
-        fieldDisplayState = FieldDisplayState.Shopping;
+
+        hoverIndicationState = HoverIndicationState.Shopping;
     }
 
+    /*
     private IEnumerator shakeShoppingField()
     {
         while (true)
@@ -111,7 +112,7 @@ public class Field : PlayerWorldInteractable
             soilSR.DOColor(soilRegularColor, 0.6f);
             yield return new WaitForSeconds(.6f);
         }
-    }
+    }*/
 
     protected override void OnPlayerTouch()
     {
@@ -159,6 +160,11 @@ public class Field : PlayerWorldInteractable
 
     public void TryToPlantSeed()
     {
-        
+        if (ShopManager.holdingShopItem is SOSI_Seed)
+        {
+            currentSeed = (SOSI_Seed)ShopManager.holdingShopItem;
+            cropSR.sprite = currentSeed.phasesSprites[0];
+            DisplayRegularHover();
+        }
     }
 }
