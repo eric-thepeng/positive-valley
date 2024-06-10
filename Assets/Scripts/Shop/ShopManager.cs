@@ -22,6 +22,7 @@ public class ShopManager : MonoBehaviour
     
     // PRIVATE VARIABLES
     private List<ShopItemTemplate> allShopItemTemplates;
+    private ClickCancelAction shoppingClickCancelAction;
 
     // PUBLIC STATIC VARIABLES
     public static SO_ShopItem holdingShopItem = null;
@@ -56,6 +57,12 @@ public class ShopManager : MonoBehaviour
             VARIABLE.SetDisplayToRegular();
         }
         sit.SetDisplayToSelected();
+        shoppingClickCancelAction = new ClickCancelAction(ClickCancelGround.i, DeselectShopItem);
+    }
+    
+    public void DeselectShopItem()
+    {
+        PlayerState.ChangeShopStatus(PlayerState.ShopStatus.Open);
     }
 
     private void SetUpShopItemsDisplay()
@@ -82,6 +89,12 @@ public class ShopManager : MonoBehaviour
         if (newShopStatus != PlayerState.ShopStatus.Shopping)
         {
             holdingShopItem = null;
+            foreach (var VARIABLE in allShopItemTemplates)
+            {
+                VARIABLE.SetDisplayToRegular();
+            }
+            shoppingClickCancelAction?.Cancel();
+            shoppingClickCancelAction = null;
         }
     }
 
@@ -115,6 +128,5 @@ public class ShopManager : MonoBehaviour
     {
         shopPanel.transform.DOLocalMoveY(shopPanelCloseY,0.5f);
         PlayerState.ChangeShopStatus(PlayerState.ShopStatus.Close);
-        
     }
 }

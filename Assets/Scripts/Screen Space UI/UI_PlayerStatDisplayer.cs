@@ -7,7 +7,9 @@ using UnityEngine.UI;
 
 public class UI_PlayerStatDisplayer : MonoBehaviour
 {
-    [Header("Money Dependencies")]
+    [Header("Money Dependencies")] 
+    [SerializeField] private GameObject moneyGameObject;
+    [SerializeField] private bool displayMoney = true;
     [SerializeField] private TMP_Text moneyAmountTMPT;
     [SerializeField] private Image moneyIconImage;
 

@@ -56,4 +56,9 @@ public class ClickCancelAction
     {
         iClickCancel.GetClickCancelEvent().RemoveListener(assignedCancelAction);
     }
+
+    public void Cancel()
+    {
+        iClickCancel.GetClickCancelEvent().RemoveListener(assignedCancelAction);
+    }
 }
