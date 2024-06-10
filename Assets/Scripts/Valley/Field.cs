@@ -2,28 +2,16 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Field : PlayerWorldInteractable
 {
+    // SERIALIZED PRIVATE VARIABLES
     [Header("== Dependencies ==")]
     [SerializeField] private SpriteRenderer soilSR;
     [SerializeField] private SpriteRenderer cropSR;
     [SerializeField] private Animator canPlantIndicationAnimator;
-
-    private Color soilRegularColor;
-    private Color soilShoopingColor;
-
-    /// <summary>
-    /// Locked: Locked and need to be purchased.
-    /// Empty: Unlocked and nothing is planted.
-    /// Planted: Planted with seed.
-    /// </summary>
-    enum FieldState {Locked, Empty, PlantedWatered, PlantedDry}
-    [SerializeField, Header("== View Only ==")]private FieldState fieldState = FieldState.Empty;
-
-    enum HoverIndicationState {Regular, Shopping, Harvest}
-    [SerializeField]private HoverIndicationState hoverIndicationState = HoverIndicationState.Regular;
 
     [Header("[Soil Sprites]")] 
     [SerializeField] private Sprite soilSpriteLocked;
@@ -35,7 +23,24 @@ public class Field : PlayerWorldInteractable
     [SerializeField, Header("== View Only ==")]private FieldState initialFieldState = FieldState.Empty;
 
     // PRIVATE VARIABLES
-    private SOSI_Seed currentSeed = null;
+    // Color Related
+    private Color soilRegularColor;
+    private Color soilShoopingColor;
+    // Seed and Grow
+    private FieldGrowth fieldGrowth = null;
+    private float seedDuration = 0f;
+    private int seedStage = 0;
+
+    /// <summary>
+    /// Locked: Locked and need to be purchased.
+    /// Empty: Unlocked and nothing is planted.
+    /// Planted: Planted with seed.
+    /// </summary>
+    enum FieldState {Locked, Empty, Planted, CanHarvest}
+    [SerializeField, Header("== View Only ==")]private FieldState fieldState = FieldState.Empty;
+
+    enum HoverIndicationState {Regular, Shopping, Harvest}
+    [SerializeField]private HoverIndicationState hoverIndicationState = HoverIndicationState.Regular;
 
     private void OnEnable()
     {
@@ -54,13 +59,31 @@ public class Field : PlayerWorldInteractable
                 break;
             case FieldState.Empty:
                 break;
-            case FieldState.PlantedWatered:
+            case FieldState.Planted:
                 break;
-            case FieldState.PlantedDry:
+            case FieldState.CanHarvest:
                 break;
             default:
                 throw new ArgumentOutOfRangeException();
         }
+    }
+
+    private void Update()
+    {
+        // Grow Crop
+        if (fieldState == FieldState.Planted)
+        {
+            if (fieldGrowth.Grow(Time.deltaTime))
+            {
+                ChangeFieldStateTo(FieldState.CanHarvest);
+            }
+        }
+    }
+
+    private void ChangeFieldStateTo(FieldState newFieldState)
+    {
+        
+        fieldState = newFieldState;
     }
 
     private void onShoppingStateChange(PlayerState.ShopStatus newShopStatus)
@@ -94,7 +117,7 @@ public class Field : PlayerWorldInteractable
     private void DisplayShoppingHover()
     {
         if(hoverIndicationState == HoverIndicationState.Shopping) return;
-        if(currentSeed != null) return;
+        if(fieldGrowth != null) return;
 
         canPlantIndicationAnimator.gameObject.SetActive(true);
 
@@ -117,8 +140,9 @@ public class Field : PlayerWorldInteractable
     protected override void OnPlayerTouch()
     {
         print("Player Touch");
-        if (PlayerState.shopStatus == PlayerState.ShopStatus.Shopping) //SHOPPING
+        if (PlayerState.shopStatus == PlayerState.ShopStatus.Shopping) 
         {
+            //SHOPPING
             switch (fieldState)
             {
                 case FieldState.Locked:
@@ -126,16 +150,18 @@ public class Field : PlayerWorldInteractable
                 case FieldState.Empty:
                     TryToPlantSeed();
                     break;
-                case FieldState.PlantedWatered:
+                case FieldState.Planted:
                     break;
-                case FieldState.PlantedDry:
+                case FieldState.CanHarvest:
+                    HarvestCrop();
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
             }
         }
-        else //BROWSING
+        else 
         {
+            //BROWSING
             switch (fieldState)
             {
                 case FieldState.Locked:
@@ -143,9 +169,10 @@ public class Field : PlayerWorldInteractable
                     break;
                 case FieldState.Empty:
                     break;
-                case FieldState.PlantedWatered:
+                case FieldState.Planted:
                     break;
-                case FieldState.PlantedDry:
+                case FieldState.CanHarvest:
+                    HarvestCrop();
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
@@ -158,18 +185,34 @@ public class Field : PlayerWorldInteractable
         
     }
 
+    public void HarvestCrop()
+    {
+        cropSR.sprite = null;
+        PlayerStat.money.ChangeValue(fieldGrowth.seed.harvestMoney);
+        fieldGrowth = null;
+        if (PlayerState.shopStatus == PlayerState.ShopStatus.Shopping) { DisplayShoppingHover(); } // put this line after reset currentSeed
+        ChangeFieldStateTo(FieldState.Empty);
+    }
+
     public void TryToPlantSeed()
     {
+        if(fieldGrowth != null) return;
         if (ShopManager.holdingShopItem is SOSI_Seed)
         {
-            currentSeed = (SOSI_Seed)ShopManager.holdingShopItem;
+            SOSI_Seed currentSeed = (SOSI_Seed)ShopManager.holdingShopItem;
             if (PlayerStat.money.HasValue(currentSeed.buyCost))
             {
                 PlayerStat.money.ChangeValue(-currentSeed.buyCost);
                 print("money left: " + PlayerStat.money.GetValue());
-                cropSR.sprite = currentSeed.phasesSprites[0];
+                fieldGrowth = new FieldGrowth(currentSeed, ChangeCropSprite);
                 DisplayRegularHover();
             }
+            ChangeFieldStateTo(FieldState.Planted);
         }
+    }
+
+    public void ChangeCropSprite(Sprite cropSprite)
+    {
+        cropSR.sprite = cropSprite;
     }
 }
