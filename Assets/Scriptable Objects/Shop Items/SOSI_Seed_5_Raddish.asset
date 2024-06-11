@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Raddish
   itemIcon: {fileID: 2146503219, guid: 1ba88ca4891124f4caef425c8e17ab65, type: 3}
-  unlockLevel: 8
+  unlockLevel: 6
   buyCost: 1
   phasesSprites:
   - {fileID: 1354947630, guid: 179dee3a161f04c3284fff6015997ac3, type: 3}

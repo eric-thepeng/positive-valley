@@ -21,6 +21,7 @@ public class Field : PlayerWorldInteractable
     
     [Header("[Set Up]")]
     [SerializeField, Header("== View Only ==")]private FieldState initialFieldState = FieldState.Empty;
+    [SerializeField] private int unlockCost = 0;
 
     // PRIVATE VARIABLES
     // Color Related
@@ -53,19 +54,7 @@ public class Field : PlayerWorldInteractable
 
     private void Start()
     {
-        switch (initialFieldState)
-        {
-            case FieldState.Locked:
-                break;
-            case FieldState.Empty:
-                break;
-            case FieldState.Planted:
-                break;
-            case FieldState.CanHarvest:
-                break;
-            default:
-                throw new ArgumentOutOfRangeException();
-        }
+        ChangeFieldStateTo(initialFieldState);
     }
 
     private void Update()
@@ -82,8 +71,23 @@ public class Field : PlayerWorldInteractable
 
     private void ChangeFieldStateTo(FieldState newFieldState)
     {
-        
         fieldState = newFieldState;
+        switch (newFieldState)
+        {
+            case FieldState.Locked:
+                soilSR.sprite = soilSpriteLocked;
+                break;
+            case FieldState.Empty:
+                soilSR.sprite = soilSpriteEmpty;
+                break;
+            case FieldState.Planted:
+                soilSR.sprite = soilSpritePlantedDry;
+                break;
+            case FieldState.CanHarvest:
+                break;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(newFieldState), newFieldState, null);
+        }
     }
 
     private void onShoppingStateChange(PlayerState.ShopStatus newShopStatus)
@@ -117,7 +121,7 @@ public class Field : PlayerWorldInteractable
     private void DisplayShoppingHover()
     {
         if(hoverIndicationState == HoverIndicationState.Shopping) return;
-        if(fieldGrowth != null) return;
+        if(fieldState != FieldState.Empty) return;
 
         canPlantIndicationSR.color = Color.white;
         
@@ -146,6 +150,7 @@ public class Field : PlayerWorldInteractable
             switch (fieldState)
             {
                 case FieldState.Locked:
+                    DisplayUnlockUI();
                     break;
                 case FieldState.Empty:
                     TryToPlantSeed();
@@ -180,11 +185,6 @@ public class Field : PlayerWorldInteractable
         }
     }
 
-    public void DisplayUnlockUI()
-    {
-        
-    }
-
     public void HarvestCrop()
     {
         cropSR.sprite = null;
@@ -217,5 +217,25 @@ public class Field : PlayerWorldInteractable
     public void ChangeCropSprite(Sprite cropSprite)
     {
         cropSR.sprite = cropSprite;
+    }
+
+    public int GetUnlockCost()
+    {
+        return unlockCost;
+    }
+
+    public void DisplayUnlockUI()
+    {
+        PopUpUIManager.i.DisplayUnlockFieldPopUp(this);
+    }
+    
+    public void TryToUnlock()
+    {
+        if (PlayerStat.money.HasValue(unlockCost))
+        {
+            PlayerStat.money.ChangeValue(-unlockCost);
+            ChangeFieldStateTo(FieldState.Empty);
+            PopUpUIManager.i.ExitUnlockFieldPopUp();
+        }
     }
 }
