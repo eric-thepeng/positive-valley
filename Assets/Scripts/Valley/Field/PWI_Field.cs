@@ -5,7 +5,7 @@ using DG.Tweening;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Field : PlayerWorldInteractable
+public class PWI_Field : PlayerWorldInteractable
 {
     // SERIALIZED PRIVATE VARIABLES
     [Header("== Dependencies ==")]

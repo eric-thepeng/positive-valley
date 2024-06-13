@@ -23,7 +23,7 @@ public class PopUpUIManager : MonoBehaviour
     // SERIALIZED PRIVATE VARIABLES
     [SerializeField]private UI_PopUpAndSelect UnlockFieldPopUpUI;
 
-    public void DisplayUnlockFieldPopUp(Field tarField)
+    public void DisplayUnlockFieldPopUp(PWI_Field tarField)
     {
         UnlockFieldPopUpUI.SetUpAndDisplay("It takes $$" + tarField.GetUnlockCost() + " to unlock.", 
             new List<UnityAction>(){tarField.TryToUnlock}, 
