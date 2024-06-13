@@ -41,6 +41,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7846023039142991158}
   - component: {fileID: 2559625887648912495}
+  - component: {fileID: 1359826787042532149}
   m_Layer: 0
   m_Name: Sunflower
   m_TagString: Untagged
@@ -80,6 +81,18 @@ MonoBehaviour:
   clickableSunSpawnInterval: 5
   clickableSunSpawnTF: {fileID: 6968227329070197699}
   clickableSunGameObject: {fileID: 1136110659910906744, guid: f33d4f69873724a11bdcacc56c7565fc, type: 3}
+--- !u!210 &1359826787042532149
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6007761059499387293}
+  m_Enabled: 1
+  m_SortingLayerID: -426304393
+  m_SortingLayer: 1
+  m_SortingOrder: 0
+  m_SortAtRoot: 0
 --- !u!1 &8538036600076509901
 GameObject:
   m_ObjectHideFlags: 0

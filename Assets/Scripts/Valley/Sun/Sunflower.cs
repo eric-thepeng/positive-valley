@@ -18,7 +18,7 @@ public class Sunflower : PlayerWorldInteractable
 
     IEnumerator SpawnClickableSun()
     {
-        yield return new WaitForSeconds(clickableSunSpawnInterval + Random.Range(0,0.5f));
+        yield return new WaitForSeconds(Random.Range(0,1f));
         while (true)
         {
             Transform newCS = Instantiate(clickableSunGameObject,clickableSunSpawnTF).transform;
