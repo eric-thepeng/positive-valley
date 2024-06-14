@@ -78,7 +78,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d027e564b9795407b970b11f30fe0281, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clickableSunSpawnInterval: 5
+  clickableSunSpawnInterval: 20
   clickableSunSpawnTF: {fileID: 6968227329070197699}
   clickableSunGameObject: {fileID: 1136110659910906744, guid: f33d4f69873724a11bdcacc56c7565fc, type: 3}
 --- !u!210 &1359826787042532149
