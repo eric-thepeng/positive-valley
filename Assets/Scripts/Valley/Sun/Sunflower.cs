@@ -18,12 +18,12 @@ public class Sunflower : PlayerWorldInteractable
 
     IEnumerator SpawnClickableSun()
     {
-        yield return new WaitForSeconds(Random.Range(0,1f));
+        yield return new WaitForSeconds(Random.Range(0,clickableSunSpawnInterval/2));
         while (true)
         {
             Transform newCS = Instantiate(clickableSunGameObject,clickableSunSpawnTF).transform;
             newCS.transform.localPosition = new Vector3(0, 0, 0);
-            newCS.GetComponent<PWI_ClickableSun>().SetUp(1,new Vector3(0.6f,0.6f,1),5,10);
+            newCS.GetComponent<PWI_ClickableSun>().SetUp(1,new Vector3(0.6f,0.6f,1),15,60);
             yield return new WaitForSeconds(clickableSunSpawnInterval + Random.Range(0,0.5f));
         }
     }
