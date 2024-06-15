@@ -22,7 +22,7 @@ public class ClickCancelGround : PlayerWorldInteractable, IClickCancel
     // ----------
     
     public UnityEvent OnPlayerClickCancel = new UnityEvent();
-    protected override void OnPlayerTouch()
+    protected override void OnPlayerTouchBegin()
     {
         print("Player Cancel");
 

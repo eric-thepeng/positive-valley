@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
+using TMPro;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -15,8 +16,7 @@ public class PWI_ClickableSun : PlayerWorldInteractable
     
     // PRIVATE VARIABLES
     private bool canClick = false;
-
-
+    
     private void Start()
     {
         StartCoroutine(StartMovingSequence());
@@ -33,13 +33,16 @@ public class PWI_ClickableSun : PlayerWorldInteractable
     IEnumerator StartMovingSequence()
     {
         // Set Up
-        transform.localScale = 0.1f * matureScale;
+        transform.localScale = 0.05f * matureScale;
         
         // Growing
-        transform.DOScale(matureScale, growTime);
+        transform.DOScale(0.7f * matureScale, growTime);
         yield return new WaitForSeconds(growTime);
-        canClick = true;
         
+        // Finish Grow
+        transform.localScale = matureScale;
+        canClick = true;
+
         // Moving
         transform.DOLocalMoveY(transform.localPosition.y + 0.2f,0.5f);
         yield return new WaitForSeconds(0.5f);
@@ -54,15 +57,31 @@ public class PWI_ClickableSun : PlayerWorldInteractable
     IEnumerator DisappearSequence()
     {
         canClick = false;
-        transform.DOScale(matureScale * 0.1f, 0.2f);
+        //transform.DOScale(matureScale * 0.1f, 0.2f);
+        float disappearTime = 0.75f;
+        transform.DOLocalMoveY(transform.localPosition.y + 0.3f, disappearTime);
+        GetComponentInChildren<SpriteRenderer>().DOColor(Color.clear, disappearTime);
+        GetComponentInChildren<TMP_Text>().DOColor(Color.clear, disappearTime);
+        
+        
         yield return new WaitForSeconds(0.2f);
         Destroy(gameObject);
     }
 
-    protected override void OnPlayerTouch()
+    public void TryTriggerGainSun()
     {
         if(!canClick) return;
         PlayerStat.money.ChangeValue(clickGain);
         StartCoroutine(DisappearSequence());
+    }
+
+    protected override void OnPlayerTouchBegin()
+    {
+        TryTriggerGainSun();
+    }
+
+    protected override void OnPlayerTouchEnter()
+    {
+        TryTriggerGainSun();
     }
 }

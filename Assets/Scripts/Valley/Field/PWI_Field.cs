@@ -167,7 +167,7 @@ public class PWI_Field : PlayerWorldInteractable
         }
     }*/
 
-    protected override void OnPlayerTouch()
+    protected override void OnPlayerTouchBegin()
     {
         print("Player Touch");
         if (PlayerState.shopStatus == PlayerState.ShopStatus.Shopping) 
