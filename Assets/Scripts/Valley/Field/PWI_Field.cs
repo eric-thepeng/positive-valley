@@ -70,14 +70,14 @@ public class PWI_Field : PlayerWorldInteractable
     
     private void SaveGameFile()
     {
-        if(SaveLoadManager.i.saveMode == SaveLoadManager.SaveMode.DoNotSave) return;
+        if(SaveLoadManager.i.GetSaveMode() == SaveLoadManager.SaveMode.DoNotSave) return;
         ES3.Save("pwiField_" + fieldID + "_fieldState", fieldState, SaveLoadManager.i.saveFileName);
         ES3.Save("pwiField_" + fieldID + "_fieldGrowth", fieldGrowth, SaveLoadManager.i.saveFileName);
     }
     
     private void LoadGameFile()
     {
-        if(SaveLoadManager.i.loadMode == SaveLoadManager.LoadMode.NewGame) return;
+        if(SaveLoadManager.i.GetLoadMode() == SaveLoadManager.LoadMode.NewGame) return;
         ChangeFieldStateTo(ES3.Load<FieldState>("pwiField_" + fieldID + "_fieldState", SaveLoadManager.i.loadFileName));
         AssignFieldGrowth(ES3.Load<FieldGrowth>("pwiField_" + fieldID + "_fieldGrowth", SaveLoadManager.i.loadFileName));
     }

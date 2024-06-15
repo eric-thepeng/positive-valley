@@ -26,7 +26,7 @@ public class PlayerStat : MonoBehaviour
 
     private void SaveGameFile()
     {
-        if(SaveLoadManager.i.saveMode == SaveLoadManager.SaveMode.DoNotSave) return;
+        if(SaveLoadManager.i.GetSaveMode() == SaveLoadManager.SaveMode.DoNotSave) return;
         ES3.Save("playerStatMoney", money.GetValue(), SaveLoadManager.i.saveFileName);
         ES3.Save("playerStatLevel", level.GetValue(), SaveLoadManager.i.saveFileName);
         ES3.Save("playerStatExperience", experience.GetValue(), SaveLoadManager.i.saveFileName);
@@ -34,7 +34,7 @@ public class PlayerStat : MonoBehaviour
     
     private void LoadGameFile()
     {
-        if(SaveLoadManager.i.loadMode == SaveLoadManager.LoadMode.NewGame) return;
+        if(SaveLoadManager.i.GetLoadMode() == SaveLoadManager.LoadMode.NewGame) return;
         money.SetValue(ES3.Load<int>("playerStatMoney", SaveLoadManager.i.loadFileName));
         level.SetValue(ES3.Load<int>("playerStatLevel", SaveLoadManager.i.loadFileName));
         experience.SetValue(ES3.Load<int>("playerStatExperience", SaveLoadManager.i.loadFileName));

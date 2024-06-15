@@ -1565,7 +1565,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e78039de544974ebda0a1884913565d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  loadMode: 1
+  firstNewThenLoad: 1
+  loadMode: 0
   loadFileName: 1_TestSave.es3
   saveMode: 1
   saveFileName: 1_TestSave.es3
