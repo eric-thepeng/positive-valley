@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Profiling.LowLevel.Unsafe;
 using Unity.VisualScripting;
+using UnityEditor.Timeline;
 using UnityEngine;
 
 public class SaveLoadManager : MonoBehaviour
@@ -44,5 +46,24 @@ public class SaveLoadManager : MonoBehaviour
     public SaveMode GetSaveMode()
     {
         return saveMode;
+    }
+
+    private void OnApplicationQuit()
+    {
+        ES3.Save("LastExitTime", System.DateTime.Now.ToString(),saveFileName);
+        PlayerPrefs.Save();
+    }
+
+    public TimeSpan GetLastExitTimeAway()
+    {
+        if (ES3.KeyExists("LastExitTime"))
+        {
+            string lastExitTimeString = ES3.Load<string>("LastExitTime",loadFileName);
+            System.DateTime lastExitTime = System.DateTime.Parse(lastExitTimeString);
+            System.TimeSpan timeAway = System.DateTime.Now - lastExitTime;
+            return timeAway;
+        }
+        
+        return TimeSpan.Zero;
     }
 }

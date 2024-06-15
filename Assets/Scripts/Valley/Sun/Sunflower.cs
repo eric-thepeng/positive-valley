@@ -6,25 +6,57 @@ using Random = UnityEngine.Random;
 
 public class Sunflower : PlayerWorldInteractable
 {
-    [SerializeField] private float clickableSunSpawnInterval;
-    //[SerializeField] private float clickableSunGrowDuration;
-    //[SerializeField] private float clickableSunAliveDuration;
+    //[SerializeField] private float clickableSunSpawnInterval;
+    [SerializeField] private float clickableSunGrowTime;
+    [SerializeField] private float clickableSunAliveDuration;
     [SerializeField] private Transform clickableSunSpawnTF;
     [SerializeField] private GameObject clickableSunGameObject;
     private void Start()
     {
-        StartCoroutine(SpawnClickableSun());
+        StartCoroutine(SpawnClickableSun()); 
+        LoadGameFile();
+    }
+    
+    private void OnApplicationQuit()
+    {
+        SaveGameFile();
+    }
+
+    private void SaveGameFile()
+    {
+        if(SaveLoadManager.i.GetSaveMode() == SaveLoadManager.SaveMode.DoNotSave) return;
+    }
+    
+    private void LoadGameFile()
+    {
+        if(SaveLoadManager.i.GetLoadMode() == SaveLoadManager.LoadMode.NewGame) return;
+        return;
+        TimeSpan timeAway = SaveLoadManager.i.GetLastExitTimeAway();
+        if (timeAway != TimeSpan.Zero)
+        {
+            for (int i = 0; 
+                 i < Math.Min((int)(clickableSunAliveDuration / clickableSunGrowTime + 1), timeAway.TotalSeconds / (clickableSunGrowTime)); 
+                 i++)
+            {
+                Transform newCS = Instantiate(clickableSunGameObject,clickableSunSpawnTF).transform;
+                newCS.transform.localPosition = new Vector3(0, 0, 0);
+                newCS.GetComponent<PWI_ClickableSun>().SetUp(1,new Vector3(0.6f,0.6f,1),clickableSunGrowTime,clickableSunAliveDuration, true);
+            }
+            
+        }
     }
 
     IEnumerator SpawnClickableSun()
     {
-        yield return new WaitForSeconds(Random.Range(0,clickableSunSpawnInterval/2));
+        yield return new WaitForSeconds(Random.Range(0,2));
         while (true)
         {
             Transform newCS = Instantiate(clickableSunGameObject,clickableSunSpawnTF).transform;
             newCS.transform.localPosition = new Vector3(0, 0, 0);
-            newCS.GetComponent<PWI_ClickableSun>().SetUp(1,new Vector3(0.6f,0.6f,1),15,60);
-            yield return new WaitForSeconds(clickableSunSpawnInterval + Random.Range(0,0.5f));
+            newCS.GetComponent<PWI_ClickableSun>().SetUp(1,new Vector3(0.6f,0.6f,1),clickableSunGrowTime,clickableSunAliveDuration);
+            yield return new WaitForSeconds(clickableSunGrowTime + 3);
         }
     }
+    
+    
 }
