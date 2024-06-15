@@ -28,10 +28,12 @@ public class SaveLoadManager : MonoBehaviour
 
     public LoadMode GetLoadMode()
     {
-        if (firstNewThenLoad && ES3.KeyExists("firstTime", saveFileName))
+        if (firstNewThenLoad)
         {
-            loadMode = LoadMode.LoadGame;
+            if (ES3.FileExists(loadFileName)) return LoadMode.LoadGame;
+            else return LoadMode.NewGame;
         }
+
         return loadMode;
     }
 
@@ -42,10 +44,5 @@ public class SaveLoadManager : MonoBehaviour
     public SaveMode GetSaveMode()
     {
         return saveMode;
-    }
-    
-    private void Start()
-    {
-        ES3.Save("firstTime", true, saveFileName);
     }
 }
