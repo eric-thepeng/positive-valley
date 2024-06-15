@@ -30,8 +30,8 @@ public class Sunflower : PlayerWorldInteractable
     private void LoadGameFile()
     {
         if(SaveLoadManager.i.GetLoadMode() == SaveLoadManager.LoadMode.NewGame) return;
-        return;
         TimeSpan timeAway = SaveLoadManager.i.GetLastExitTimeAway();
+        print("Time Away " + timeAway.TotalSeconds);
         if (timeAway != TimeSpan.Zero)
         {
             for (int i = 0; 

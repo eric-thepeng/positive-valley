@@ -56,7 +56,7 @@ public class SaveLoadManager : MonoBehaviour
 
     public TimeSpan GetLastExitTimeAway()
     {
-        if (ES3.KeyExists("LastExitTime"))
+        if (ES3.KeyExists("LastExitTime",loadFileName))
         {
             string lastExitTimeString = ES3.Load<string>("LastExitTime",loadFileName);
             System.DateTime lastExitTime = System.DateTime.Parse(lastExitTimeString);
