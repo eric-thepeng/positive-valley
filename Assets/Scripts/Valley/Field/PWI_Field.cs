@@ -7,6 +7,10 @@ using UnityEngine;
 
 public class PWI_Field : PlayerWorldInteractable
 {
+    // IDENTIFIER
+    static private int totalFields = 0;
+    private int fieldID = 0;
+
     // SERIALIZED PRIVATE VARIABLES
     [Header("== Dependencies ==")]
     [SerializeField] private SpriteRenderer soilSR;
@@ -29,15 +33,14 @@ public class PWI_Field : PlayerWorldInteractable
     private Color soilShoopingColor;
     // Seed and Grow
     private FieldGrowth fieldGrowth = null;
-    private float seedDuration = 0f;
-    private int seedStage = 0;
+
 
     /// <summary>
     /// Locked: Locked and need to be purchased.
     /// Empty: Unlocked and nothing is planted.
     /// Planted: Planted with seed.
     /// </summary>
-    enum FieldState {Locked, Empty, Planted, CanHarvest}
+    public enum FieldState {Locked, Empty, Planted, CanHarvest}
     [SerializeField, Header("== View Only ==")]private FieldState fieldState = FieldState.Empty;
 
     enum HoverIndicationState {Regular, Shopping, Harvest}
@@ -54,7 +57,29 @@ public class PWI_Field : PlayerWorldInteractable
 
     private void Start()
     {
+        totalFields++;
+        fieldID = totalFields;
         ChangeFieldStateTo(initialFieldState);
+        LoadGameFile();
+    }
+
+    private void OnApplicationQuit()
+    {
+        SaveGameFile();
+    }
+    
+    private void SaveGameFile()
+    {
+        if(SaveLoadManager.i.saveMode == SaveLoadManager.SaveMode.DoNotSave) return;
+        ES3.Save("pwiField_" + fieldID + "_fieldState", fieldState, SaveLoadManager.i.saveFileName);
+        ES3.Save("pwiField_" + fieldID + "_fieldGrowth", fieldGrowth, SaveLoadManager.i.saveFileName);
+    }
+    
+    private void LoadGameFile()
+    {
+        if(SaveLoadManager.i.loadMode == SaveLoadManager.LoadMode.NewGame) return;
+        ChangeFieldStateTo(ES3.Load<FieldState>("pwiField_" + fieldID + "_fieldState", SaveLoadManager.i.loadFileName));
+        AssignFieldGrowth(ES3.Load<FieldGrowth>("pwiField_" + fieldID + "_fieldGrowth", SaveLoadManager.i.loadFileName));
     }
 
     private void Update()
@@ -84,6 +109,7 @@ public class PWI_Field : PlayerWorldInteractable
                 soilSR.sprite = soilSpritePlantedDry;
                 break;
             case FieldState.CanHarvest:
+                soilSR.sprite = soilSpritePlantedDry;
                 break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(newFieldState), newFieldState, null);
@@ -192,7 +218,7 @@ public class PWI_Field : PlayerWorldInteractable
         PlayerStat.money.ChangeValue(fieldGrowth.seed.harvestMoney);
         PlayerStat.experience.ChangeValue(fieldGrowth.seed.harvestExperience);
         
-        fieldGrowth = null;
+        AssignFieldGrowth(null);
         if (PlayerState.shopStatus == PlayerState.ShopStatus.Shopping) { DisplayShoppingHover(); } // put this line after reset currentSeed
         ChangeFieldStateTo(FieldState.Empty);
     }
@@ -207,16 +233,24 @@ public class PWI_Field : PlayerWorldInteractable
             {
                 PlayerStat.money.ChangeValue(-currentSeed.buyCost);
                 print("money left: " + PlayerStat.money.GetValue());
-                fieldGrowth = new FieldGrowth(currentSeed, ChangeCropSprite);
+                AssignFieldGrowth(new FieldGrowth(currentSeed, OnFieldGrowthPhaseChange));
                 DisplayRegularHover();
             }
             ChangeFieldStateTo(FieldState.Planted);
         }
     }
 
-    public void ChangeCropSprite(Sprite cropSprite)
+    public void AssignFieldGrowth(FieldGrowth tarFieldGrowth)
     {
-        cropSR.sprite = cropSprite;
+        fieldGrowth = tarFieldGrowth;
+        if (fieldGrowth == null) return; 
+        
+        fieldGrowth.ReassignOnPhaseChange(OnFieldGrowthPhaseChange);
+    }
+
+    public void OnFieldGrowthPhaseChange(FieldGrowth tarFieldGrowth)
+    {
+        cropSR.sprite = tarFieldGrowth.GetCurrentStageSeedSprite();
     }
 
     public int GetUnlockCost()

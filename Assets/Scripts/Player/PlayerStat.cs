@@ -14,6 +14,32 @@ public class PlayerStat : MonoBehaviour
         experience.SubscribeChangeValue(OnExperienceChangeValue);
     }
 
+    private void Start()
+    {
+        LoadGameFile();
+    }
+
+    private void OnApplicationQuit()
+    {
+        SaveGameFile();
+    }
+
+    private void SaveGameFile()
+    {
+        if(SaveLoadManager.i.saveMode == SaveLoadManager.SaveMode.DoNotSave) return;
+        ES3.Save("playerStatMoney", money.GetValue(), SaveLoadManager.i.saveFileName);
+        ES3.Save("playerStatLevel", level.GetValue(), SaveLoadManager.i.saveFileName);
+        ES3.Save("playerStatExperience", experience.GetValue(), SaveLoadManager.i.saveFileName);
+    }
+    
+    private void LoadGameFile()
+    {
+        if(SaveLoadManager.i.loadMode == SaveLoadManager.LoadMode.NewGame) return;
+        money.SetValue(ES3.Load<int>("playerStatMoney", SaveLoadManager.i.loadFileName));
+        level.SetValue(ES3.Load<int>("playerStatLevel", SaveLoadManager.i.loadFileName));
+        experience.SetValue(ES3.Load<int>("playerStatExperience", SaveLoadManager.i.loadFileName));
+    }
+
     public void OnExperienceChangeValue(int newExp)
     {
         if (newExp >= GetLevelUpExpRequirement()) LevelUp();

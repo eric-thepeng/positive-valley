@@ -8,16 +8,21 @@ public class FieldGrowth
     public SOSI_Seed seed;
     public int currentPhase;
     public float currentGrowthTime;
-    private UnityEvent<Sprite> OnPhaseChange;
+    public UnityEvent<FieldGrowth> OnPhaseChange;
 
-    public FieldGrowth(SOSI_Seed seed, UnityAction<Sprite> PhaseChangeSprite)
+    public FieldGrowth(SOSI_Seed seed, UnityAction<FieldGrowth> onPhaseChange)
     {
         this.seed = seed;
         currentPhase = 0;
         currentGrowthTime = 0;
-        OnPhaseChange = new UnityEvent<Sprite>();
-        OnPhaseChange.AddListener(PhaseChangeSprite);
-        OnPhaseChange.Invoke(seed.phasesSprites[currentPhase]);
+        ReassignOnPhaseChange(onPhaseChange);
+    }
+
+    public void ReassignOnPhaseChange(UnityAction<FieldGrowth> onPhaseChange, bool triggerImmediately = true)
+    {
+        OnPhaseChange = new UnityEvent<FieldGrowth>();
+        OnPhaseChange.AddListener(onPhaseChange);
+        if(triggerImmediately) OnPhaseChange.Invoke(this);
     }
 
     /// <summary>
@@ -32,11 +37,16 @@ public class FieldGrowth
         {
             currentGrowthTime = 0;
             currentPhase += 1;
-            OnPhaseChange.Invoke(seed.phasesSprites[currentPhase]);
+            OnPhaseChange.Invoke(this);
             if (currentPhase == seed.totalPhasesAmount) return true;
             return false;
         }
 
         return false;
+    }
+
+    public Sprite GetCurrentStageSeedSprite()
+    {
+        return seed.phasesSprites[currentPhase];
     }
 }
