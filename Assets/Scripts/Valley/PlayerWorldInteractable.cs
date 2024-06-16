@@ -5,19 +5,13 @@ using UnityEngine;
 
 public class PlayerWorldInteractable : MonoBehaviour
 {
-    protected virtual void OnPlayerTouchBegin()
-    {
-        throw new NotImplementedException();
-    }
+    protected virtual void OnPlayerTouchAsButton() { }
 
-    protected virtual void OnPlayerTouchEnter()
-    {
-        
-    }
+    protected virtual void OnPlayerTouchEnter() { }
     
     private void OnMouseUpAsButton()
     {
-        if(!UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject()) OnPlayerTouchBegin();
+        if(!UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject()) OnPlayerTouchAsButton();
     }
 
     private void OnMouseEnter()

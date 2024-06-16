@@ -15,12 +15,12 @@ MonoBehaviour:
   itemName: Tomato
   itemIcon: {fileID: -766620013, guid: 1ba88ca4891124f4caef425c8e17ab65, type: 3}
   unlockLevel: 8
-  buyCost: 1
+  buyCost: 25
   phasesSprites:
   - {fileID: -1988078668, guid: 179dee3a161f04c3284fff6015997ac3, type: 3}
   - {fileID: -1345148521, guid: 179dee3a161f04c3284fff6015997ac3, type: 3}
   - {fileID: 365680315, guid: 179dee3a161f04c3284fff6015997ac3, type: 3}
   - {fileID: 1425785722, guid: 179dee3a161f04c3284fff6015997ac3, type: 3}
-  phaseGrowTime: 9
-  harvestMoney: 50
-  harvestExperience: 60
+  phaseGrowTime: 350
+  harvestMoney: 150
+  harvestExperience: 110

@@ -15,12 +15,12 @@ MonoBehaviour:
   itemName: Cauliflower
   itemIcon: {fileID: 1870575596, guid: 1ba88ca4891124f4caef425c8e17ab65, type: 3}
   unlockLevel: 2
-  buyCost: 1
+  buyCost: 2
   phasesSprites:
   - {fileID: 663371504, guid: 179dee3a161f04c3284fff6015997ac3, type: 3}
   - {fileID: -1156078647, guid: 179dee3a161f04c3284fff6015997ac3, type: 3}
   - {fileID: 1515808861, guid: 179dee3a161f04c3284fff6015997ac3, type: 3}
   - {fileID: 1248227090, guid: 179dee3a161f04c3284fff6015997ac3, type: 3}
-  phaseGrowTime: 5
+  phaseGrowTime: 60
   harvestMoney: 20
-  harvestExperience: 10
+  harvestExperience: 15

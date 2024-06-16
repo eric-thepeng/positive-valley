@@ -80,18 +80,18 @@ public class PWI_Field : PlayerWorldInteractable
         if(SaveLoadManager.i.GetLoadMode() == SaveLoadManager.LoadMode.NewGame) return;
         ChangeFieldStateTo(ES3.Load<FieldState>("pwiField_" + fieldID + "_fieldState", SaveLoadManager.i.loadFileName));
         AssignFieldGrowth(ES3.Load<FieldGrowth>("pwiField_" + fieldID + "_fieldGrowth", SaveLoadManager.i.loadFileName));
+        
+        TimeSpan timeAway = SaveLoadManager.i.GetLastExitTimeAway();
+        if (timeAway != TimeSpan.Zero)
+        {
+            GrowCrop((float)timeAway.TotalSeconds);
+        }
     }
 
     private void Update()
     {
         // Grow Crop
-        if (fieldState == FieldState.Planted)
-        {
-            if (fieldGrowth.Grow(Time.deltaTime))
-            {
-                ChangeFieldStateTo(FieldState.CanHarvest);
-            }
-        }
+        GrowCrop(Time.deltaTime);
     }
 
     private void ChangeFieldStateTo(FieldState newFieldState)
@@ -154,20 +154,18 @@ public class PWI_Field : PlayerWorldInteractable
         hoverIndicationState = HoverIndicationState.Shopping;
     }
 
-    /*
-    private IEnumerator shakeShoppingField()
+    private void GrowCrop(float passTime)
     {
-        while (true)
+        if (fieldState == FieldState.Planted)
         {
-            //shoppingStateGO.transform.DOShakeScale(0.5f, new Vector3(.15f, .15f, 0),15,90,true,ShakeRandomnessMode.Harmonic);
-            soilSR.DOColor(soilShoopingColor, 0.6f);
-            yield return new WaitForSeconds(0.6f);
-            soilSR.DOColor(soilRegularColor, 0.6f);
-            yield return new WaitForSeconds(.6f);
+            if (fieldGrowth.Grow(passTime))
+            {
+                ChangeFieldStateTo(FieldState.CanHarvest);
+            }
         }
-    }*/
+    }
 
-    protected override void OnPlayerTouchBegin()
+    protected override void OnPlayerTouchAsButton()
     {
         print("Player Touch");
         if (PlayerState.shopStatus == PlayerState.ShopStatus.Shopping) 
@@ -182,6 +180,7 @@ public class PWI_Field : PlayerWorldInteractable
                     TryToPlantSeed();
                     break;
                 case FieldState.Planted:
+                    DisplayPlantedInfoPopUp();
                     break;
                 case FieldState.CanHarvest:
                     HarvestCrop();
@@ -201,6 +200,7 @@ public class PWI_Field : PlayerWorldInteractable
                 case FieldState.Empty:
                     break;
                 case FieldState.Planted:
+                    DisplayPlantedInfoPopUp();
                     break;
                 case FieldState.CanHarvest:
                     HarvestCrop();
@@ -209,6 +209,11 @@ public class PWI_Field : PlayerWorldInteractable
                     throw new ArgumentOutOfRangeException();
             }
         }
+    }
+
+    public void DisplayPlantedInfoPopUp()
+    {
+        PopUpUIManager.i.DisplayFieldGrowInfoPopUp(this);
     }
 
     public void HarvestCrop()
@@ -258,9 +263,14 @@ public class PWI_Field : PlayerWorldInteractable
         return unlockCost;
     }
 
+    public FieldGrowth GetFieldGrowth()
+    {
+        return fieldGrowth;
+    }
+
     public void DisplayUnlockUI()
     {
-        PopUpUIManager.i.DisplayUnlockFieldPopUp(this);
+        PopUpUIManager.i.DisplayUnlockFieldPopUpSelect(this);
     }
     
     public void TryToUnlock()

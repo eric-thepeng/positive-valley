@@ -15,12 +15,12 @@ MonoBehaviour:
   itemName: Eggplant
   itemIcon: {fileID: -142148323, guid: 1ba88ca4891124f4caef425c8e17ab65, type: 3}
   unlockLevel: 4
-  buyCost: 1
+  buyCost: 5
   phasesSprites:
   - {fileID: 585725989, guid: 179dee3a161f04c3284fff6015997ac3, type: 3}
   - {fileID: 2024872127, guid: 179dee3a161f04c3284fff6015997ac3, type: 3}
   - {fileID: -565973528, guid: 179dee3a161f04c3284fff6015997ac3, type: 3}
   - {fileID: -1088199923, guid: 179dee3a161f04c3284fff6015997ac3, type: 3}
-  phaseGrowTime: 5
-  harvestMoney: 30
-  harvestExperience: 30
+  phaseGrowTime: 100
+  harvestMoney: 60
+  harvestExperience: 20

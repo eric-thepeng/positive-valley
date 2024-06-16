@@ -15,12 +15,12 @@ MonoBehaviour:
   itemName: Cabbage
   itemIcon: {fileID: 2029280620, guid: 1ba88ca4891124f4caef425c8e17ab65, type: 3}
   unlockLevel: 3
-  buyCost: 1
+  buyCost: 4
   phasesSprites:
   - {fileID: -900570586, guid: 179dee3a161f04c3284fff6015997ac3, type: 3}
   - {fileID: -1807085117, guid: 179dee3a161f04c3284fff6015997ac3, type: 3}
   - {fileID: -1276197359, guid: 179dee3a161f04c3284fff6015997ac3, type: 3}
   - {fileID: 2037117529, guid: 179dee3a161f04c3284fff6015997ac3, type: 3}
-  phaseGrowTime: 7
-  harvestMoney: 40
-  harvestExperience: 20
+  phaseGrowTime: 150
+  harvestMoney: 50
+  harvestExperience: 60

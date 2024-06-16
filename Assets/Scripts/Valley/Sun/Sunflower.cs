@@ -31,7 +31,6 @@ public class Sunflower : PlayerWorldInteractable
     {
         if(SaveLoadManager.i.GetLoadMode() == SaveLoadManager.LoadMode.NewGame) return;
         TimeSpan timeAway = SaveLoadManager.i.GetLastExitTimeAway();
-        print("Time Away " + timeAway.TotalSeconds);
         if (timeAway != TimeSpan.Zero)
         {
             for (int i = 0; 
@@ -42,7 +41,6 @@ public class Sunflower : PlayerWorldInteractable
                 newCS.transform.localPosition = new Vector3(0, 0, 0);
                 newCS.GetComponent<PWI_ClickableSun>().SetUp(1,new Vector3(0.6f,0.6f,1),clickableSunGrowTime,clickableSunAliveDuration, true);
             }
-            
         }
     }
 

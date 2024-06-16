@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -33,13 +34,15 @@ public class FieldGrowth
     public bool Grow(float growTime)
     {
         currentGrowthTime += growTime;
-        if (currentGrowthTime >= seed.phaseGrowTime)
+        while (currentGrowthTime >= seed.phaseGrowTime)
         {
-            currentGrowthTime = 0;
+            currentGrowthTime -= seed.phaseGrowTime;
             currentPhase += 1;
             OnPhaseChange.Invoke(this);
-            if (currentPhase == seed.totalPhasesAmount) return true;
-            return false;
+            if (currentPhase == seed.totalPhasesAmount)
+            {
+                return true;
+            }
         }
 
         return false;
@@ -48,5 +51,24 @@ public class FieldGrowth
     public Sprite GetCurrentStageSeedSprite()
     {
         return seed.phasesSprites[currentPhase];
+    }
+
+    public TimeSpan GetTotalRemainingGrowTime()
+    {
+        int timeInSec = (int)Math.Floor((seed.totalPhasesAmount - currentPhase + 1) * seed.phaseGrowTime - currentGrowthTime);
+        return TimeSpan.FromSeconds(timeInSec);
+    }
+
+    public string GetTotalRemainingGrowTimeString()
+    {
+        TimeSpan timeSpan = GetTotalRemainingGrowTime();
+        
+        string formattedTime = string.Format("{0}{1}{2}{3}",
+            timeSpan.Days > 0 ? $"{timeSpan.Days} day{(timeSpan.Days > 1 ? "s" : "")} " : "",
+            timeSpan.Hours > 0 ? $"{timeSpan.Hours} hour{(timeSpan.Hours > 1 ? "s" : "")} " : "",
+            timeSpan.Minutes > 0 ? $"{timeSpan.Minutes} minute{(timeSpan.Minutes > 1 ? "s" : "")} " : "",
+            timeSpan.Seconds > 0 ? $"{timeSpan.Seconds} second{(timeSpan.Seconds > 1 ? "s" : "")}" : "").Trim();
+
+        return formattedTime;
     }
 }

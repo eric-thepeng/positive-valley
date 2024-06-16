@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -21,17 +22,36 @@ public class PopUpUIManager : MonoBehaviour
     // ----------
 
     // SERIALIZED PRIVATE VARIABLES
-    [SerializeField]private UI_PopUpAndSelect UnlockFieldPopUpUI;
+    [SerializeField]private UI_PopUpAndSelect UnlockFieldPopUpSelectUI;
+    [SerializeField] private UI_PopUp FieldGrowInfoPopUpUI;
 
-    public void DisplayUnlockFieldPopUp(PWI_Field tarField)
+    public void DisplayUnlockFieldPopUpSelect(PWI_Field tarField)
     {
-        UnlockFieldPopUpUI.SetUpAndDisplay("It takes $$" + tarField.GetUnlockCost() + " to unlock.", 
+        UnlockFieldPopUpSelectUI.SetUpAndDisplay(
+            "It takes $$" + tarField.GetUnlockCost() + " to unlock.", 
             new List<UnityAction>(){tarField.TryToUnlock}, 
             new List<string>(){"Unlock"});
     }
 
+    public void DisplayFieldGrowInfoPopUp(PWI_Field tarField)
+    {
+        string displayString = "";
+        if (tarField == null)
+        {
+            displayString = "No Information On Current Field's Crop";
+        }
+        else
+        {
+            FieldGrowth tarFG = tarField.GetFieldGrowth();
+            displayString += "Seed: " + tarFG.seed.itemName + "\n";
+            displayString += "Growing Phase: " + (tarFG.currentPhase + 1) +"/" + (tarFG.seed.totalPhasesAmount+1) + "\n";
+            displayString += "Total Remaining Time: " + tarFG.GetTotalRemainingGrowTimeString();
+        }
+        FieldGrowInfoPopUpUI.SetUpAndDisplay(displayString);
+    }
+
     public void ExitUnlockFieldPopUp()
     {
-        UnlockFieldPopUpUI.ExitUI();
+        UnlockFieldPopUpSelectUI.ExitUI();
     }
 }

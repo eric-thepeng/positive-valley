@@ -77,11 +77,6 @@ public class PWI_ClickableSun : PlayerWorldInteractable
         StartCoroutine(DisappearSequence());
     }
 
-    protected override void OnPlayerTouchBegin()
-    {
-        TryTriggerGainSun();
-    }
-
     protected override void OnPlayerTouchEnter()
     {
         TryTriggerGainSun();
