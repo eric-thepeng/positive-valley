@@ -66,8 +66,8 @@ public class FieldGrowth
         string formattedTime = string.Format("{0}{1}{2}{3}",
             timeSpan.Days > 0 ? $"{timeSpan.Days} day{(timeSpan.Days > 1 ? "s" : "")} " : "",
             timeSpan.Hours > 0 ? $"{timeSpan.Hours} hour{(timeSpan.Hours > 1 ? "s" : "")} " : "",
-            timeSpan.Minutes > 0 ? $"{timeSpan.Minutes} minute{(timeSpan.Minutes > 1 ? "s" : "")} " : "",
-            timeSpan.Seconds > 0 ? $"{timeSpan.Seconds} second{(timeSpan.Seconds > 1 ? "s" : "")}" : "").Trim();
+            timeSpan.Minutes > 0 ? $"{timeSpan.Minutes} min{(timeSpan.Minutes > 1 ? "s" : "")} " : "",
+            timeSpan.Seconds > 0 ? $"{timeSpan.Seconds} sec{(timeSpan.Seconds > 1 ? "s" : "")}" : "").Trim();
 
         return formattedTime;
     }
