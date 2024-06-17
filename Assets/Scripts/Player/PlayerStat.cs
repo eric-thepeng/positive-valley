@@ -23,6 +23,20 @@ public class PlayerStat : MonoBehaviour
     {
         SaveGameFile();
     }
+    
+    private void OnApplicationPause(bool pauseStatus)
+    {
+        if (pauseStatus)
+        {
+            // Enter Pause
+            SaveGameFile();
+        }
+        else
+        {
+            // Resume
+            LoadGameFile();
+        }
+    }
 
     private void SaveGameFile()
     {

@@ -71,4 +71,9 @@ public class FieldGrowth
 
         return formattedTime;
     }
+
+    public bool CanHarvest()
+    {
+        return currentPhase == seed.totalPhasesAmount;
+    }
 }

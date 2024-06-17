@@ -43,10 +43,28 @@ public class SaveLoadManager : MonoBehaviour
         return saveMode;
     }
 
-    private void OnApplicationQuit()
+    public void SaveExitTime()
     {
         ES3.Save("LastExitTime", System.DateTime.Now.ToString(),saveFileName);
         PlayerPrefs.Save();
+    }
+
+    private void OnApplicationQuit()
+    {
+        SaveExitTime();
+    }
+    
+    private void OnApplicationPause(bool pauseStatus)
+    {
+        if (pauseStatus)
+        {
+            // Enter Pause
+            SaveExitTime();
+        }
+        else
+        {
+            // Resume
+        }
     }
 
     public TimeSpan GetLastExitTimeAway()

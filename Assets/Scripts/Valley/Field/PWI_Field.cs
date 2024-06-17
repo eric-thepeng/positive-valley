@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using DG.Tweening;
 using Unity.VisualScripting;
 using UnityEngine;
+using Random = System.Random;
 
 public class PWI_Field : PlayerWorldInteractable
 {
@@ -31,8 +32,15 @@ public class PWI_Field : PlayerWorldInteractable
     // Color Related
     private Color soilRegularColor;
     private Color soilShoopingColor;
+    
     // Seed and Grow
     private FieldGrowth fieldGrowth = null;
+    
+    // Crop Effect
+    private Vector3 cropSROrigionalLocalPosition;
+    private bool cropGrowingShaking = false;
+    private bool cropCanHarvestShaking = false;
+
 
 
     /// <summary>
@@ -67,7 +75,21 @@ public class PWI_Field : PlayerWorldInteractable
     {
         SaveGameFile();
     }
-    
+
+    private void OnApplicationPause(bool pauseStatus)
+    {
+        if (pauseStatus)
+        {
+            // Enter Pause
+            SaveGameFile();
+        }
+        else
+        {
+            // Resume
+            LoadGameFile();
+        }
+    }
+
     private void SaveGameFile()
     {
         if(SaveLoadManager.i.GetSaveMode() == SaveLoadManager.SaveMode.DoNotSave) return;
@@ -93,7 +115,7 @@ public class PWI_Field : PlayerWorldInteractable
         // Grow Crop
         GrowCrop(Time.deltaTime);
     }
-
+    
     private void ChangeFieldStateTo(FieldState newFieldState)
     {
         fieldState = newFieldState;
@@ -161,6 +183,7 @@ public class PWI_Field : PlayerWorldInteractable
             if (fieldGrowth.Grow(passTime))
             {
                 ChangeFieldStateTo(FieldState.CanHarvest);
+                StartCoroutine(ShakeCropCanHarvest());
             }
         }
     }
@@ -240,9 +263,52 @@ public class PWI_Field : PlayerWorldInteractable
                 print("money left: " + PlayerStat.money.GetValue());
                 AssignFieldGrowth(new FieldGrowth(currentSeed, OnFieldGrowthPhaseChange));
                 DisplayRegularHover();
+                ChangeFieldStateTo(FieldState.Planted);
+
+                cropSROrigionalLocalPosition = cropSR.transform.localPosition;
+                StartCoroutine(ShakeCropGrowing());
             }
-            ChangeFieldStateTo(FieldState.Planted);
         }
+    }
+
+    private IEnumerator ShakeCropGrowing()
+    {
+        cropGrowingShaking = true;
+        cropSR.transform.localPosition += new Vector3(UnityEngine.Random.Range(-0.005f,0.005f), 0, 0); 
+        
+        yield return new WaitForSeconds(UnityEngine.Random.Range(3f, 5f));
+
+        while (fieldState == FieldState.Planted)
+        {
+            if (cropSR.transform.localPosition.x < cropSROrigionalLocalPosition.x)
+            {
+                cropSR.transform.DOLocalMoveX(cropSROrigionalLocalPosition.x +
+                                              UnityEngine.Random.Range(0.01f, 0.02f),0.3f);
+            }
+            else
+            {
+                cropSR.transform.DOLocalMoveX(cropSROrigionalLocalPosition.x -
+                                              UnityEngine.Random.Range(0.01f, 0.02f),0.3f);
+            }
+            yield return new WaitForSeconds(UnityEngine.Random.Range(5f, 10f));
+
+        }
+        
+        cropGrowingShaking = false;
+    }
+
+    private IEnumerator ShakeCropCanHarvest()
+    {
+        cropCanHarvestShaking = true;
+        cropSR.transform.localPosition = cropSROrigionalLocalPosition;
+
+        while (fieldState == FieldState.CanHarvest)
+        {
+            cropSR.gameObject.transform.DOShakeRotation(0.5f,40f);
+            yield return new WaitForSeconds(1f);
+        }
+        
+        cropCanHarvestShaking = false;
     }
 
     public void AssignFieldGrowth(FieldGrowth tarFieldGrowth)
@@ -251,6 +317,22 @@ public class PWI_Field : PlayerWorldInteractable
         if (fieldGrowth == null) return; 
         
         fieldGrowth.ReassignOnPhaseChange(OnFieldGrowthPhaseChange);
+
+        // Assign Shake
+        if (fieldGrowth.CanHarvest()) //harvest
+        {
+            if (!cropCanHarvestShaking)
+            {
+                StartCoroutine(ShakeCropCanHarvest());
+            }
+        }
+        else //grow
+        {
+            if (!cropGrowingShaking)
+            {
+                StartCoroutine(ShakeCropGrowing());
+            }
+        }
     }
 
     public void OnFieldGrowthPhaseChange(FieldGrowth tarFieldGrowth)
