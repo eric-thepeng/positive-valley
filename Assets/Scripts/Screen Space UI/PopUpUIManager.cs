@@ -44,9 +44,9 @@ public class PopUpUIManager : MonoBehaviour
         {
             FieldGrowth tarFG = tarField.GetFieldGrowth();
             displayString += "Seed: " + tarFG.seed.itemName + "\n";
-            //displayString += "Growing Phase: " + (tarFG.currentPhase + 1) +"/" + (tarFG.seed.totalPhasesAmount+1) + "\n";
-            displayString += "Total Crops: " + tarFG.seed.cropAmount;
-            displayString += "Current Crop Remaining Time:" + "\n" + tarFG.GetCurrentCropRemainingGrowTimeString();
+            displayString += "Harvests Left: " + tarFG.GetAmountHarvestLeft()  + " / "+ tarFG.seed.cropAmount + "\n";
+            displayString += "Crop Grow Time: " + tarFG.seed.cropGrowTime + "\n";
+            displayString += "Harvest Remaining Time:" + "\n" + tarFG.GetCurrentCropRemainingGrowTimeString();
         }
         FieldGrowInfoPopUpUI.SetUpAndDisplay(displayString);
     }

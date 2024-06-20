@@ -4403,7 +4403,7 @@ GameObject:
   - component: {fileID: 5284491166248578624}
   - component: {fileID: 2799119958632051953}
   m_Layer: 0
-  m_Name: Button - Collection
+  m_Name: Button - Shop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6557,7 +6557,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Collection
+  m_text: Shop
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 66a8b9ff9640d410aa4efd8085d0e655, type: 2}
   m_sharedMaterial: {fileID: -3808347698200830001, guid: 66a8b9ff9640d410aa4efd8085d0e655, type: 2}

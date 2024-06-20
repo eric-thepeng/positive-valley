@@ -21,7 +21,7 @@ MonoBehaviour:
   - {fileID: 2024872127, guid: 179dee3a161f04c3284fff6015997ac3, type: 3}
   - {fileID: -565973528, guid: 179dee3a161f04c3284fff6015997ac3, type: 3}
   - {fileID: -1088199923, guid: 179dee3a161f04c3284fff6015997ac3, type: 3}
-  cropGrowTime: 100
+  cropGrowTime: 3000
   cropAmount: 5
-  harvestMoney: 60
-  harvestExperience: 20
+  harvestMoney: 20
+  harvestExperience: 60
