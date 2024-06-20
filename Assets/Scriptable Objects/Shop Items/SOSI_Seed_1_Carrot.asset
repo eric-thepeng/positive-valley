@@ -15,7 +15,7 @@ MonoBehaviour:
   itemName: Carrot
   itemIcon: {fileID: 739796099, guid: 1ba88ca4891124f4caef425c8e17ab65, type: 3}
   unlockLevel: 1
-  buyCost: 0
+  buyCost: 1
   phasesSprites:
   - {fileID: 1103592275, guid: 179dee3a161f04c3284fff6015997ac3, type: 3}
   - {fileID: -9864900, guid: 179dee3a161f04c3284fff6015997ac3, type: 3}
@@ -23,5 +23,5 @@ MonoBehaviour:
   - {fileID: 673302667, guid: 179dee3a161f04c3284fff6015997ac3, type: 3}
   cropGrowTime: 60
   cropAmount: 2
-  harvestMoney: 1
+  harvestMoney: 2
   harvestExperience: 3

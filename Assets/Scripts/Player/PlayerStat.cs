@@ -67,7 +67,7 @@ public class PlayerStat : MonoBehaviour
 
     public static int GetLevelUpExpRequirement()
     {
-        return (int)(Mathf.Pow(level.GetValue(),1.5f) * 100);
+        return (int)(Mathf.Pow(level.GetValue(),1.3f) * 100);
     }
 
     private void Update()

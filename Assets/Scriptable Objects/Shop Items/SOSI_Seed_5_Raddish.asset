@@ -15,7 +15,7 @@ MonoBehaviour:
   itemName: Raddish
   itemIcon: {fileID: 2146503219, guid: 1ba88ca4891124f4caef425c8e17ab65, type: 3}
   unlockLevel: 6
-  buyCost: 20
+  buyCost: 30
   phasesSprites:
   - {fileID: 1354947630, guid: 179dee3a161f04c3284fff6015997ac3, type: 3}
   - {fileID: 1240898087, guid: 179dee3a161f04c3284fff6015997ac3, type: 3}

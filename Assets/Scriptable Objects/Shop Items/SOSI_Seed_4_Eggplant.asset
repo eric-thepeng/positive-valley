@@ -15,7 +15,7 @@ MonoBehaviour:
   itemName: Eggplant
   itemIcon: {fileID: -142148323, guid: 1ba88ca4891124f4caef425c8e17ab65, type: 3}
   unlockLevel: 4
-  buyCost: 5
+  buyCost: 25
   phasesSprites:
   - {fileID: 585725989, guid: 179dee3a161f04c3284fff6015997ac3, type: 3}
   - {fileID: 2024872127, guid: 179dee3a161f04c3284fff6015997ac3, type: 3}
