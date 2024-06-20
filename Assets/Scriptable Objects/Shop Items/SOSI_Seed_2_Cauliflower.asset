@@ -21,6 +21,7 @@ MonoBehaviour:
   - {fileID: -1156078647, guid: 179dee3a161f04c3284fff6015997ac3, type: 3}
   - {fileID: 1515808861, guid: 179dee3a161f04c3284fff6015997ac3, type: 3}
   - {fileID: 1248227090, guid: 179dee3a161f04c3284fff6015997ac3, type: 3}
-  phaseGrowTime: 60
+  cropGrowTime: 20
+  cropAmount: 5
   harvestMoney: 20
   harvestExperience: 15

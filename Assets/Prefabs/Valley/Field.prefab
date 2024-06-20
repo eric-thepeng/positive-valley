@@ -419,13 +419,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soilSR: {fileID: 8240238812660538249}
-  cropSR: {fileID: 4674182302632895754}
+  cropSRTemplate: {fileID: 4674182302632895754}
   canPlantIndicationSR: {fileID: 7446084831491823027}
   soilSpriteLocked: {fileID: 1989939941, guid: b707fd9c918394935bfe440ce52dea1a, type: 3}
   soilSpriteEmpty: {fileID: 869029918, guid: b707fd9c918394935bfe440ce52dea1a, type: 3}
   soilSpritePlantedWatered: {fileID: -319371778, guid: b707fd9c918394935bfe440ce52dea1a, type: 3}
   soilSpritePlantedDry: {fileID: -1636494746, guid: b707fd9c918394935bfe440ce52dea1a, type: 3}
   initialFieldState: 1
+  unlockCost: 0
   fieldState: 1
   hoverIndicationState: 0
 --- !u!61 &5893285743324924925

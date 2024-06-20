@@ -8,15 +8,13 @@ public class SOSI_Seed : SO_ShopItem
 {
     public List<Sprite> phasesSprites;
 
-    public int totalPhasesAmount
-    {
-        get
-        {
-            return phasesSprites.Count -1;
-        }
-    }
+    public int cropPhasesAmount { get { return phasesSprites.Count -1; } }
 
-    public float phaseGrowTime;
+    public float cropPhaseGrowTime { get { return cropGrowTime / cropPhasesAmount; } }
+
+    public float cropGrowTime;
+    public int cropAmount;
+    
     public int harvestMoney;
     public int harvestExperience;
 }

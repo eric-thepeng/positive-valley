@@ -15,7 +15,7 @@ public class PWI_Field : PlayerWorldInteractable
     // SERIALIZED PRIVATE VARIABLES
     [Header("== Dependencies ==")]
     [SerializeField] private SpriteRenderer soilSR;
-    [SerializeField] private SpriteRenderer cropSR;
+    [SerializeField] private SpriteRenderer cropSRTemplate;
     [SerializeField] private SpriteRenderer canPlantIndicationSR;
 
     [Header("[Soil Sprites]")] 
@@ -40,6 +40,7 @@ public class PWI_Field : PlayerWorldInteractable
     private Vector3 cropSROrigionalLocalPosition;
     private bool cropGrowingShaking = false;
     private bool cropCanHarvestShaking = false;
+    private List<SpriteRenderer> allCropSR = null;
 
 
 
@@ -183,7 +184,7 @@ public class PWI_Field : PlayerWorldInteractable
             if (fieldGrowth.Grow(passTime))
             {
                 ChangeFieldStateTo(FieldState.CanHarvest);
-                StartCoroutine(ShakeCropCanHarvest());
+                //StartCoroutine(ShakeCropCanHarvest());
             }
         }
     }
@@ -241,7 +242,7 @@ public class PWI_Field : PlayerWorldInteractable
 
     public void HarvestCrop()
     {
-        cropSR.sprite = null;
+        //cropSR.sprite = null;
         
         PlayerStat.money.ChangeValue(fieldGrowth.seed.harvestMoney);
         PlayerStat.experience.ChangeValue(fieldGrowth.seed.harvestExperience);
@@ -259,18 +260,22 @@ public class PWI_Field : PlayerWorldInteractable
             SOSI_Seed currentSeed = (SOSI_Seed)ShopManager.holdingShopItem;
             if (PlayerStat.money.HasValue(currentSeed.buyCost))
             {
+                // Plant Seed
+                
                 PlayerStat.money.ChangeValue(-currentSeed.buyCost);
                 print("money left: " + PlayerStat.money.GetValue());
                 AssignFieldGrowth(new FieldGrowth(currentSeed, OnFieldGrowthPhaseChange));
                 DisplayRegularHover();
                 ChangeFieldStateTo(FieldState.Planted);
 
-                cropSROrigionalLocalPosition = cropSR.transform.localPosition;
-                StartCoroutine(ShakeCropGrowing());
+                // Start Shaking
+                //cropSROrigionalLocalPosition = cropSR.transform.localPosition;
+                //StartCoroutine(ShakeCropGrowing());
             }
         }
     }
 
+    /*
     private IEnumerator ShakeCropGrowing()
     {
         cropGrowingShaking = true;
@@ -309,7 +314,7 @@ public class PWI_Field : PlayerWorldInteractable
         }
         
         cropCanHarvestShaking = false;
-    }
+    }*/
 
     public void AssignFieldGrowth(FieldGrowth tarFieldGrowth)
     {
@@ -318,6 +323,7 @@ public class PWI_Field : PlayerWorldInteractable
         
         fieldGrowth.ReassignOnPhaseChange(OnFieldGrowthPhaseChange);
 
+        /*
         // Assign Shake
         if (fieldGrowth.CanHarvest()) //harvest
         {
@@ -332,12 +338,49 @@ public class PWI_Field : PlayerWorldInteractable
             {
                 StartCoroutine(ShakeCropGrowing());
             }
-        }
+        }*/
     }
 
     public void OnFieldGrowthPhaseChange(FieldGrowth tarFieldGrowth)
     {
-        cropSR.sprite = tarFieldGrowth.GetCurrentStageSeedSprite();
+        UpdateCropDisplay(tarFieldGrowth);
+    }
+
+    public void UpdateCropDisplay(FieldGrowth tarFieldGrowth)
+    {
+        if (allCropSR == null || tarFieldGrowth.allCropsPhases.Count != allCropSR.Count)
+        {
+            ClearAllCropSR();
+        
+            for (int i = 0; i < tarFieldGrowth.allCropsPhases.Count; i++)
+            {
+                GameObject newSRGO = Instantiate(cropSRTemplate.gameObject, transform);
+                newSRGO.transform.localPosition = new Vector3(0.1f, 0, 0) * i;
+                allCropSR.Add(newSRGO.GetComponent<SpriteRenderer>());
+            } 
+        }
+
+        for (int i = 0; i < allCropSR.Count; i++)
+        {
+            allCropSR[i].sprite = tarFieldGrowth.GetCropSprite(i);
+        }
+        
+    }
+    
+    public void ClearAllCropSR()
+    {
+        if (allCropSR == null)
+        {
+            allCropSR = new List<SpriteRenderer>();
+            return;
+        }
+        
+        for (int i = allCropSR.Count-1; i >= 0; i--)
+        {
+            Destroy(allCropSR[i].gameObject);
+        }
+
+        allCropSR = new List<SpriteRenderer>();
     }
 
     public int GetUnlockCost()
