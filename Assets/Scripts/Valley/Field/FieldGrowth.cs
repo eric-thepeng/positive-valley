@@ -26,7 +26,7 @@ public class FieldGrowth
         
         currentlyGrowingCrop = 0;
         allCropsPhases = new List<int>();
-        for (int i = 0; i < seed.cropPhasesAmount; i++) { allCropsPhases.Add(0); }
+        for (int i = 0; i < seed.cropAmount; i++) { allCropsPhases.Add(0); }
         
         ReassignOnPhaseChange(onPhaseChange);
     }
@@ -43,29 +43,29 @@ public class FieldGrowth
     /// </summary>
     /// <param name="growTime"></param>
     /// <returns>True if seed is ready to harvest; False if not.</returns>
-    public bool Grow(float growTime)
+    public void Grow(float growTime)
     {
-        if (growingFinished) return false;
+        if (growingFinished) return;
         
         currentGrowthTime += growTime;
         while (currentGrowthTime >= seed.cropPhaseGrowTime)
         {
+            if (growingFinished) return;
+
             currentGrowthTime -= seed.cropPhaseGrowTime;
             allCropsPhases[currentlyGrowingCrop]++;
 
             if (allCropsPhases[currentlyGrowingCrop] == seed.cropPhasesAmount)
             {
                 currentlyGrowingCrop++;
-            }
-
-            if (currentlyGrowingCrop == seed.cropAmount)
-            {
-                growingFinished = true;
+                if (currentlyGrowingCrop == seed.cropAmount)
+                {
+                    growingFinished = true;
+                }
             }
             
             OnPhaseChange.Invoke(this);
         }
-        return false;
     }
 
     public Sprite GetCropSprite(int cropIndex)
@@ -75,6 +75,8 @@ public class FieldGrowth
             Debug.LogError("Getting a crop spirte with index larger than crop amount");
             return null;
         }
+
+        if (allCropsPhases[cropIndex] < 0) return null;
         return seed.phasesSprites[allCropsPhases[cropIndex]];
     }
 
@@ -98,8 +100,11 @@ public class FieldGrowth
         return formattedTime;
     }
 
-    public void TryToHarvest()
+    public void TryToHarvest(out bool partialHarvest, out bool totalHarvest)
     {
+        partialHarvest = false;
+        totalHarvest = false;
+        
         List<int> harvestIndex = new List<int>();
         for (int i = 0; i < allCropsPhases.Count; i++)
         {
@@ -107,7 +112,12 @@ public class FieldGrowth
             {
                 harvestIndex.Add(i);
                 allCropsPhases[i] = -1;
-                // gain a crop
+                // Harvest a crop
+                partialHarvest = true;
+                PlayerStat.money.ChangeValue(seed.harvestMoney);
+                PlayerStat.experience.ChangeValue(seed.harvestExperience);
+                // Determine if total harvest
+                if (i == allCropsPhases.Count - 1) totalHarvest = true;
             }
         }
         OnPhaseChange.Invoke(this);

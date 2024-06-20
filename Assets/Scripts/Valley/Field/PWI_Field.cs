@@ -49,7 +49,7 @@ public class PWI_Field : PlayerWorldInteractable
     /// Empty: Unlocked and nothing is planted.
     /// Planted: Planted with seed.
     /// </summary>
-    public enum FieldState {Locked, Empty, Planted, CanHarvest}
+    public enum FieldState {Locked, Empty, Planted}
     [SerializeField, Header("== View Only ==")]private FieldState fieldState = FieldState.Empty;
 
     enum HoverIndicationState {Regular, Shopping, Harvest}
@@ -77,6 +77,7 @@ public class PWI_Field : PlayerWorldInteractable
         SaveGameFile();
     }
 
+    /*
     private void OnApplicationPause(bool pauseStatus)
     {
         if (pauseStatus)
@@ -89,7 +90,7 @@ public class PWI_Field : PlayerWorldInteractable
             // Resume
             LoadGameFile();
         }
-    }
+    }*/
 
     private void SaveGameFile()
     {
@@ -129,9 +130,6 @@ public class PWI_Field : PlayerWorldInteractable
                 soilSR.sprite = soilSpriteEmpty;
                 break;
             case FieldState.Planted:
-                soilSR.sprite = soilSpritePlantedDry;
-                break;
-            case FieldState.CanHarvest:
                 soilSR.sprite = soilSpritePlantedDry;
                 break;
             default:
@@ -181,11 +179,7 @@ public class PWI_Field : PlayerWorldInteractable
     {
         if (fieldState == FieldState.Planted)
         {
-            if (fieldGrowth.Grow(passTime))
-            {
-                ChangeFieldStateTo(FieldState.CanHarvest);
-                //StartCoroutine(ShakeCropCanHarvest());
-            }
+            fieldGrowth.Grow(passTime);
         }
     }
 
@@ -204,10 +198,7 @@ public class PWI_Field : PlayerWorldInteractable
                     TryToPlantSeed();
                     break;
                 case FieldState.Planted:
-                    DisplayPlantedInfoPopUp();
-                    break;
-                case FieldState.CanHarvest:
-                    HarvestCrop();
+                    TryHarvestCrop();
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
@@ -224,10 +215,7 @@ public class PWI_Field : PlayerWorldInteractable
                 case FieldState.Empty:
                     break;
                 case FieldState.Planted:
-                    DisplayPlantedInfoPopUp();
-                    break;
-                case FieldState.CanHarvest:
-                    HarvestCrop();
+                    TryHarvestCrop();
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
@@ -240,16 +228,21 @@ public class PWI_Field : PlayerWorldInteractable
         PopUpUIManager.i.DisplayFieldGrowInfoPopUp(this);
     }
 
-    public void HarvestCrop()
+    public void TryHarvestCrop()
     {
-        //cropSR.sprite = null;
-        
-        PlayerStat.money.ChangeValue(fieldGrowth.seed.harvestMoney);
-        PlayerStat.experience.ChangeValue(fieldGrowth.seed.harvestExperience);
-        
-        AssignFieldGrowth(null);
-        if (PlayerState.shopStatus == PlayerState.ShopStatus.Shopping) { DisplayShoppingHover(); } // put this line after reset currentSeed
-        ChangeFieldStateTo(FieldState.Empty);
+        fieldGrowth.TryToHarvest(out bool partialHarvest, out bool totalHarvest);
+
+        if (!partialHarvest)
+        {
+            DisplayPlantedInfoPopUp();
+        }
+
+        if (totalHarvest)
+        {
+            AssignFieldGrowth(null);
+            ChangeFieldStateTo(FieldState.Empty);
+            if (PlayerState.shopStatus == PlayerState.ShopStatus.Shopping) { DisplayShoppingHover(); } // put this line after reset currentSeed
+        }
     }
 
     public void TryToPlantSeed()
@@ -355,7 +348,11 @@ public class PWI_Field : PlayerWorldInteractable
             for (int i = 0; i < tarFieldGrowth.allCropsPhases.Count; i++)
             {
                 GameObject newSRGO = Instantiate(cropSRTemplate.gameObject, transform);
-                newSRGO.transform.localPosition = new Vector3(0.1f, 0, 0) * i;
+                float localX = UnityEngine.Random.Range(-0.2f, 0.2f);
+                float localY = UnityEngine.Random.Range(-0.2f + (0.4f / (tarFieldGrowth.allCropsPhases.Count) * i)
+                                                        , -0.2f + (0.4f / (tarFieldGrowth.allCropsPhases.Count) * (i+1)));
+
+                newSRGO.transform.localPosition = new Vector3(localX,localY,localY);
                 allCropSR.Add(newSRGO.GetComponent<SpriteRenderer>());
             } 
         }

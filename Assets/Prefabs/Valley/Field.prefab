@@ -229,7 +229,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0.38268343, w: 0.92387956}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 1}
+  m_LocalScale: {x: 4, y: 4, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4351298242076330125}
@@ -424,7 +424,7 @@ MonoBehaviour:
   soilSpriteLocked: {fileID: 1989939941, guid: b707fd9c918394935bfe440ce52dea1a, type: 3}
   soilSpriteEmpty: {fileID: 869029918, guid: b707fd9c918394935bfe440ce52dea1a, type: 3}
   soilSpritePlantedWatered: {fileID: -319371778, guid: b707fd9c918394935bfe440ce52dea1a, type: 3}
-  soilSpritePlantedDry: {fileID: -1636494746, guid: b707fd9c918394935bfe440ce52dea1a, type: 3}
+  soilSpritePlantedDry: {fileID: 869029918, guid: b707fd9c918394935bfe440ce52dea1a, type: 3}
   initialFieldState: 1
   unlockCost: 0
   fieldState: 1
