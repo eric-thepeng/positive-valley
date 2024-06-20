@@ -195,6 +195,47 @@ public class PWI_Field : PlayerWorldInteractable
                     DisplayUnlockUI();
                     break;
                 case FieldState.Empty:
+                    //TryToPlantSeed();
+                    break;
+                case FieldState.Planted:
+                    //TryHarvestCrop();
+                    DisplayPlantedInfoPopUp();
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+        }
+        else 
+        {
+            //BROWSING
+            switch (fieldState)
+            {
+                case FieldState.Locked:
+                    DisplayUnlockUI();
+                    break;
+                case FieldState.Empty:
+                    break;
+                case FieldState.Planted:
+                    //TryHarvestCrop();
+                    DisplayPlantedInfoPopUp();
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+        }
+    }
+
+    protected override void OnPlayerTouchEnter()
+    {
+        print("Player Touch");
+        if (PlayerState.shopStatus == PlayerState.ShopStatus.Shopping) 
+        {
+            //SHOPPING
+            switch (fieldState)
+            {
+                case FieldState.Locked:
+                    break;
+                case FieldState.Empty:
                     TryToPlantSeed();
                     break;
                 case FieldState.Planted:
@@ -210,7 +251,6 @@ public class PWI_Field : PlayerWorldInteractable
             switch (fieldState)
             {
                 case FieldState.Locked:
-                    DisplayUnlockUI();
                     break;
                 case FieldState.Empty:
                     break;
@@ -228,14 +268,9 @@ public class PWI_Field : PlayerWorldInteractable
         PopUpUIManager.i.DisplayFieldGrowInfoPopUp(this);
     }
 
-    public void TryHarvestCrop()
+    public bool TryHarvestCrop() 
     {
         fieldGrowth.TryToHarvest(out bool partialHarvest, out bool totalHarvest);
-
-        if (!partialHarvest)
-        {
-            DisplayPlantedInfoPopUp();
-        }
 
         if (totalHarvest)
         {
@@ -243,6 +278,8 @@ public class PWI_Field : PlayerWorldInteractable
             ChangeFieldStateTo(FieldState.Empty);
             if (PlayerState.shopStatus == PlayerState.ShopStatus.Shopping) { DisplayShoppingHover(); } // put this line after reset currentSeed
         }
+
+        return partialHarvest;
     }
 
     public void TryToPlantSeed()
