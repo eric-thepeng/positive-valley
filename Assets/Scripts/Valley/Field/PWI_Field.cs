@@ -64,10 +64,15 @@ public class PWI_Field : PlayerWorldInteractable
             soilRegularColor.b, soilRegularColor.a * 0.8f);
     }
 
-    private void Start()
+    private void Awake()
     {
         totalFields++;
         fieldID = totalFields;
+    }
+
+
+    private void Start()
+    {
         ChangeFieldStateTo(initialFieldState);
         LoadGameFile();
     }
@@ -77,7 +82,7 @@ public class PWI_Field : PlayerWorldInteractable
         SaveGameFile();
     }
 
-    /*
+    
     private void OnApplicationPause(bool pauseStatus)
     {
         if (pauseStatus)
@@ -90,7 +95,7 @@ public class PWI_Field : PlayerWorldInteractable
             // Resume
             LoadGameFile();
         }
-    }*/
+    }
 
     private void SaveGameFile()
     {
