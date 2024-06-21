@@ -112,15 +112,20 @@ public class FieldGrowth
             {
                 harvestIndex.Add(i);
                 allCropsPhases[i] = -1;
-                // Harvest a crop
                 partialHarvest = true;
-                PlayerStat.money.ChangeValue(seed.harvestMoney);
-                PlayerStat.experience.ChangeValue(seed.harvestExperience);
+                HarvestACrop();
             }
         }
         // Determine if total harvest
         if (GetAmountHarvestLeft() == 0) totalHarvest = true;
         OnPhaseChange.Invoke(this);
+    }
+
+    public void HarvestACrop()
+    {
+        PlayerStat.money.ChangeValue(seed.harvestMoney);
+        PlayerStat.experience.ChangeValue(seed.harvestExperience);
+        PopUpUIManager.i.DisplayCropHarvestPopUpDisappear(seed);
     }
 
     public int GetAmountHarvestLeft()

@@ -22,9 +22,10 @@ public class PopUpUIManager : MonoBehaviour
     // ----------
 
     // SERIALIZED PRIVATE VARIABLES
-    [SerializeField]private UI_PopUpAndSelect UnlockFieldPopUpSelectUI;
+    [SerializeField] private UI_PopUpAndSelect UnlockFieldPopUpSelectUI;
     [SerializeField] private UI_PopUp FieldGrowInfoPopUpUI;
-
+    [SerializeField] private UI_PopUpAndDisappear CropHarvestUI;
+    
     public void DisplayUnlockFieldPopUpSelect(PWI_Field tarField)
     {
         UnlockFieldPopUpSelectUI.SetUpAndDisplay(
@@ -49,6 +50,14 @@ public class PopUpUIManager : MonoBehaviour
             displayString += "Harvest Remaining Time:" + "\n" + tarFG.GetCurrentCropRemainingGrowTimeString();
         }
         FieldGrowInfoPopUpUI.SetUpAndDisplay(displayString);
+    }
+
+    public void DisplayCropHarvestPopUpDisappear(SOSI_Seed seed)
+    {
+        GameObject newPUD = Instantiate(CropHarvestUI.gameObject, this.transform);
+        newPUD.SetActive(true);
+        newPUD.GetComponent<UI_PopUpAndDisappear>()
+            .SetUpAndDisplay(seed.itemIcon, "Harvest 1 " + seed.itemName, 0.6f, 0.4f);
     }
 
     public void ExitUnlockFieldPopUp()

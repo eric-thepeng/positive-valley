@@ -6,7 +6,7 @@ using UnityEngine;
 public class UI_PopUp : MonoBehaviour
 {
     [SerializeField] private TMP_Text descriptionTMPT;
-    
+    [SerializeField] private CanvasGroup canvasGroup;
     public void SetUpAndDisplay(string descriptionString)
     {
         gameObject.SetActive(true);
