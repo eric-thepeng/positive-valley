@@ -1151,6 +1151,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9035055945892789496}
   - component: {fileID: 6487250053916413382}
+  - component: {fileID: 3618901024373481496}
   - component: {fileID: 8266840207230285766}
   - component: {fileID: 348056410457405608}
   - component: {fileID: 3179610409780240919}
@@ -1194,6 +1195,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   panelGO: {fileID: 1487750672996706394}
+--- !u!114 &3618901024373481496
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 600630592565771028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0160b4d26f1e84a6690a5cca8dc4ab71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!223 &8266840207230285766
 Canvas:
   m_ObjectHideFlags: 0

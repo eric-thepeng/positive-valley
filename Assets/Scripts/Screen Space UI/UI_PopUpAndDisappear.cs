@@ -29,6 +29,7 @@ public class UI_PopUpAndDisappear : MonoBehaviour
 
     IEnumerator Disappear(float stayTime, float disappearTime)
     {
+        transform.DOPunchScale(new Vector3(0.05f,0.05f,0.05f), stayTime * 0.9f);
         yield return new WaitForSeconds(stayTime);
         transform.DOLocalMoveY(300, disappearTime);
         canvasGroup.DOFade(0, disappearTime);

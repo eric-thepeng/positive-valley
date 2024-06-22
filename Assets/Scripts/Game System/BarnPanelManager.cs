@@ -16,9 +16,27 @@ public class BarnPanelManager : MonoBehaviour
             return instance;
         }
     }
+    
+    public struct BarnItem
+    {
+        public SOSI_Seed itemSeed;
+        public SO_Rarity itemRarity;
+
+        public BarnItem(SOSI_Seed itemSeed, SO_Rarity itemRarity)
+        {
+            this.itemSeed = itemSeed;
+            this.itemRarity = itemRarity;
+        }
+    }
 
     public GameObject panelGO;
+    private List<BarnItem> allBarnItems;
 
+    private void Awake()
+    {
+        allBarnItems = new List<BarnItem>();
+    }
+    
     public void OpenPanel()
     {
         panelGO.SetActive(true);
@@ -28,6 +46,13 @@ public class BarnPanelManager : MonoBehaviour
     public void ClosePanel()
     {
         panelGO.SetActive(false);
+    }
+
+    public void AddBarnItem(BarnItem newBarnItem)
+    {
+        allBarnItems.Add(newBarnItem);
+        PopUpUIManager.i.QueDisplayCropHarvestPopUpDisappear(newBarnItem);
+        RefreshDisplay();
     }
 
     public void RefreshDisplay()

@@ -2,11 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Shop Item", menuName = "ScriptableObjects/Shop/Shop Item")]
-public class SO_ShopItem : ScriptableObject
+[CreateAssetMenu(fileName = "New Shop Item", menuName = "ScriptableObjects/Player Items/Shop Item")]
+public class SO_ShopItem : SO_PlayerItem
 {
-    public string itemName;
-    public Sprite itemIcon;
     public int unlockLevel;
     public int buyCost;
 }

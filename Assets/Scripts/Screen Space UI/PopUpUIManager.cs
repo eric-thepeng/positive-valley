@@ -71,9 +71,9 @@ public class PopUpUIManager : MonoBehaviour
         puad.SetBackgroundFrameColor(rarity.color);
     }
 
-    public void QueDisplayCropHarvestPopUpDisappear(SOSI_Seed seed, SO_Rarity rarity)
+    public void QueDisplayCropHarvestPopUpDisappear(BarnPanelManager.BarnItem barnItem)
     {
-        popUpDisappearInfoQue.Enqueue(new KeyValuePair<SOSI_Seed, SO_Rarity>(seed, rarity));
+        popUpDisappearInfoQue.Enqueue(new KeyValuePair<SOSI_Seed, SO_Rarity>(barnItem.itemSeed, barnItem.itemRarity));
     }
 
     public void ExitUnlockFieldPopUp()
