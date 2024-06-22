@@ -10,6 +10,8 @@ public class UI_PopUpAndDisappear : MonoBehaviour
     [SerializeField] private Image displayImage;
     [SerializeField] private TMP_Text descriptionTMPT;
     [SerializeField] private CanvasGroup canvasGroup;
+    [SerializeField] private Image backgroundImage;
+    [SerializeField] private Image backgroundFrameImage;
     
 
     public void SetUpAndDisplay(Sprite displaySprite, string descriptionString, float stayTime, float disappearTime)
@@ -32,6 +34,11 @@ public class UI_PopUpAndDisappear : MonoBehaviour
         canvasGroup.DOFade(0, disappearTime);
         yield return new WaitForSeconds(disappearTime);
         Destroy(gameObject);
+    }
+
+    public void SetBackgroundFrameColor(Color newColor)
+    {
+        backgroundFrameImage.color = newColor;
     }
 
 }

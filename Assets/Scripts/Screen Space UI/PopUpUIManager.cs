@@ -20,12 +20,20 @@ public class PopUpUIManager : MonoBehaviour
         }
     }
     // ----------
-
     // SERIALIZED PRIVATE VARIABLES
     [SerializeField] private UI_PopUpAndSelect UnlockFieldPopUpSelectUI;
     [SerializeField] private UI_PopUp FieldGrowInfoPopUpUI;
     [SerializeField] private UI_PopUpAndDisappear CropHarvestUI;
     
+    // PRIVATE VARIABLES
+    private Queue<KeyValuePair<SOSI_Seed, SO_Rarity>> popUpDisappearInfoQue;
+
+    private void Start()
+    {
+        popUpDisappearInfoQue = new Queue<KeyValuePair<SOSI_Seed, SO_Rarity>>();
+        StartCoroutine(DisplayPopUpDisappearQue());
+    }
+
     public void DisplayUnlockFieldPopUpSelect(PWI_Field tarField)
     {
         UnlockFieldPopUpSelectUI.SetUpAndDisplay(
@@ -52,16 +60,41 @@ public class PopUpUIManager : MonoBehaviour
         FieldGrowInfoPopUpUI.SetUpAndDisplay(displayString);
     }
 
-    public void DisplayCropHarvestPopUpDisappear(SOSI_Seed seed)
+    private void DisplayCropHarvestPopUpDisappear(SOSI_Seed seed, SO_Rarity rarity)
     {
         GameObject newPUD = Instantiate(CropHarvestUI.gameObject, this.transform);
         newPUD.SetActive(true);
-        newPUD.GetComponent<UI_PopUpAndDisappear>()
-            .SetUpAndDisplay(seed.itemIcon, "Harvest 1 " + seed.itemName, 0.6f, 0.4f);
+        UI_PopUpAndDisappear puad = newPUD.GetComponent<UI_PopUpAndDisappear>();
+        //"[Legendary] Eggplant +1"
+        string descriptionString = "[" + rarity.rarityName +"] " + seed.itemName + " +1";
+        puad.SetUpAndDisplay(seed.itemIcon, descriptionString, 0.4f, 0.4f);
+        puad.SetBackgroundFrameColor(rarity.color);
+    }
+
+    public void QueDisplayCropHarvestPopUpDisappear(SOSI_Seed seed, SO_Rarity rarity)
+    {
+        popUpDisappearInfoQue.Enqueue(new KeyValuePair<SOSI_Seed, SO_Rarity>(seed, rarity));
     }
 
     public void ExitUnlockFieldPopUp()
     {
         UnlockFieldPopUpSelectUI.ExitUI();
+    }
+
+    IEnumerator DisplayPopUpDisappearQue()
+    {
+        while (true)
+        {
+            if (popUpDisappearInfoQue.Count != 0)
+            {
+                KeyValuePair<SOSI_Seed, SO_Rarity> pair = popUpDisappearInfoQue.Dequeue();
+                DisplayCropHarvestPopUpDisappear(pair.Key, pair.Value);
+                yield return new WaitForSeconds(.5f);
+            }
+            else
+            {
+                yield return new WaitForSeconds(0);
+            }
+        }
     }
 }

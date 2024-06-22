@@ -203,8 +203,10 @@ public class PWI_Field : PlayerWorldInteractable
                     //TryToPlantSeed();
                     break;
                 case FieldState.Planted:
-                    //TryHarvestCrop();
-                    DisplayPlantedInfoPopUp();
+                    if (!TryHarvestCrop())
+                    {
+                        DisplayPlantedInfoPopUp();
+                    }
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
@@ -222,7 +224,10 @@ public class PWI_Field : PlayerWorldInteractable
                     break;
                 case FieldState.Planted:
                     //TryHarvestCrop();
-                    DisplayPlantedInfoPopUp();
+                    if (!TryHarvestCrop())
+                    {
+                        DisplayPlantedInfoPopUp();
+                    }
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
@@ -244,7 +249,6 @@ public class PWI_Field : PlayerWorldInteractable
                     TryToPlantSeed();
                     break;
                 case FieldState.Planted:
-                    TryHarvestCrop();
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
@@ -260,7 +264,6 @@ public class PWI_Field : PlayerWorldInteractable
                 case FieldState.Empty:
                     break;
                 case FieldState.Planted:
-                    TryHarvestCrop();
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();

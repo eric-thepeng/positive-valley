@@ -145,4 +145,10 @@ public class ShopManager : MonoBehaviour
         shopPanel.transform.DOLocalMoveY(shopPanelCloseY,0.5f);
         PlayerState.ChangeShopStatus(PlayerState.ShopStatus.Close);
     }
+
+    public void HideShopPanel()
+    {
+        shopPanel.transform.DOLocalMoveY(shopPanelHideY,0.5f);
+        PlayerState.ChangeShopStatus(PlayerState.ShopStatus.Hide);
+    }
 }
