@@ -42,6 +42,14 @@ public class PopUpUIManager : MonoBehaviour
             new List<string>(){"Unlock"});
     }
 
+    public void DisplaySellBarnItemPopUpSelect(UI_BarnItemDisplayer barnItemDisplayer)
+    {
+        UnlockFieldPopUpSelectUI.SetUpAndDisplay(
+            "Sell [" + barnItemDisplayer.displayingBarnItem.itemRarity.rarityName +"] " + barnItemDisplayer.displayingBarnItem.itemSeed.itemName + " for xxx?",
+            new List<UnityAction>(){barnItemDisplayer.SellItem}, 
+            new List<string>(){"Sell"});
+    }
+
     public void DisplayFieldGrowInfoPopUp(PWI_Field tarField)
     {
         string displayString = "";

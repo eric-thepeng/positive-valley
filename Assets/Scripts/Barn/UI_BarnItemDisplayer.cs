@@ -8,23 +8,42 @@ public class UI_BarnItemDisplayer : MonoBehaviour
 {
     public Image iconImage;
     public Image rarityFrameImage;
-    public SOSI_Seed displayingSeed = null;
     public int blockID;
+    public BarnPanelManager.BarnItem displayingBarnItem;
+
+    private Toggle myToggle;
 
     public void SetUp(int blockID)
     {
         this.blockID = blockID;
+        myToggle = GetComponent<Toggle>();
+        myToggle.interactable = false;
     }
 
     public void SetUp(int blockID, BarnPanelManager.BarnItem barnItem)
     {
         this.blockID = blockID;
-        displayingSeed = barnItem.itemSeed;
+        myToggle = GetComponent<Toggle>();
+        myToggle.interactable = true;
 
+        myToggle.onValueChanged.AddListener(OnToggleValueChange);
+        displayingBarnItem = barnItem;
+        
         iconImage.sprite = barnItem.itemSeed.itemIcon;
         rarityFrameImage.color = barnItem.itemRarity.color;
         
         iconImage.gameObject.SetActive(true);
         rarityFrameImage.gameObject.SetActive(true);
+    }
+
+    public void OnToggleValueChange(bool Select)
+    {
+        PopUpUIManager.i.DisplaySellBarnItemPopUpSelect(this);
+    }
+    
+
+    public void SellItem()
+    {
+        
     }
 }
