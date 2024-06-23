@@ -46,6 +46,7 @@ public class UI_BarnItemDisplayer : MonoBehaviour
     {
         PlayerStat.money.ChangeValue(displayingBarnItem.GetSellPrice());
         PopUpUIManager.i.ExitUnlockFieldPopUp();
+        PopUpUIManager.i.DisplaySimpleTextPopUpDisappear("Get " +  displayingBarnItem.GetSellPrice() + " Sun");
         BarnPanelManager.i.SellBarnItem(blockID);
     }
     

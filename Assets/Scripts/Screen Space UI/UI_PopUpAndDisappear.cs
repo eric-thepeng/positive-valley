@@ -21,7 +21,7 @@ public class UI_PopUpAndDisappear : MonoBehaviour
         displayImage.sprite = displaySprite;
         StartCoroutine(Disappear(stayTime, disappearTime));
     }
-    
+
     public void ExitUI()
     {
         gameObject.SetActive(false);

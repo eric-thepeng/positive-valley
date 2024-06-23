@@ -80,6 +80,14 @@ public class PopUpUIManager : MonoBehaviour
         puad.SetBackgroundFrameColor(rarity.color);
     }
 
+    public void DisplaySimpleTextPopUpDisappear(string text)
+    {
+        GameObject newPUD = Instantiate(CropHarvestUI.gameObject, this.transform);
+        newPUD.SetActive(true);
+        UI_PopUpAndDisappear puad = newPUD.GetComponent<UI_PopUpAndDisappear>();
+        puad.SetUpAndDisplay(null, text, 0.4f, 0.4f);
+    }
+
     public void QueDisplayCropHarvestPopUpDisappear(BarnPanelManager.BarnItem barnItem)
     {
         popUpDisappearInfoQue.Enqueue(new KeyValuePair<SOSI_Seed, SO_Rarity>(barnItem.itemSeed, barnItem.itemRarity));
