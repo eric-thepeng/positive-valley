@@ -83,11 +83,11 @@ public class BarnPanelManager : MonoBehaviour
 
                 if (totalCount < allBarnItems.Count) // generate block
                 {
-                    newGO.GetComponent<UI_BarnItemDisplayer>().SetUp(allBarnItems[totalCount].itemSeed.itemIcon,allBarnItems[totalCount].itemRarity.color);
+                    newGO.GetComponent<UI_BarnItemDisplayer>().SetUp(totalCount, allBarnItems[totalCount]);
                 }
                 else // generate empty block
                 {
-                    newGO.GetComponent<UI_BarnItemDisplayer>().SetUp();
+                    newGO.GetComponent<UI_BarnItemDisplayer>().SetUp(totalCount);
                 }
                 
                 totalCount++;
