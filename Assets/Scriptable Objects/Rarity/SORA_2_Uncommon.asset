@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d0eaee83fcf04b54a54eaefa507e3bd, type: 3}
   m_Name: SORA_2_Uncommon
   m_EditorClassIdentifier: 
+  rarityIdentifier: 1
   color: {r: 0.6324926, g: 1, b: 0.53333336, a: 1}
   rarityName: Uncommon
   baseWeight: 300

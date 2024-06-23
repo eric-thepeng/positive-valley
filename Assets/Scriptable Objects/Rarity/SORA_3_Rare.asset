@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d0eaee83fcf04b54a54eaefa507e3bd, type: 3}
   m_Name: SORA_3_Rare
   m_EditorClassIdentifier: 
+  rarityIdentifier: 2
   color: {r: 0.5330188, g: 0.7546093, b: 1, a: 1}
   rarityName: Rare
   baseWeight: 80

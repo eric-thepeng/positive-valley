@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d0eaee83fcf04b54a54eaefa507e3bd, type: 3}
   m_Name: SORA_4_Epic
   m_EditorClassIdentifier: 
+  rarityIdentifier: 3
   color: {r: 0.8541718, g: 0.53333336, b: 1, a: 1}
   rarityName: Epic
   baseWeight: 20

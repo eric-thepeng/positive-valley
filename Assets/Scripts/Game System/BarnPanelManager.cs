@@ -28,6 +28,11 @@ public class BarnPanelManager : MonoBehaviour
             this.itemSeed = itemSeed;
             this.itemRarity = itemRarity;
         }
+
+        public int GetSellPrice()
+        {
+            return itemSeed.GetSellPriceByRarity(itemRarity);
+        }
     }
 
     
@@ -94,5 +99,11 @@ public class BarnPanelManager : MonoBehaviour
             }
         }
         barnItemDisplayerTemplate.gameObject.SetActive(false);
+    }
+
+    public void SellBarnItem(int blockID)
+    {
+        allBarnItems.RemoveAt(blockID);
+        RefreshDisplay();
     }
 }

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using JetBrains.Annotations;
 using UnityEditor;
 using UnityEngine;
 
@@ -18,4 +19,21 @@ public class SOSI_Seed : SO_ShopItem
     
     public int harvestMoney;
     public int harvestExperience;
+
+    public Dictionary<SO_Rarity.RarityIdentifier, int> sellPriceByRarity =
+        new Dictionary<SO_Rarity.RarityIdentifier, int>()
+        {
+            { SO_Rarity.RarityIdentifier.Normal, 0 },
+            { SO_Rarity.RarityIdentifier.Uncommon, 0 },
+            { SO_Rarity.RarityIdentifier.Rare, 0 },
+            { SO_Rarity.RarityIdentifier.Epic, 0 },
+            { SO_Rarity.RarityIdentifier.Legendary, 0 },
+            { SO_Rarity.RarityIdentifier.Divine, 0 },
+        };
+
+    public int GetSellPriceByRarity(SO_Rarity rarity)
+    {
+        return sellPriceByRarity[rarity.rarityIdentifier];
+    }
 }
+

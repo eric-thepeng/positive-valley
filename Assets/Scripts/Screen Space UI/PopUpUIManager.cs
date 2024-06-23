@@ -44,8 +44,9 @@ public class PopUpUIManager : MonoBehaviour
 
     public void DisplaySellBarnItemPopUpSelect(UI_BarnItemDisplayer barnItemDisplayer)
     {
+        int sellPrice = barnItemDisplayer.displayingBarnItem.GetSellPrice();
         UnlockFieldPopUpSelectUI.SetUpAndDisplay(
-            "Sell [" + barnItemDisplayer.displayingBarnItem.itemRarity.rarityName +"] " + barnItemDisplayer.displayingBarnItem.itemSeed.itemName + " for xxx?",
+            "Sell [" + barnItemDisplayer.displayingBarnItem.itemRarity.rarityName +"] " + barnItemDisplayer.displayingBarnItem.itemSeed.itemName + " for " + sellPrice + " ?",
             new List<UnityAction>(){barnItemDisplayer.SellItem}, 
             new List<string>(){"Sell"});
     }

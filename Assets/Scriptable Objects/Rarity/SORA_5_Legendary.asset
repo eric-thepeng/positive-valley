@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d0eaee83fcf04b54a54eaefa507e3bd, type: 3}
   m_Name: SORA_5_Legendary
   m_EditorClassIdentifier: 
+  rarityIdentifier: 4
   color: {r: 1, g: 0.7028999, b: 0.53333336, a: 1}
   rarityName: Legendary
   baseWeight: 6
