@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class GamePanelsManager : MonoBehaviour
 {
@@ -21,52 +22,15 @@ public class GamePanelsManager : MonoBehaviour
     public enum GamePanel {Valley, Positivity, Barn, Friends, Settings}
     public GamePanel gamePanel = GamePanel.Valley;
 
+    public UnityEvent<GamePanel> OnNewPanelEnters = new UnityEvent<GamePanel>();
+    public UnityEvent<GamePanel> OnPanelCloses = new UnityEvent<GamePanel>();
+
     public void SwitchPanelTo(GamePanel newPanel)
     {
         if(gamePanel == newPanel) return;
-        
-        switch (newPanel)
-        {
-            case GamePanel.Valley:
-                GoBackToValley();
-                break;
-            case GamePanel.Positivity:
-                break;
-            case GamePanel.Barn:
-                BarnPanelManager.i.OpenPanel();
-                break;
-            case GamePanel.Friends:
-                break;
-            case GamePanel.Settings:
-                break;
-            default:
-                throw new ArgumentOutOfRangeException(nameof(gamePanel), gamePanel, null);
-        }
 
+        OnPanelCloses.Invoke(gamePanel);
         gamePanel = newPanel;
-        
-        if(gamePanel!=GamePanel.Valley) ShopManager.i.HideShopPanel();
-    }
-
-    public void GoBackToValley()
-    {
-        switch (gamePanel)
-        {
-            case GamePanel.Valley:
-                return;
-            case GamePanel.Positivity:
-                break;
-            case GamePanel.Barn:
-                BarnPanelManager.i.ClosePanel();
-                break;
-            case GamePanel.Friends:
-                break;
-            case GamePanel.Settings:
-                break;
-            default:
-                throw new ArgumentOutOfRangeException(nameof(gamePanel), gamePanel, null);
-        }
-        
-        ShopManager.i.CloseShopPanel();
+        OnNewPanelEnters.Invoke(gamePanel);
     }
 }

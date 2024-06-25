@@ -41,15 +41,18 @@ public class UI_BarnItemDisplayer : MonoBehaviour
         rarityFrameImage.gameObject.SetActive(true);
         displayPriceTMPT.gameObject.SetActive(true);
         
-        //selectableButton.OnSelected.AddListener();
+        selectableButton.OnSelected.AddListener(OnSelect);
+        selectableButton.OnUnselected.AddListener(OnUnselect);
+
     }
-    
-    public void SellItem()
+
+    public void OnSelect(UI_SelectableButton sb)
     {
-        PlayerStat.money.ChangeValue(displayingBarnItem.GetSellPrice());
-        PopUpUIManager.i.ExitUnlockFieldPopUp();
-        PopUpUIManager.i.DisplaySimpleTextPopUpDisappear("Get " +  displayingBarnItem.GetSellPrice() + " Sun");
-        BarnPanelManager.i.SellBarnItem(blockID);
+        BarnSellingManager.i.AddBID(this);
     }
-    
+
+    public void OnUnselect(UI_SelectableButton sb)
+    {
+        BarnSellingManager.i.RemoveBID(this);
+    }
 }

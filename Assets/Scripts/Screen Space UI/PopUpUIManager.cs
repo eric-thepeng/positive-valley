@@ -42,15 +42,6 @@ public class PopUpUIManager : MonoBehaviour
             new List<string>(){"Unlock"});
     }
 
-    public void DisplaySellBarnItemPopUpSelect(UI_BarnItemDisplayer barnItemDisplayer)
-    {
-        int sellPrice = barnItemDisplayer.displayingBarnItem.GetSellPrice();
-        UnlockFieldPopUpSelectUI.SetUpAndDisplay(
-            "Sell [" + barnItemDisplayer.displayingBarnItem.itemRarity.rarityName +"] " + barnItemDisplayer.displayingBarnItem.itemSeed.itemName + " for " + sellPrice + " ?",
-            new List<UnityAction>(){barnItemDisplayer.SellItem}, 
-            new List<string>(){"Sell"});
-    }
-
     public void DisplayFieldGrowInfoPopUp(PWI_Field tarField)
     {
         string displayString = "";

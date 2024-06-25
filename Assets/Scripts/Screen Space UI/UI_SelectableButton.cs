@@ -10,8 +10,11 @@ using UnityEngine.UI;
 public class UI_SelectableButton : MonoBehaviour
 {
     private Button button;
-    public UnityEvent OnSelected = new UnityEvent();
-    public UnityEvent OnUnselected = new UnityEvent();
+    public UnityEvent<UI_SelectableButton> OnSelected = new UnityEvent<UI_SelectableButton>();
+    public UnityEvent<UI_SelectableButton> OnUnselected = new UnityEvent<UI_SelectableButton>();
+    
+    [SerializeField] private UI_SelectableButtonsGroup group;
+    
     private bool selected = false;
     private bool interactable = true;
 
@@ -21,19 +24,29 @@ public class UI_SelectableButton : MonoBehaviour
         button.onClick.AddListener(ButtonClicked);
     }
 
+    private void OnEnable()
+    {
+        group?.Register(this);
+    }
+
+    private void OnDisable()
+    {
+        group?.Unregister(this);
+    }
+
     public void ButtonClicked()
     {
         if(!interactable) return;
         if(selected)
         {
             selected = false;
-            OnUnselected.Invoke();
+            OnUnselected.Invoke(this);
             button.targetGraphic.DOColor(button.colors.normalColor,0.1f);
         }
         else
         {
             selected = true;
-            OnSelected.Invoke();
+            OnSelected.Invoke(this);
             button.targetGraphic.DOColor(button.colors.selectedColor,0.1f);
         }
     }

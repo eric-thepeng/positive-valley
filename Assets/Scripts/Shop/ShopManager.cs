@@ -46,7 +46,14 @@ public class ShopManager : MonoBehaviour
         }
     }
     // ----------
-    
+
+    private void OnEnable()
+    {
+        GamePanelsManager.i.OnNewPanelEnters.AddListener(HideShopPanel);
+        GamePanelsManager.i.OnPanelCloses.AddListener(CloseShopPanel);
+
+    }
+
     private void Start()
     {
         SetUpShopItemsDisplay();
@@ -134,18 +141,39 @@ public class ShopManager : MonoBehaviour
         }
     }
 
+    public void OpenShopPanel(GamePanelsManager.GamePanel newOpenPanel)
+    {
+        if(newOpenPanel != GamePanelsManager.GamePanel.Valley) return;
+        shopPanel.transform.DOLocalMoveY(shopPanelOpenY,0.5f);
+        PlayerState.ChangeShopStatus(PlayerState.ShopStatus.Open);
+    }
+    
     public void OpenShopPanel()
     {
         shopPanel.transform.DOLocalMoveY(shopPanelOpenY,0.5f);
         PlayerState.ChangeShopStatus(PlayerState.ShopStatus.Open);
     }
 
+    public void CloseShopPanel(GamePanelsManager.GamePanel exitingPanel)
+    {
+        if(exitingPanel != GamePanelsManager.GamePanel.Valley) return;
+        shopPanel.transform.DOLocalMoveY(shopPanelCloseY,0.5f);
+        PlayerState.ChangeShopStatus(PlayerState.ShopStatus.Close);
+    }
+    
     public void CloseShopPanel()
     {
         shopPanel.transform.DOLocalMoveY(shopPanelCloseY,0.5f);
         PlayerState.ChangeShopStatus(PlayerState.ShopStatus.Close);
     }
 
+    public void HideShopPanel(GamePanelsManager.GamePanel newOpenPanel)
+    {
+        if(newOpenPanel != GamePanelsManager.GamePanel.Valley) return;
+        shopPanel.transform.DOLocalMoveY(shopPanelHideY,0.5f);
+        PlayerState.ChangeShopStatus(PlayerState.ShopStatus.Hide);
+    }
+    
     public void HideShopPanel()
     {
         shopPanel.transform.DOLocalMoveY(shopPanelHideY,0.5f);

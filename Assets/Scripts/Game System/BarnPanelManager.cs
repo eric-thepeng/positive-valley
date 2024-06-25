@@ -50,14 +50,23 @@ public class BarnPanelManager : MonoBehaviour
         allBarnItems = new List<BarnItem>();
     }
     
-    public void OpenPanel()
+    private void OnEnable()
     {
+        GamePanelsManager.i.OnNewPanelEnters.AddListener(OpenPanel);
+        GamePanelsManager.i.OnPanelCloses.AddListener(ClosePanel);
+
+    }
+    
+    public void OpenPanel(GamePanelsManager.GamePanel panel)
+    {
+        if(panel != GamePanelsManager.GamePanel.Barn) return;
         panelGO.SetActive(true);
         RefreshDisplay();
     }
 
-    public void ClosePanel()
+    public void ClosePanel(GamePanelsManager.GamePanel panel)
     {
+        if(panel != GamePanelsManager.GamePanel.Barn) return;
         panelGO.SetActive(false);
     }
 
@@ -106,4 +115,28 @@ public class BarnPanelManager : MonoBehaviour
         allBarnItems.RemoveAt(blockID);
         RefreshDisplay();
     }
+
+    public void SellBarnItems(List<UI_BarnItemDisplayer> items)
+    {
+        /*
+        List<int> sellIndex = new List<int>();
+        foreach (var VARIABLE in items)
+        {
+            sellIndex.Add(VARIABLE.blockID);
+        }
+        sellIndex.Sort();
+        for (int i = sellIndex.Count - 1; i >= 0; i--)
+        {
+            allBarnItems.RemoveAt(i);
+        }*/
+
+        foreach (var VARIABLE in items)
+        {
+            allBarnItems.Remove(VARIABLE.displayingBarnItem);
+        }
+        
+        RefreshDisplay();
+        
+    }
+    
 }
