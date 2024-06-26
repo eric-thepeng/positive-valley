@@ -116,7 +116,7 @@ public class BarnPanelManager : MonoBehaviour
         RefreshDisplay();
     }
 
-    public void SellBarnItems(List<UI_BarnItemDisplayer> items)
+    public void DeleteBarnItems(List<UI_BarnItemDisplayer> items)
     {
         
         foreach (var VARIABLE in items)
@@ -126,6 +126,16 @@ public class BarnPanelManager : MonoBehaviour
         
         RefreshDisplay();
         
+    }
+
+    public void DeleteBarnItems(List<BarnItem> items)
+    {
+        foreach (var VARIABLE in items)
+        {
+            allBarnItems.Remove(VARIABLE);
+        }
+        
+        RefreshDisplay();
     }
     
 }

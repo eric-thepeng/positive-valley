@@ -30,6 +30,11 @@ public class BarnSellingManager : MonoBehaviour
         GamePanelsManager.i.OnNewPanelEnters.AddListener(OnBarnEnters);
     }
 
+    private void Start()
+    {
+        RefreshDisplay();
+    }
+
     public void OnBarnEnters(GamePanelsManager.GamePanel panel)
     {
         if(panel != GamePanelsManager.GamePanel.Barn) return;
@@ -80,10 +85,12 @@ public class BarnSellingManager : MonoBehaviour
 
     public void SellAllSelected()
     {
+        if(selectedBID.Count == 0) return;
         int price = GetCurrentSellPrice();
         PlayerStat.money.ChangeValue(price);
         PopUpUIManager.i.DisplaySimpleTextPopUpDisappear("Get " +  price + " Sun");
-        BarnPanelManager.i.SellBarnItems(selectedBID);
+        BarnPanelManager.i.DeleteBarnItems(selectedBID);
         selectedBID = new List<UI_BarnItemDisplayer>();
+        RefreshDisplay();
     }
 }
