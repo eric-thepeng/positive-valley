@@ -118,23 +118,10 @@ public class BarnPanelManager : MonoBehaviour
 
     public void SellBarnItems(List<UI_BarnItemDisplayer> items)
     {
-        /*
-        List<int> sellIndex = new List<int>();
-        foreach (var VARIABLE in items)
-        {
-            sellIndex.Add(VARIABLE.blockID);
-        }
-        sellIndex.Sort();
-        for (int i = sellIndex.Count - 1; i >= 0; i--)
-        {
-            allBarnItems.RemoveAt(i);
-        }*/
-
         
         foreach (var VARIABLE in items)
         {
-            print(VARIABLE);
-            //allBarnItems.Remove(VARIABLE.displayingBarnItem);
+            allBarnItems.Remove(VARIABLE.displayingBarnItem);
         }
         
         RefreshDisplay();

@@ -81,7 +81,9 @@ public class BarnSellingManager : MonoBehaviour
     public void SellAllSelected()
     {
         int price = GetCurrentSellPrice();
+        PlayerStat.money.ChangeValue(price);
         PopUpUIManager.i.DisplaySimpleTextPopUpDisappear("Get " +  price + " Sun");
         BarnPanelManager.i.SellBarnItems(selectedBID);
+        selectedBID = new List<UI_BarnItemDisplayer>();
     }
 }
