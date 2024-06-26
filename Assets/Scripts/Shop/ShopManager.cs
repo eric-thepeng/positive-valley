@@ -119,7 +119,7 @@ public class ShopManager : MonoBehaviour
         }
     }
 
-    public void OpenClosePanel()
+    public void OpenClosePanelWithButton()
     {
         switch (PlayerState.shopStatus)
         {
@@ -133,6 +133,7 @@ public class ShopManager : MonoBehaviour
                 OpenShopPanel();
                 break;
             case PlayerState.ShopStatus.Hide:
+                // player cannot click button in hide state
                 break;
             default:
                 throw new ArgumentOutOfRangeException();
@@ -143,11 +144,11 @@ public class ShopManager : MonoBehaviour
     {
         if (enteringPanel == GamePanelsManager.GamePanel.Valley)
         {
-            HideShopPanel();
+            CloseShopPanel();
         }
         else
         {
-            CloseShopPanel();
+            HideShopPanel();
         }
     }
     

@@ -25,12 +25,6 @@ public class BarnSellingManager : MonoBehaviour
 
     private List<UI_BarnItemDisplayer> selectedBID = new List<UI_BarnItemDisplayer>();
 
-    public void AddBID(UI_BarnItemDisplayer bid)
-    {
-        selectedBID.Add(bid);
-        RefreshDisplay();
-    }
-
     private void OnEnable()
     {
         GamePanelsManager.i.OnNewPanelEnters.AddListener(OnBarnEnters);
@@ -41,6 +35,12 @@ public class BarnSellingManager : MonoBehaviour
         if(panel != GamePanelsManager.GamePanel.Barn) return;
         selectedBID = new List<UI_BarnItemDisplayer>();
         sellingButton.onClick.RemoveAllListeners();
+        RefreshDisplay();
+    }
+    
+    public void AddBID(UI_BarnItemDisplayer bid)
+    {
+        selectedBID.Add(bid);
         RefreshDisplay();
     }
 

@@ -130,9 +130,11 @@ public class BarnPanelManager : MonoBehaviour
             allBarnItems.RemoveAt(i);
         }*/
 
+        
         foreach (var VARIABLE in items)
         {
-            allBarnItems.Remove(VARIABLE.displayingBarnItem);
+            print(VARIABLE);
+            //allBarnItems.Remove(VARIABLE.displayingBarnItem);
         }
         
         RefreshDisplay();
