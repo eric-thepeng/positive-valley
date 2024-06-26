@@ -7093,8 +7093,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shopPanel: {fileID: 1223922793107448253}
   shopPanelOpenY: 685
-  shopPanelCloseY: 215
-  shopPanelHideY: 70
+  shopPanelCloseY: 70
+  shopPanelHideY: 215
   shopItemTemplate: {fileID: 7133714120277517915}
   shopItemContainer: {fileID: 5967230250614964360}
   shopGridCount: {x: 4, y: 3}
