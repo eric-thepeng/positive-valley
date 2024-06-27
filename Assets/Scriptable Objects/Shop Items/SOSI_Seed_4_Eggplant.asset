@@ -12,16 +12,122 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e82b85b56cc542b9af74eb606cf52f2, type: 3}
   m_Name: SOSI_Seed_4_Eggplant
   m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: sellPriceByRarity
+      Entry: 7
+      Data: 0|System.Collections.Generic.Dictionary`2[[SO_Rarity+RarityIdentifier,
+        Assembly-CSharp],[System.Int32, mscorlib]], mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 1|System.Collections.Generic.EnumEqualityComparer`1[[SO_Rarity+RarityIdentifier,
+        Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 6
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 0
+    - Name: $v
+      Entry: 3
+      Data: 6
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 1
+    - Name: $v
+      Entry: 3
+      Data: 20
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 2
+    - Name: $v
+      Entry: 3
+      Data: 65
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 3
+    - Name: $v
+      Entry: 3
+      Data: 210
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 4
+    - Name: $v
+      Entry: 3
+      Data: 650
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 5
+    - Name: $v
+      Entry: 3
+      Data: 2000
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
   itemName: Eggplant
   itemIcon: {fileID: -142148323, guid: 1ba88ca4891124f4caef425c8e17ab65, type: 3}
-  unlockLevel: 4
+  unlockLevel: 5
   buyCost: 25
   phasesSprites:
   - {fileID: 585725989, guid: 179dee3a161f04c3284fff6015997ac3, type: 3}
   - {fileID: 2024872127, guid: 179dee3a161f04c3284fff6015997ac3, type: 3}
   - {fileID: -565973528, guid: 179dee3a161f04c3284fff6015997ac3, type: 3}
   - {fileID: -1088199923, guid: 179dee3a161f04c3284fff6015997ac3, type: 3}
-  cropGrowTime: 3000
-  cropAmount: 6
-  harvestMoney: 15
-  harvestExperience: 40
+  cropGrowTime: 720
+  cropAmount: 8
+  harvestExperience: 80

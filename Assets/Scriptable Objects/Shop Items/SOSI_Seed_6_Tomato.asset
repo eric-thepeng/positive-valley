@@ -12,16 +12,122 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e82b85b56cc542b9af74eb606cf52f2, type: 3}
   m_Name: SOSI_Seed_6_Tomato
   m_EditorClassIdentifier: 
+  serializationData:
+    SerializedFormat: 2
+    SerializedBytes: 
+    ReferencedUnityObjects: []
+    SerializedBytesString: 
+    Prefab: {fileID: 0}
+    PrefabModificationsReferencedUnityObjects: []
+    PrefabModifications: []
+    SerializationNodes:
+    - Name: sellPriceByRarity
+      Entry: 7
+      Data: 0|System.Collections.Generic.Dictionary`2[[SO_Rarity+RarityIdentifier,
+        Assembly-CSharp],[System.Int32, mscorlib]], mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 1|System.Collections.Generic.EnumEqualityComparer`1[[SO_Rarity+RarityIdentifier,
+        Assembly-CSharp]], mscorlib
+    - Name: 
+      Entry: 12
+      Data: 0
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 6
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 0
+    - Name: $v
+      Entry: 3
+      Data: 14
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 1
+    - Name: $v
+      Entry: 3
+      Data: 46
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 2
+    - Name: $v
+      Entry: 3
+      Data: 145
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 3
+    - Name: $v
+      Entry: 3
+      Data: 440
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 4
+    - Name: $v
+      Entry: 3
+      Data: 1510
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 3
+      Data: 5
+    - Name: $v
+      Entry: 3
+      Data: 4999
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
   itemName: Tomato
   itemIcon: {fileID: -766620013, guid: 1ba88ca4891124f4caef425c8e17ab65, type: 3}
-  unlockLevel: 8
-  buyCost: 45
+  unlockLevel: 10
+  buyCost: 100
   phasesSprites:
   - {fileID: -1988078668, guid: 179dee3a161f04c3284fff6015997ac3, type: 3}
   - {fileID: -1345148521, guid: 179dee3a161f04c3284fff6015997ac3, type: 3}
   - {fileID: 365680315, guid: 179dee3a161f04c3284fff6015997ac3, type: 3}
   - {fileID: 1425785722, guid: 179dee3a161f04c3284fff6015997ac3, type: 3}
-  cropGrowTime: 5000
-  cropAmount: 4
-  harvestMoney: 40
-  harvestExperience: 60
+  cropGrowTime: 1500
+  cropAmount: 6
+  harvestExperience: 250

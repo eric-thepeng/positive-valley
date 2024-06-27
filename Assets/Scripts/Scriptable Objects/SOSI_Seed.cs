@@ -17,7 +17,6 @@ public class SOSI_Seed : SO_ShopItem
     public float cropGrowTime;
     public int cropAmount;
     
-    public int harvestMoney;
     public int harvestExperience;
 
     public Dictionary<SO_Rarity.RarityIdentifier, int> sellPriceByRarity =

@@ -71,7 +71,7 @@ public class ShopManager : MonoBehaviour
         if (holdingShopItem is SOSI_Seed)
         {
             SOSI_Seed holdingSeed = (SOSI_Seed)holdingShopItem;
-            selectedItemInfoTMPT.text = "[Cost " + holdingSeed.buyCost + "] [Time " + holdingSeed.cropGrowTime + "] [Crops " + holdingSeed.cropAmount + "] [$$ " + holdingSeed.harvestMoney + "] [Exp " + holdingSeed.harvestExperience + "]";
+            selectedItemInfoTMPT.text = "[Cost " + holdingSeed.buyCost + "] [Time " + holdingSeed.cropGrowTime + "] [Crops " + holdingSeed.cropAmount + "] [Exp " + holdingSeed.harvestExperience + "]";
         }
         else
         {

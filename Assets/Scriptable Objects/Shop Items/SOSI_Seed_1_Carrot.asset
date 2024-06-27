@@ -97,7 +97,7 @@ MonoBehaviour:
       Data: 4
     - Name: $v
       Entry: 3
-      Data: 7
+      Data: 10
     - Name: 
       Entry: 8
       Data: 
@@ -109,7 +109,7 @@ MonoBehaviour:
       Data: 5
     - Name: $v
       Entry: 3
-      Data: 10
+      Data: 20
     - Name: 
       Entry: 8
       Data: 
@@ -128,7 +128,6 @@ MonoBehaviour:
   - {fileID: -9864900, guid: 179dee3a161f04c3284fff6015997ac3, type: 3}
   - {fileID: 1623558716, guid: 179dee3a161f04c3284fff6015997ac3, type: 3}
   - {fileID: 673302667, guid: 179dee3a161f04c3284fff6015997ac3, type: 3}
-  cropGrowTime: 5
-  cropAmount: 3
-  harvestMoney: 1
-  harvestExperience: 2
+  cropGrowTime: 60
+  cropAmount: 4
+  harvestExperience: 5
