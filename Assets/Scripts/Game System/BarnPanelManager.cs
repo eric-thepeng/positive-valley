@@ -35,7 +35,7 @@ public class BarnPanelManager : MonoBehaviour
         }
     }
 
-    
+    // DEPENDENCIES
     public GameObject panelGO;
     public GameObject barnItemDisplayContainer;
     public UI_BarnItemDisplayer barnItemDisplayerTemplate;
@@ -43,6 +43,7 @@ public class BarnPanelManager : MonoBehaviour
     public Vector2 barnItemDelta;
     public Vector2Int barnItemDimension;
     
+    // PRIVATE VARIABLES
     private List<BarnItem> allBarnItems;
 
     private void Awake()
@@ -54,8 +55,44 @@ public class BarnPanelManager : MonoBehaviour
     {
         GamePanelsManager.i.OnNewPanelEnters.AddListener(OpenPanel);
         GamePanelsManager.i.OnPanelCloses.AddListener(ClosePanel);
-
     }
+    
+    private void Start()
+    {
+        LoadGameFile();
+    }
+
+    private void OnApplicationQuit()
+    {
+        SaveGameFile();
+    }
+    
+    private void OnApplicationPause(bool pauseStatus)
+    {
+        if (pauseStatus)
+        {
+            // Enter Pause
+            SaveGameFile();
+        }
+        else
+        {
+            // Resume
+            LoadGameFile();
+        }
+    }
+
+    private void SaveGameFile()
+    {
+        if(SaveLoadManager.i.GetSaveMode() == SaveLoadManager.SaveMode.DoNotSave) return;
+        ES3.Save("BarnPanelManager_allBarnItems", allBarnItems, SaveLoadManager.i.saveFileName);
+    }
+    
+    private void LoadGameFile()
+    {
+        if(SaveLoadManager.i.GetLoadMode() == SaveLoadManager.LoadMode.NewGame) return;
+        allBarnItems = ES3.Load<List<BarnItem>>("BarnPanelManager_allBarnItems", SaveLoadManager.i.loadFileName);
+    }
+
     
     public void OpenPanel(GamePanelsManager.GamePanel panel)
     {
