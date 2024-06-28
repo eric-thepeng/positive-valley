@@ -19,7 +19,7 @@ public class GamePanelsManager : MonoBehaviour
         }
     }
     
-    public enum GamePanel {Valley, Positivity, Barn, Friends, Settings}
+    public enum GamePanel {Valley, Positivity, Barn, Collection, Friends, Settings}
     public GamePanel gamePanel = GamePanel.Valley;
 
     public UnityEvent<GamePanel> OnNewPanelEnters = new UnityEvent<GamePanel>();
