@@ -151,6 +151,12 @@ public class ShopManager : MonoBehaviour
             HideShopPanel();
         }
     }
+
+    public void ObtainNewSeed(SOSI_Seed newSeed)
+    {
+        sosiToDisplay.Add(newSeed);
+        SetUpShopItemsDisplay();
+    }
     
     public void OpenShopPanel()
     {

@@ -17,23 +17,6 @@ public class BarnPanelManager : MonoBehaviour
             return instance;
         }
     }
-    
-    public struct BarnItem
-    {
-        public SOSI_Seed itemSeed;
-        public SO_Rarity itemRarity;
-
-        public BarnItem(SOSI_Seed itemSeed, SO_Rarity itemRarity)
-        {
-            this.itemSeed = itemSeed;
-            this.itemRarity = itemRarity;
-        }
-
-        public int GetSellPrice()
-        {
-            return itemSeed.GetSellPriceByRarity(itemRarity);
-        }
-    }
 
     // DEPENDENCIES
     public GameObject panelGO;

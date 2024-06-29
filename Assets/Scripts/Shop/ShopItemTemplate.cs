@@ -29,7 +29,12 @@ public class ShopItemTemplate : MonoBehaviour
         priceTMPT.text = "$ " + sosi.buyCost;
         iconImage.sprite = sosi.itemIcon;
         this.sosi = sosi;
+        
+        //start in unlocked state
+        unlockedStateGameObject.SetActive(true);
+        lockedStateGameObject.SetActive(false);
 
+        /*
         if (sosi.unlockLevel <= PlayerStat.level.GetValue()) //start in unlocked state
         {
             unlockedStateGameObject.SetActive(true);
@@ -40,7 +45,7 @@ public class ShopItemTemplate : MonoBehaviour
             unlockedStateGameObject.SetActive(false);
             lockedStateGameObject.SetActive(true);
             PlayerStat.level.SubscribeChangeValue(UnlockCheck);
-        }
+        }*/
     }
 
     public void UnlockCheck(int currentLevel)

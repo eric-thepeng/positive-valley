@@ -14,7 +14,7 @@ public class UI_BarnItemDisplayer : MonoBehaviour
     
     // Variables
     public int blockID;
-    public BarnPanelManager.BarnItem displayingBarnItem;
+    public BarnItem displayingBarnItem;
     public UI_SelectableButton selectableButton;
     
     public void SetUp(int blockID)
@@ -28,7 +28,7 @@ public class UI_BarnItemDisplayer : MonoBehaviour
         selectableButton.SetInteractable(false);
     }
 
-    public void SetUp(int blockID, BarnPanelManager.BarnItem barnItem)
+    public void SetUp(int blockID, BarnItem barnItem)
     {
         this.blockID = blockID;
         displayingBarnItem = barnItem;

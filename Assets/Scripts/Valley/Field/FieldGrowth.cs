@@ -125,7 +125,7 @@ public class FieldGrowth
     {
         PlayerStat.experience.ChangeValue(seed.harvestExperience);
         SO_Rarity cropRarity = RarityManager.i.RollRarity();
-        BarnPanelManager.i.AddBarnItem(new BarnPanelManager.BarnItem(seed,cropRarity));
+        BarnPanelManager.i.AddBarnItem(new BarnItem(seed,cropRarity));
     }
 
     public int GetAmountHarvestLeft()

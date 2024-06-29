@@ -79,7 +79,7 @@ public class PopUpUIManager : MonoBehaviour
         puad.SetUpAndDisplay(null, text, 0.4f, 0.4f);
     }
 
-    public void QueDisplayCropHarvestPopUpDisappear(BarnPanelManager.BarnItem barnItem)
+    public void QueDisplayCropHarvestPopUpDisappear(BarnItem barnItem)
     {
         popUpDisappearInfoQue.Enqueue(new KeyValuePair<SOSI_Seed, SO_Rarity>(barnItem.itemSeed, barnItem.itemRarity));
     }
