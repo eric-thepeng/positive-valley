@@ -123,6 +123,7 @@ MonoBehaviour:
   itemIcon: {fileID: 739796099, guid: 1ba88ca4891124f4caef425c8e17ab65, type: 3}
   unlockLevel: 1
   buyCost: 1
+  unlockState: 2
   phasesSprites:
   - {fileID: 1103592275, guid: 179dee3a161f04c3284fff6015997ac3, type: 3}
   - {fileID: -9864900, guid: 179dee3a161f04c3284fff6015997ac3, type: 3}

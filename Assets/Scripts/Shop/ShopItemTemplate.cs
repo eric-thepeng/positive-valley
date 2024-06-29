@@ -24,36 +24,39 @@ public class ShopItemTemplate : MonoBehaviour
 
     public void SetUp(SO_ShopItem sosi)
     {
-        unlockLevelTMPT.text = "Unlock at\nLv. " + sosi.unlockLevel;
+        unlockLevelTMPT.text = "??????";//"Unlock at\nLv. " + sosi.unlockLevel;
         nameTMPT.text = sosi.itemName;
         priceTMPT.text = "$ " + sosi.buyCost;
         iconImage.sprite = sosi.itemIcon;
         this.sosi = sosi;
-        
-        //start in unlocked state
-        unlockedStateGameObject.SetActive(true);
-        lockedStateGameObject.SetActive(false);
 
-        /*
-        if (sosi.unlockLevel <= PlayerStat.level.GetValue()) //start in unlocked state
+        
+        if (sosi.IsUnlocked()) //display unlocked state
         {
             unlockedStateGameObject.SetActive(true);
             lockedStateGameObject.SetActive(false);
         }
-        else //start in locked state
+        else //display locked state
         {
             unlockedStateGameObject.SetActive(false);
             lockedStateGameObject.SetActive(true);
             PlayerStat.level.SubscribeChangeValue(UnlockCheck);
-        }*/
+        }
     }
 
     public void UnlockCheck(int currentLevel)
     {
+        /*
         if (PlayerStat.level.GetValue() >= sosi.unlockLevel)
         {
             unlockedStateGameObject.SetActive(true);
             lockedStateGameObject.SetActive(false);
+            PlayerStat.level.UnsubscribeChangeValue(UnlockCheck);
+        }*/
+        
+        if (PlayerStat.level.GetValue() >= sosi.unlockLevel)
+        {
+            sosi.LevelReached();
             PlayerStat.level.UnsubscribeChangeValue(UnlockCheck);
         }
     }

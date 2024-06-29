@@ -2376,7 +2376,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1389569203830002998}
   m_Layer: 0
-  m_Name: 'State: Can Buy'
+  m_Name: 'State: Need To Unlock'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5856,7 +5856,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 0
+  m_Interactable: 1
   m_TargetGraphic: {fileID: 5284491166248578624}
   m_OnClick:
     m_PersistentCalls:
@@ -8092,7 +8092,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8871453114138420439}
   m_Layer: 0
-  m_Name: 'State: Locked'
+  m_Name: 'State: Need To Reach Level'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8891,7 +8891,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Unlock at \nLv 5"
+  m_text: ??????
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 66a8b9ff9640d410aa4efd8085d0e655, type: 2}
   m_sharedMaterial: {fileID: -3808347698200830001, guid: 66a8b9ff9640d410aa4efd8085d0e655, type: 2}
@@ -9445,6 +9445,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2885153078559789491}
+  - component: {fileID: 2941673497911397236}
   - component: {fileID: 3925514181666227948}
   - component: {fileID: 2276715951033717518}
   - component: {fileID: 3178346027938295190}
@@ -9475,6 +9476,28 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &2941673497911397236
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7197652046486712494}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26653e68ebee046ab85152aa7eb385b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  panelGO: {fileID: 3126297326440774747}
+  collectionItemDisplayerContainer: {fileID: 9165524316840767259}
+  collectionItemDisplayerTemplate: {fileID: 3482917480260674822}
+  collectionItemYDelta: -180
+  seedsToUnlock:
+  - {fileID: 11400000, guid: 35f8871875ff24892a4c79e9e0d1e96d, type: 2}
+  - {fileID: 11400000, guid: 13dd043868309411ea984700f0c421e5, type: 2}
+  - {fileID: 11400000, guid: 03dde147967144a8c9e63be198b40e73, type: 2}
+  - {fileID: 11400000, guid: af37672fa204d4a81880734cc3a5623d, type: 2}
+  - {fileID: 11400000, guid: a023eafb9fe5942a790059ab114604b8, type: 2}
 --- !u!223 &3925514181666227948
 Canvas:
   m_ObjectHideFlags: 0
@@ -11897,13 +11920,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 70987064380575035}
+  - component: {fileID: 3482917480260674822}
   m_Layer: 0
   m_Name: Collection Item Displayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &70987064380575035
 RectTransform:
   m_ObjectHideFlags: 0
@@ -11922,9 +11946,27 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 794}
   m_SizeDelta: {x: 0, y: 160}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &3482917480260674822
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8828790140027102916}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa37b47ed871643f980ad9f57c7972a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  needToReachLevelGO: {fileID: 6025355529406567436}
+  unlockLevelText: {fileID: 4432223917346850880}
+  needToUnlockGO: {fileID: 1484120438775682950}
+  iconImage: {fileID: 5555711574751033529}
+  descriptionText: {fileID: 296860490587709372}
+  unlockButton: {fileID: 8893232933826954911}
 --- !u!1 &8861740745189433622
 GameObject:
   m_ObjectHideFlags: 0
