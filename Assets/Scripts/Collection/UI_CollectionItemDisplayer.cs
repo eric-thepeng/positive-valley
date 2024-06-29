@@ -50,7 +50,7 @@ public class UI_CollectionItemDisplayer : MonoBehaviour
 
     public void RefreshDisplay(int level)
     {
-        if (seed.unlockLevel < level) // Display need to reach level
+        if (seed.unlockLevel <= level) // Display need to unlock
         {
             needToReachLevelGO.SetActive(false);
             needToUnlockGO.SetActive(true);
@@ -58,7 +58,7 @@ public class UI_CollectionItemDisplayer : MonoBehaviour
             iconImage.sprite = seed.itemIcon;
             descriptionText.text = "test test need to spend barn item";
         }
-        else // Display need to unlock
+        else // Display need to reach level 
         {
             needToReachLevelGO.SetActive(true);
             needToUnlockGO.SetActive(false);
