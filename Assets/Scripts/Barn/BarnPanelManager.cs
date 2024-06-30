@@ -130,6 +130,16 @@ public class BarnPanelManager : MonoBehaviour
         barnItemDisplayerTemplate.gameObject.SetActive(false);
     }
 
+    public bool HasBarnItemSet(BarnItemSet bis)
+    {
+        return true;
+    }
+
+    public bool SpendBarnItemSet(BarnItemSet bis)
+    {
+        return true;
+    }
+    
     public void SellBarnItem(int blockID)
     {
         allBarnItems.RemoveAt(blockID);
@@ -138,11 +148,26 @@ public class BarnPanelManager : MonoBehaviour
 
     public void DeleteBarnItems(List<UI_BarnItemDisplayer> items)
     {
+
+        List<int> removingIndex = new List<int>();
+
+        foreach (var VARIABLE in items)
+        {
+            removingIndex.Add(VARIABLE.blockID);
+        }
         
+        removingIndex.Sort();
+
+        for (int i = 0; i < removingIndex.Count; i++)
+        {
+            allBarnItems.RemoveAt(removingIndex[i] - i);
+        }
+        
+        /*
         foreach (var VARIABLE in items)
         {
             allBarnItems.Remove(VARIABLE.displayingBarnItem);
-        }
+        }*/
         
         RefreshDisplay();
         

@@ -57,6 +57,9 @@ public class UI_CollectionItemDisplayer : MonoBehaviour
 
             iconImage.sprite = seed.itemIcon;
             descriptionText.text = "test test need to spend barn item";
+
+            unlockButton.onClick.RemoveAllListeners();
+            unlockButton.onClick.AddListener(TryToUnlock);
         }
         else // Display need to reach level 
         {
@@ -65,6 +68,11 @@ public class UI_CollectionItemDisplayer : MonoBehaviour
             
             unlockLevelText.text = "Reach Level " + seed.GetUnlockLevel();
         }
+    }
+
+    private void TryToUnlock()
+    {
+        
     }
 
     private void OnDisable()

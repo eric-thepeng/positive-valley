@@ -1,8 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public struct BarnItem
+[Serializable]public struct BarnItem
 {
     public SOSI_Seed itemSeed;
     public SO_Rarity itemRarity;
@@ -19,6 +20,19 @@ public struct BarnItem
     }
 }
 
+public class SerializableBarnItemSetInput
+{
+    
+}
+
+/*
+ * 属性：
+ * 1. SOSI
+ * 2. 品质
+ *
+ * --- 自动根据品质sort
+ * 3. 数量
+ */
 public class BarnItemSet
 {
     public List<BarnItem> data;

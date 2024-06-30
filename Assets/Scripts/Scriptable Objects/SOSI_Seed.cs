@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using JetBrains.Annotations;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 
@@ -29,6 +30,8 @@ public class SOSI_Seed : SO_ShopItem
             { SO_Rarity.RarityIdentifier.Legendary, 0 },
             { SO_Rarity.RarityIdentifier.Divine, 0 },
         };
+
+    public Dictionary<BarnItem, int> unlockRequiredBarnItems;
 
     public int GetSellPriceByRarity(SO_Rarity rarity)
     {
