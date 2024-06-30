@@ -20,16 +20,10 @@ using UnityEngine;
     }
 }
 
-public class SerializableBarnItemSetInput
-{
-    
-}
-
 /*
  * 属性：
  * 1. SOSI
  * 2. 品质
- *
  * --- 自动根据品质sort
  * 3. 数量
  */
@@ -76,7 +70,62 @@ public class BarnItemSet
     
     // REMOVING OPERATIONS
 
+    public bool SpendBarnItems(Dictionary<BarnItem, int> toSpend)
+    {
+        if (!HasEnoughBarnItems(toSpend)) return false;
+
+        foreach (var VARIABLE in toSpend)
+        {
+            for (int i = 0; i < VARIABLE.Value; i++)
+            {
+                data.Remove(VARIABLE.Key);
+            }
+        }
+        
+        return true;
+    }
+
+    public void RemoveBarnItemAtIndex(int removingIndex)
+    {
+        data.RemoveAt(removingIndex);
+    }
+
+    // ORGANIZING OPERATIONS
+    
+    public Dictionary<BarnItem, int> GetDataInfoDictionary(bool sortByRarity = false)
+    {
+        Dictionary<BarnItem, int> export = new Dictionary<BarnItem, int>();
+        foreach (var VARIABLE in data)
+        {
+            if (export.ContainsKey(VARIABLE))
+            {
+                export[VARIABLE]++;
+            }
+            else
+            {
+                export.Add(VARIABLE,1);
+            }
+        }
+        return export;
+    }
+
+    public bool HasEnoughBarnItems(Dictionary<BarnItem, int> toCheck)
+    {
+        Dictionary<BarnItem, int> available = GetDataInfoDictionary();
+        foreach (var VARIABLE in toCheck)
+        {
+            if (!available.ContainsKey(VARIABLE.Key)) return false;
+            if (available[VARIABLE.Key] < VARIABLE.Value) return false;
+        }
+
+        return true;
+    }
+    
     // DISPLAYING OPERATIONS
-    
-    
+
+    public List<BarnItem> GetDataInfoList()
+    {
+        return data;
+    }
+
 }

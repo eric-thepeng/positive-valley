@@ -27,11 +27,14 @@ public class BarnPanelManager : MonoBehaviour
     public Vector2Int barnItemDimension;
     
     // PRIVATE VARIABLES
-    private List<BarnItem> allBarnItems;
-
+    //private List<BarnItem> allBarnItems;
+    private BarnItemSet storageBarnItemSet; 
+    
+    
     private void Awake()
     {
-        allBarnItems = new List<BarnItem>();
+        //allBarnItems = new List<BarnItem>();
+        storageBarnItemSet = new BarnItemSet();
     }
     
     private void OnEnable()
@@ -67,13 +70,13 @@ public class BarnPanelManager : MonoBehaviour
     private void SaveGameFile()
     {
         if(SaveLoadManager.i.GetSaveMode() == SaveLoadManager.SaveMode.DoNotSave) return;
-        ES3.Save("BarnPanelManager_allBarnItems", allBarnItems, SaveLoadManager.i.saveFileName);
+        ES3.Save("BarnPanelManager_storageBarnItemSet", storageBarnItemSet, SaveLoadManager.i.saveFileName);
     }
     
     private void LoadGameFile()
     {
         if(SaveLoadManager.i.GetLoadMode() == SaveLoadManager.LoadMode.NewGame) return;
-        allBarnItems = ES3.Load<List<BarnItem>>("BarnPanelManager_allBarnItems", SaveLoadManager.i.loadFileName);
+        storageBarnItemSet = ES3.Load<BarnItemSet>("BarnPanelManager_storageBarnItemSet", SaveLoadManager.i.loadFileName);
     }
 
     
@@ -92,7 +95,7 @@ public class BarnPanelManager : MonoBehaviour
 
     public void AddBarnItem(BarnItem newBarnItem)
     {
-        allBarnItems.Add(newBarnItem);
+        storageBarnItemSet.AddBarnItem(newBarnItem);
         PopUpUIManager.i.QueDisplayCropHarvestPopUpDisappear(newBarnItem);
     }
 
@@ -115,6 +118,8 @@ public class BarnPanelManager : MonoBehaviour
                 GameObject newGO = Instantiate(barnItemDisplayerTemplate.gameObject, barnItemDisplayContainer.transform);
                 newGO.transform.localPosition += new Vector3(col * barnItemDelta.x, - row * barnItemDelta.y, 0);
 
+                List<BarnItem> allBarnItems = storageBarnItemSet.GetDataInfoList();
+                
                 if (totalCount < allBarnItems.Count) // generate block
                 {
                     newGO.GetComponent<UI_BarnItemDisplayer>().SetUp(totalCount, allBarnItems[totalCount]);
@@ -154,7 +159,7 @@ public class BarnPanelManager : MonoBehaviour
 
         for (int i = 0; i < removingIndex.Count; i++)
         {
-            allBarnItems.RemoveAt(removingIndex[i] - i);
+            storageBarnItemSet.RemoveBarnItemAtIndex(removingIndex[i] - i);
         }
         
         /*
@@ -167,14 +172,4 @@ public class BarnPanelManager : MonoBehaviour
         
     }
 
-    public void DeleteBarnItems(List<BarnItem> items)
-    {
-        foreach (var VARIABLE in items)
-        {
-            allBarnItems.Remove(VARIABLE);
-        }
-        
-        RefreshDisplay();
-    }
-    
 }
