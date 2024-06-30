@@ -37,6 +37,7 @@ public class BarnItemSet
 {
     public List<BarnItem> data;
 
+    // INITIALIZATION
     public BarnItemSet()
     {
         data = new List<BarnItem>();
@@ -45,7 +46,26 @@ public class BarnItemSet
     public BarnItemSet(Dictionary<BarnItem,int> inputDic)
     {
         data = new List<BarnItem>();
-        foreach (var kvp in inputDic)
+        AddBarnItem(inputDic);
+    }
+    
+    // ADDING OPERATIONS
+    public void AddBarnItem(BarnItem biToAdd)
+    {
+        data.Add(biToAdd);
+    }
+
+    public void AddBarnItem(List<BarnItem> bilToAdd)
+    {
+        foreach (var VARIABLE in bilToAdd)
+        {
+            data.Add(VARIABLE);
+        }
+    }
+
+    public void AddBarnItem(Dictionary<BarnItem, int> bidToAdd)
+    {
+        foreach (var kvp in bidToAdd)
         {
             for (int i = 0; i < kvp.Value; i++)
             {
@@ -53,6 +73,10 @@ public class BarnItemSet
             }
         }
     }
+    
+    // REMOVING OPERATIONS
+
+    // DISPLAYING OPERATIONS
     
     
 }

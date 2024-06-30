@@ -139,12 +139,6 @@ public class BarnPanelManager : MonoBehaviour
     {
         return true;
     }
-    
-    public void SellBarnItem(int blockID)
-    {
-        allBarnItems.RemoveAt(blockID);
-        RefreshDisplay();
-    }
 
     public void DeleteBarnItems(List<UI_BarnItemDisplayer> items)
     {
