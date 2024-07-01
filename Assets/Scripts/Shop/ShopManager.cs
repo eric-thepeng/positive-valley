@@ -54,7 +54,7 @@ public class ShopManager : MonoBehaviour
 
     private void Start()
     {
-        SetUpShopItemsDisplay();
+        //SetUpShopItemsDisplay();
         PlayerState.OnShopStatusChange.AddListener(onShopStatusChange);
     }
 
@@ -160,6 +160,7 @@ public class ShopManager : MonoBehaviour
     
     public void OpenShopPanel()
     {
+        SetUpShopItemsDisplay();
         shopPanel.transform.DOLocalMoveY(shopPanelOpenY,0.5f);
         PlayerState.ChangeShopStatus(PlayerState.ShopStatus.Open);
     }

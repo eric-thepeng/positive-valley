@@ -56,7 +56,7 @@ public class ShopItemTemplate : MonoBehaviour
         
         if (PlayerStat.level.GetValue() >= sosi.unlockLevel)
         {
-            sosi.LevelReached();
+            sosi.SetLevelReached();
             PlayerStat.level.UnsubscribeChangeValue(UnlockCheck);
         }
     }

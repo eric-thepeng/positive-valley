@@ -135,14 +135,9 @@ public class BarnPanelManager : MonoBehaviour
         barnItemDisplayerTemplate.gameObject.SetActive(false);
     }
 
-    public bool HasBarnItemSet(BarnItemSet bis)
+    public bool SpendBarnItems(Dictionary<BarnItem,int> toSpend)
     {
-        return true;
-    }
-
-    public bool SpendBarnItemSet(BarnItemSet bis)
-    {
-        return true;
+        return storageBarnItemSet.SpendBarnItems(toSpend);
     }
 
     public void DeleteBarnItems(List<UI_BarnItemDisplayer> items)

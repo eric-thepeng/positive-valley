@@ -20,9 +20,14 @@ public class SO_ShopItem : SO_PlayerItem, ICollectionItem
         return unlockState != UnlockState.NeedToReachLevel;
     }
 
-    public void LevelReached()
+    public void SetLevelReached()
     {
         unlockState = UnlockState.NeedToBuy;
+    }
+
+    public void SetUnlocked()
+    {
+        unlockState = UnlockState.Unlocked;
     }
 
     #region ICollectionItem

@@ -50,6 +50,16 @@ public class UI_CollectionItemDisplayer : MonoBehaviour
 
     public void RefreshDisplay(int level)
     {
+        // IS UNLOCKED
+        if (seed.IsUnlocked())
+        {
+            needToReachLevelGO.SetActive(false);
+            needToUnlockGO.SetActive(false);
+            unlockLevelText.text = "UNLOCKED";
+            return;
+        }
+            
+        // NEED UNLOCK OR LEVEL
         if (seed.unlockLevel <= level) // Display need to unlock
         {
             needToReachLevelGO.SetActive(false);
@@ -72,7 +82,11 @@ public class UI_CollectionItemDisplayer : MonoBehaviour
 
     private void TryToUnlock()
     {
-        
+        if (BarnPanelManager.i.SpendBarnItems(seed.unlockRequiredBarnItems))
+        {
+            seed.SetUnlocked();
+            RefreshDisplay(PlayerStat.level.GetValue());
+        }
     }
 
     private void OnDisable()
