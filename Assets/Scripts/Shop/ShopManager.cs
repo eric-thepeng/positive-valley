@@ -54,7 +54,7 @@ public class ShopManager : MonoBehaviour
 
     private void Start()
     {
-        //SetUpShopItemsDisplay();
+        SetUpShopItemsDisplay();
         PlayerState.OnShopStatusChange.AddListener(onShopStatusChange);
     }
 

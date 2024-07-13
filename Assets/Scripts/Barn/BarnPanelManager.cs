@@ -28,13 +28,14 @@ public class BarnPanelManager : MonoBehaviour
     
     // PRIVATE VARIABLES
     //private List<BarnItem> allBarnItems;
-    private BarnItemSet storageBarnItemSet; 
+    private BarnItemSet barnItemSetStorage;
+    private UI_BarnItemSetDisplayer barnItemSetDisplayer;
     
     
     private void Awake()
     {
-        //allBarnItems = new List<BarnItem>();
-        storageBarnItemSet = new BarnItemSet();
+        barnItemSetStorage = new BarnItemSet();
+        barnItemSetDisplayer = GetComponent<UI_BarnItemSetDisplayer>();
     }
     
     private void OnEnable()
@@ -70,13 +71,13 @@ public class BarnPanelManager : MonoBehaviour
     private void SaveGameFile()
     {
         if(SaveLoadManager.i.GetSaveMode() == SaveLoadManager.SaveMode.DoNotSave) return;
-        ES3.Save("BarnPanelManager_storageBarnItemSet", storageBarnItemSet, SaveLoadManager.i.saveFileName);
+        ES3.Save("BarnPanelManager_barnItemSetStorage", barnItemSetStorage, SaveLoadManager.i.saveFileName);
     }
     
     private void LoadGameFile()
     {
         if(SaveLoadManager.i.GetLoadMode() == SaveLoadManager.LoadMode.NewGame) return;
-        storageBarnItemSet = ES3.Load<BarnItemSet>("BarnPanelManager_storageBarnItemSet", SaveLoadManager.i.loadFileName);
+        barnItemSetStorage = ES3.Load<BarnItemSet>("BarnPanelManager_barnItemSetStorage", SaveLoadManager.i.loadFileName);
     }
 
     
@@ -95,49 +96,18 @@ public class BarnPanelManager : MonoBehaviour
 
     public void AddBarnItem(BarnItem newBarnItem)
     {
-        storageBarnItemSet.AddBarnItem(newBarnItem);
+        barnItemSetStorage.AddBarnItem(newBarnItem);
         PopUpUIManager.i.QueDisplayCropHarvestPopUpDisappear(newBarnItem);
     }
 
     public void RefreshDisplay()
     {
-        // Destroy Origional
-        for (int i = barnItemDisplayContainer.transform.childCount - 1; i >= 0; i--)
-        {
-            if(barnItemDisplayContainer.transform.GetChild(i) == barnItemDisplayerTemplate.transform) continue;
-            Destroy(barnItemDisplayContainer.transform.GetChild(i).gameObject);
-        }
-        
-        // Generate New (col, row) -> (0,0) to (0,n)
-        barnItemDisplayerTemplate.gameObject.SetActive(true);
-        int totalCount = 0;
-        for (int row = 0; row < barnItemDimension.y; row++)
-        {
-            for (int col = 0; col < barnItemDimension.x; col++)
-            {
-                GameObject newGO = Instantiate(barnItemDisplayerTemplate.gameObject, barnItemDisplayContainer.transform);
-                newGO.transform.localPosition += new Vector3(col * barnItemDelta.x, - row * barnItemDelta.y, 0);
-
-                List<BarnItem> allBarnItems = storageBarnItemSet.GetDataInfoList();
-                
-                if (totalCount < allBarnItems.Count) // generate block
-                {
-                    newGO.GetComponent<UI_BarnItemDisplayer>().SetUp(totalCount, allBarnItems[totalCount]);
-                }
-                else // generate empty block
-                {
-                    newGO.GetComponent<UI_BarnItemDisplayer>().SetUp(totalCount);
-                }
-                
-                totalCount++;
-            }
-        }
-        barnItemDisplayerTemplate.gameObject.SetActive(false);
+        barnItemSetDisplayer.Display(barnItemSetStorage);
     }
 
     public bool SpendBarnItems(Dictionary<BarnItem,int> toSpend)
     {
-        return storageBarnItemSet.SpendBarnItems(toSpend);
+        return barnItemSetStorage.SpendBarnItems(toSpend);
     }
 
     public void DeleteBarnItems(List<UI_BarnItemDisplayer> items)
@@ -154,7 +124,7 @@ public class BarnPanelManager : MonoBehaviour
 
         for (int i = 0; i < removingIndex.Count; i++)
         {
-            storageBarnItemSet.RemoveBarnItemAtIndex(removingIndex[i] - i);
+            barnItemSetStorage.RemoveBarnItemAtIndex(removingIndex[i] - i);
         }
         
         /*

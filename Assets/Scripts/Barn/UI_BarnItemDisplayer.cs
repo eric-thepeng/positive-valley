@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -17,6 +18,18 @@ public class UI_BarnItemDisplayer : MonoBehaviour
     public BarnItem displayingBarnItem;
     public UI_SelectableButton selectableButton;
     
+    // Settings
+    [Serializable]public class DisplaySetting
+    {
+        public enum SellPrice{Display, Hide}
+        public SellPrice sellPrice;
+        
+        public DisplaySetting()
+        {
+            sellPrice = SellPrice.Display;
+        }
+    }
+    
     public void SetUp(int blockID)
     {
         this.blockID = blockID;
@@ -28,7 +41,7 @@ public class UI_BarnItemDisplayer : MonoBehaviour
         selectableButton.SetInteractable(false);
     }
 
-    public void SetUp(int blockID, BarnItem barnItem)
+    public void SetUp(int blockID, BarnItem barnItem, DisplaySetting displaySetting = null)
     {
         this.blockID = blockID;
         displayingBarnItem = barnItem;
@@ -43,6 +56,18 @@ public class UI_BarnItemDisplayer : MonoBehaviour
         
         selectableButton.OnSelected.AddListener(OnSelect);
         selectableButton.OnUnselected.AddListener(OnUnselect);
+
+        switch (displaySetting.sellPrice)
+        {
+            case DisplaySetting.SellPrice.Display:
+                displayPriceTMPT.gameObject.SetActive(true);
+                break;
+            case DisplaySetting.SellPrice.Hide:
+                displayPriceTMPT.gameObject.SetActive(false);
+                break;
+            default:
+                throw new ArgumentOutOfRangeException();
+        }
 
     }
 

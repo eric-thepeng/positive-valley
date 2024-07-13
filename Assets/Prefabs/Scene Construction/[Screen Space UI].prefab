@@ -1347,6 +1347,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9035055945892789496}
   - component: {fileID: 6487250053916413382}
+  - component: {fileID: 8438586004970647071}
   - component: {fileID: 8266840207230285766}
   - component: {fileID: 348056410457405608}
   - component: {fileID: 3179610409780240919}
@@ -1394,6 +1395,22 @@ MonoBehaviour:
   barnItemDisplayerTemplate: {fileID: 4980765090170284233}
   barnItemDelta: {x: 180, y: 200}
   barnItemDimension: {x: 6, y: 6}
+--- !u!114 &8438586004970647071
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 600630592565771028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9d218898a4974a308e28ff38303f900, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  barnItemDisplayContainer: {fileID: 6585756952038838475}
+  barnItemDisplayerTemplate: {fileID: 4980765090170284233}
+  barnItemDimension: {x: 6, y: 6}
+  barnItemDelta: {x: 180, y: 200}
 --- !u!223 &8266840207230285766
 Canvas:
   m_ObjectHideFlags: 0
@@ -10013,6 +10030,9 @@ MonoBehaviour:
   rarityFrameImage: {fileID: 2785616386960800695}
   displayPriceTMPT: {fileID: 3541399485575950329}
   blockID: 0
+  displayingBarnItem:
+    itemSeed: {fileID: 0}
+    itemRarity: {fileID: 0}
   selectableButton: {fileID: 8377886751809523640}
 --- !u!1 &7764724161682062028
 GameObject:
