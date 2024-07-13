@@ -27,11 +27,10 @@ public class BarnPanelManager : MonoBehaviour
     public Vector2Int barnItemDimension;
     
     // PRIVATE VARIABLES
-    //private List<BarnItem> allBarnItems;
+    // private List<BarnItem> allBarnItems;
     private BarnItemSet barnItemSetStorage;
     private UI_BarnItemSetDisplayer barnItemSetDisplayer;
-    
-    
+
     private void Awake()
     {
         barnItemSetStorage = new BarnItemSet();

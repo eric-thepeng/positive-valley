@@ -8,6 +8,7 @@ public class UI_BarnItemSetDisplayer : MonoBehaviour
     public UI_BarnItemDisplayer barnItemDisplayerTemplate;
     public Vector2Int barnItemDimension;
     public Vector2 barnItemDelta;
+    public bool generateEmptyBlocks = false;
 
     public UI_BarnItemDisplayer.DisplaySetting displaySetting;
 
@@ -38,7 +39,8 @@ public class UI_BarnItemSetDisplayer : MonoBehaviour
                 }
                 else // generate empty block
                 {
-                    newGO.GetComponent<UI_BarnItemDisplayer>().SetUp(totalCount);
+                    if(generateEmptyBlocks)newGO.GetComponent<UI_BarnItemDisplayer>().SetUp(totalCount);
+                    else newGO.SetActive(false);
                 }
                 
                 totalCount++;

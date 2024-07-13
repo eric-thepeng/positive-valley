@@ -15,7 +15,13 @@ MonoBehaviour:
   serializationData:
     SerializedFormat: 2
     SerializedBytes: 
-    ReferencedUnityObjects: []
+    ReferencedUnityObjects:
+    - {fileID: 11400000, guid: 0c80974ab72d549b8a9d79d90f07f029, type: 2}
+    - {fileID: 11400000, guid: 0a512cb7cbce24a388e782b148eedb92, type: 2}
+    - {fileID: 11400000, guid: 35f8871875ff24892a4c79e9e0d1e96d, type: 2}
+    - {fileID: 11400000, guid: 05343f8ba39434863ad4d4af5db7ba09, type: 2}
+    - {fileID: 11400000, guid: 13dd043868309411ea984700f0c421e5, type: 2}
+    - {fileID: 11400000, guid: 8442cf3bf3fd24e35afd3b00dfb8d300, type: 2}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -119,10 +125,94 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
+    - Name: unlockRequiredBarnItems
+      Entry: 7
+      Data: 2|System.Collections.Generic.Dictionary`2[[BarnItem, Assembly-CSharp],[System.Int32,
+        mscorlib]], mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 3|System.Collections.Generic.ObjectEqualityComparer`1[[BarnItem, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 3
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 7
+      Data: BarnItem, Assembly-CSharp
+    - Name: itemSeed
+      Entry: 10
+      Data: 0
+    - Name: itemRarity
+      Entry: 10
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: $v
+      Entry: 3
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 7
+      Data: BarnItem, Assembly-CSharp
+    - Name: itemSeed
+      Entry: 10
+      Data: 2
+    - Name: itemRarity
+      Entry: 10
+      Data: 3
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: $v
+      Entry: 3
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 7
+      Data: BarnItem, Assembly-CSharp
+    - Name: itemSeed
+      Entry: 10
+      Data: 4
+    - Name: itemRarity
+      Entry: 10
+      Data: 5
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: $v
+      Entry: 3
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
   itemName: Eggplant
   itemIcon: {fileID: -142148323, guid: 1ba88ca4891124f4caef425c8e17ab65, type: 3}
   unlockLevel: 5
   buyCost: 25
+  unlockState: 0
   phasesSprites:
   - {fileID: 585725989, guid: 179dee3a161f04c3284fff6015997ac3, type: 3}
   - {fileID: 2024872127, guid: 179dee3a161f04c3284fff6015997ac3, type: 3}

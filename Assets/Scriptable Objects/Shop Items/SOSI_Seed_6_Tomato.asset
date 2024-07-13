@@ -15,7 +15,11 @@ MonoBehaviour:
   serializationData:
     SerializedFormat: 2
     SerializedBytes: 
-    ReferencedUnityObjects: []
+    ReferencedUnityObjects:
+    - {fileID: 11400000, guid: af37672fa204d4a81880734cc3a5623d, type: 2}
+    - {fileID: 11400000, guid: 0a512cb7cbce24a388e782b148eedb92, type: 2}
+    - {fileID: 11400000, guid: 0c80974ab72d549b8a9d79d90f07f029, type: 2}
+    - {fileID: 11400000, guid: 91f6a2c25bac945e2a9c50b40dcf18ad, type: 2}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -119,10 +123,73 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
+    - Name: unlockRequiredBarnItems
+      Entry: 7
+      Data: 2|System.Collections.Generic.Dictionary`2[[BarnItem, Assembly-CSharp],[System.Int32,
+        mscorlib]], mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 3|System.Collections.Generic.ObjectEqualityComparer`1[[BarnItem, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 2
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 7
+      Data: BarnItem, Assembly-CSharp
+    - Name: itemSeed
+      Entry: 10
+      Data: 0
+    - Name: itemRarity
+      Entry: 10
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: $v
+      Entry: 3
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 7
+      Data: BarnItem, Assembly-CSharp
+    - Name: itemSeed
+      Entry: 10
+      Data: 2
+    - Name: itemRarity
+      Entry: 10
+      Data: 3
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: $v
+      Entry: 3
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
   itemName: Tomato
   itemIcon: {fileID: -766620013, guid: 1ba88ca4891124f4caef425c8e17ab65, type: 3}
   unlockLevel: 10
   buyCost: 100
+  unlockState: 0
   phasesSprites:
   - {fileID: -1988078668, guid: 179dee3a161f04c3284fff6015997ac3, type: 3}
   - {fileID: -1345148521, guid: 179dee3a161f04c3284fff6015997ac3, type: 3}

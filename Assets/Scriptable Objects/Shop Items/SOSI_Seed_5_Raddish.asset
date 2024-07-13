@@ -15,7 +15,9 @@ MonoBehaviour:
   serializationData:
     SerializedFormat: 2
     SerializedBytes: 
-    ReferencedUnityObjects: []
+    ReferencedUnityObjects:
+    - {fileID: 11400000, guid: 03dde147967144a8c9e63be198b40e73, type: 2}
+    - {fileID: 11400000, guid: 05343f8ba39434863ad4d4af5db7ba09, type: 2}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -119,10 +121,52 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
+    - Name: unlockRequiredBarnItems
+      Entry: 7
+      Data: 2|System.Collections.Generic.Dictionary`2[[BarnItem, Assembly-CSharp],[System.Int32,
+        mscorlib]], mscorlib
+    - Name: comparer
+      Entry: 7
+      Data: 3|System.Collections.Generic.ObjectEqualityComparer`1[[BarnItem, Assembly-CSharp]],
+        mscorlib
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 12
+      Data: 1
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 7
+      Data: BarnItem, Assembly-CSharp
+    - Name: itemSeed
+      Entry: 10
+      Data: 0
+    - Name: itemRarity
+      Entry: 10
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: $v
+      Entry: 3
+      Data: 3
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 13
+      Data: 
+    - Name: 
+      Entry: 8
+      Data: 
   itemName: Raddish
   itemIcon: {fileID: 2146503219, guid: 1ba88ca4891124f4caef425c8e17ab65, type: 3}
   unlockLevel: 7
   buyCost: 40
+  unlockState: 0
   phasesSprites:
   - {fileID: 1354947630, guid: 179dee3a161f04c3284fff6015997ac3, type: 3}
   - {fileID: 1240898087, guid: 179dee3a161f04c3284fff6015997ac3, type: 3}

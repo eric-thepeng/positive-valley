@@ -39,10 +39,15 @@ public class UI_CollectionItemDisplayer : MonoBehaviour
     [SerializeField] private TMP_Text descriptionText;
     [SerializeField] private Button unlockButton;
 
+    [SerializeField, Header("Unlocked")] private GameObject unlockedGO;
+    [SerializeField] private TMP_Text unlockedDescriptionText;
+
     private SOSI_Seed seed;
+    private UI_BarnItemSetDisplayer barnItemSetDisplayer;
     
     public void SetUp(SOSI_Seed seedToDisplay)
     {
+        barnItemSetDisplayer = GetComponent<UI_BarnItemSetDisplayer>();
         seed = seedToDisplay;
         PlayerStat.level.SubscribeChangeValue(RefreshDisplay);
         RefreshDisplay(PlayerStat.level.GetValue());
@@ -55,23 +60,28 @@ public class UI_CollectionItemDisplayer : MonoBehaviour
         {
             needToReachLevelGO.SetActive(false);
             needToUnlockGO.SetActive(false);
-            unlockLevelText.text = "UNLOCKED";
+            unlockedGO.SetActive(true);
+            unlockedDescriptionText.text = seed.itemName + " UNLOCKED";
             return;
         }
             
         // NEED UNLOCK OR LEVEL
-        if (seed.unlockLevel <= level) // Display need to unlock
+        // Display NEED TO UNLOCK
+        if (seed.unlockLevel <= level) 
         {
             needToReachLevelGO.SetActive(false);
             needToUnlockGO.SetActive(true);
 
             iconImage.sprite = seed.itemIcon;
-            descriptionText.text = "test test need to spend barn item";
+            //descriptionText.text = "test test need to spend barn item";
 
             unlockButton.onClick.RemoveAllListeners();
             unlockButton.onClick.AddListener(TryToUnlock);
+            
+            barnItemSetDisplayer.Display(new BarnItemSet(seed.unlockRequiredBarnItems));
         }
-        else // Display need to reach level 
+        // Display NEED TO REACH LEVEL
+        else 
         {
             needToReachLevelGO.SetActive(true);
             needToUnlockGO.SetActive(false);
