@@ -7032,6 +7032,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 03dde147967144a8c9e63be198b40e73, type: 2}
   - {fileID: 11400000, guid: af37672fa204d4a81880734cc3a5623d, type: 2}
   - {fileID: 11400000, guid: a023eafb9fe5942a790059ab114604b8, type: 2}
+  - {fileID: 11400000, guid: 7d11e5f34b1674c9b9f23b2b1e0587b5, type: 2}
+  - {fileID: 11400000, guid: cf7c534d523b046dd9e1b999a63d3fb3, type: 2}
+  - {fileID: 11400000, guid: c7c65eba84eb942678373bb249453566, type: 2}
   selectedItemInfoGameObject: {fileID: 1703456481651384784}
   selectedItemInfoTMPT: {fileID: 1404950535849859367}
 --- !u!1 &5431338539629833359
@@ -9337,6 +9340,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 03dde147967144a8c9e63be198b40e73, type: 2}
   - {fileID: 11400000, guid: af37672fa204d4a81880734cc3a5623d, type: 2}
   - {fileID: 11400000, guid: a023eafb9fe5942a790059ab114604b8, type: 2}
+  - {fileID: 11400000, guid: 7d11e5f34b1674c9b9f23b2b1e0587b5, type: 2}
+  - {fileID: 11400000, guid: cf7c534d523b046dd9e1b999a63d3fb3, type: 2}
+  - {fileID: 11400000, guid: c7c65eba84eb942678373bb249453566, type: 2}
 --- !u!223 &3925514181666227948
 Canvas:
   m_ObjectHideFlags: 0

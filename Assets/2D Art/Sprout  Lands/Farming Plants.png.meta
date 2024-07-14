@@ -850,7 +850,7 @@ TextureImporter:
         serializedVersion: 2
         x: 32
         y: 80
-        width: 32
+        width: 16
         height: 16
       alignment: 7
       pivot: {x: 0.5, y: 0}
@@ -1243,6 +1243,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Farming Plants_54
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 80
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ddbd86573187c44cda79364686ce9b3a
+      internalID: -316834261
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -1304,6 +1325,7 @@ TextureImporter:
       Farming Plants_51: 144637710
       Farming Plants_52: 1650649453
       Farming Plants_53: 1812628933
+      Farming Plants_54: -316834261
       Farming Plants_6: -9864900
       Farming Plants_7: 1623558716
       Farming Plants_8: 673302667

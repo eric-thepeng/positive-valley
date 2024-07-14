@@ -10,18 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e82b85b56cc542b9af74eb606cf52f2, type: 3}
-  m_Name: SOSI_Seed_4_Eggplant
+  m_Name: SOSI_Seed_9_Corn
   m_EditorClassIdentifier: 
   serializationData:
     SerializedFormat: 2
     SerializedBytes: 
     ReferencedUnityObjects:
-    - {fileID: 11400000, guid: 0c80974ab72d549b8a9d79d90f07f029, type: 2}
+    - {fileID: 11400000, guid: af37672fa204d4a81880734cc3a5623d, type: 2}
     - {fileID: 11400000, guid: 0a512cb7cbce24a388e782b148eedb92, type: 2}
-    - {fileID: 11400000, guid: 35f8871875ff24892a4c79e9e0d1e96d, type: 2}
-    - {fileID: 11400000, guid: 05343f8ba39434863ad4d4af5db7ba09, type: 2}
-    - {fileID: 11400000, guid: 13dd043868309411ea984700f0c421e5, type: 2}
-    - {fileID: 11400000, guid: 8442cf3bf3fd24e35afd3b00dfb8d300, type: 2}
+    - {fileID: 11400000, guid: 0c80974ab72d549b8a9d79d90f07f029, type: 2}
+    - {fileID: 11400000, guid: 91f6a2c25bac945e2a9c50b40dcf18ad, type: 2}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -55,7 +53,7 @@ MonoBehaviour:
       Data: 0
     - Name: $v
       Entry: 3
-      Data: 6
+      Data: 14
     - Name: 
       Entry: 8
       Data: 
@@ -67,7 +65,7 @@ MonoBehaviour:
       Data: 1
     - Name: $v
       Entry: 3
-      Data: 20
+      Data: 46
     - Name: 
       Entry: 8
       Data: 
@@ -79,7 +77,7 @@ MonoBehaviour:
       Data: 2
     - Name: $v
       Entry: 3
-      Data: 65
+      Data: 145
     - Name: 
       Entry: 8
       Data: 
@@ -91,7 +89,7 @@ MonoBehaviour:
       Data: 3
     - Name: $v
       Entry: 3
-      Data: 210
+      Data: 440
     - Name: 
       Entry: 8
       Data: 
@@ -103,7 +101,7 @@ MonoBehaviour:
       Data: 4
     - Name: $v
       Entry: 3
-      Data: 650
+      Data: 1510
     - Name: 
       Entry: 8
       Data: 
@@ -115,7 +113,7 @@ MonoBehaviour:
       Data: 5
     - Name: $v
       Entry: 3
-      Data: 2000
+      Data: 4999
     - Name: 
       Entry: 8
       Data: 
@@ -138,7 +136,7 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 12
-      Data: 3
+      Data: 2
     - Name: 
       Entry: 7
       Data: 
@@ -182,42 +180,21 @@ MonoBehaviour:
       Entry: 8
       Data: 
     - Name: 
-      Entry: 7
-      Data: 
-    - Name: $k
-      Entry: 7
-      Data: BarnItem, Assembly-CSharp
-    - Name: itemSeed
-      Entry: 10
-      Data: 4
-    - Name: itemRarity
-      Entry: 10
-      Data: 5
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: $v
-      Entry: 3
-      Data: 1
-    - Name: 
-      Entry: 8
-      Data: 
-    - Name: 
       Entry: 13
       Data: 
     - Name: 
       Entry: 8
       Data: 
-  itemName: Eggplant
-  itemIcon: {fileID: -142148323, guid: 1ba88ca4891124f4caef425c8e17ab65, type: 3}
-  unlockLevel: 3
-  buyCost: 25
+  itemName: Tomato
+  itemIcon: {fileID: -766620013, guid: 1ba88ca4891124f4caef425c8e17ab65, type: 3}
+  unlockLevel: 5
+  buyCost: 100
   unlockState: 0
   phasesSprites:
-  - {fileID: 585725989, guid: 179dee3a161f04c3284fff6015997ac3, type: 3}
-  - {fileID: 2024872127, guid: 179dee3a161f04c3284fff6015997ac3, type: 3}
-  - {fileID: -565973528, guid: 179dee3a161f04c3284fff6015997ac3, type: 3}
-  - {fileID: -1088199923, guid: 179dee3a161f04c3284fff6015997ac3, type: 3}
-  cropGrowTime: 720
-  cropAmount: 8
-  harvestExperience: 80
+  - {fileID: 1237234607, guid: 179dee3a161f04c3284fff6015997ac3, type: 3}
+  - {fileID: 969308142, guid: 179dee3a161f04c3284fff6015997ac3, type: 3}
+  - {fileID: -574889434, guid: 179dee3a161f04c3284fff6015997ac3, type: 3}
+  - {fileID: 1671021725, guid: 179dee3a161f04c3284fff6015997ac3, type: 3}
+  cropGrowTime: 1500
+  cropAmount: 6
+  harvestExperience: 250

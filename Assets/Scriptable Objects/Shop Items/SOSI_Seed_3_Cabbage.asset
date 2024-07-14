@@ -187,7 +187,7 @@ MonoBehaviour:
       Data: 
   itemName: Cabbage
   itemIcon: {fileID: 2029280620, guid: 1ba88ca4891124f4caef425c8e17ab65, type: 3}
-  unlockLevel: 3
+  unlockLevel: 2
   buyCost: 30
   unlockState: 0
   phasesSprites:

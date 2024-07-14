@@ -153,7 +153,7 @@ MonoBehaviour:
       Data: 
     - Name: $v
       Entry: 3
-      Data: 3
+      Data: 2
     - Name: 
       Entry: 8
       Data: 
@@ -174,7 +174,7 @@ MonoBehaviour:
       Data: 
     - Name: $v
       Entry: 3
-      Data: 1
+      Data: 2
     - Name: 
       Entry: 8
       Data: 
@@ -186,7 +186,7 @@ MonoBehaviour:
       Data: 
   itemName: Cauliflower
   itemIcon: {fileID: 1870575596, guid: 1ba88ca4891124f4caef425c8e17ab65, type: 3}
-  unlockLevel: 2
+  unlockLevel: 1
   buyCost: 15
   unlockState: 0
   phasesSprites:

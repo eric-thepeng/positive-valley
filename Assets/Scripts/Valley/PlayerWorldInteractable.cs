@@ -2,20 +2,48 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class PlayerWorldInteractable : MonoBehaviour
+public class PlayerWorldInteractable : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler
 {
     protected virtual void OnPlayerTouchAsButton() { }
 
     protected virtual void OnPlayerTouchEnter() { }
     
+    // HANDLING CLICK
     private void OnMouseUpAsButton()
     {
-        if(!UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject()) OnPlayerTouchAsButton();
+        if(!EventSystem.current.IsPointerOverGameObject()) OnPlayerTouchAsButton();
     }
 
     private void OnMouseEnter()
     {
-        if(!UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject()) OnPlayerTouchEnter();
+        if(!EventSystem.current.IsPointerOverGameObject()) OnPlayerTouchEnter();
+    }
+    
+    // HANDLING TOUCH
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        // 检查是否点击在UI元素上
+        if (EventSystem.current.IsPointerOverGameObject(eventData.pointerId))
+        {
+            return;
+        }
+
+        // 处理点击事件
+        OnPlayerTouchAsButton();
+    }
+
+    // 处理鼠标进入事件
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        // 检查是否进入在UI元素上
+        if (EventSystem.current.IsPointerOverGameObject(eventData.pointerId))
+        {
+            return;
+        }
+
+        // 处理鼠标进入事件
+        OnPlayerTouchEnter();
     }
 }
