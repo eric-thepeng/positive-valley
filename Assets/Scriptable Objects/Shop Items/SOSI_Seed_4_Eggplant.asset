@@ -17,9 +17,8 @@ MonoBehaviour:
     SerializedBytes: 
     ReferencedUnityObjects:
     - {fileID: 11400000, guid: 0c80974ab72d549b8a9d79d90f07f029, type: 2}
-    - {fileID: 11400000, guid: 0a512cb7cbce24a388e782b148eedb92, type: 2}
-    - {fileID: 11400000, guid: 35f8871875ff24892a4c79e9e0d1e96d, type: 2}
     - {fileID: 11400000, guid: 05343f8ba39434863ad4d4af5db7ba09, type: 2}
+    - {fileID: 11400000, guid: 35f8871875ff24892a4c79e9e0d1e96d, type: 2}
     - {fileID: 11400000, guid: 13dd043868309411ea984700f0c421e5, type: 2}
     - {fileID: 11400000, guid: 8442cf3bf3fd24e35afd3b00dfb8d300, type: 2}
     SerializedBytesString: 
@@ -171,7 +170,7 @@ MonoBehaviour:
       Data: 2
     - Name: itemRarity
       Entry: 10
-      Data: 3
+      Data: 1
     - Name: 
       Entry: 8
       Data: 
@@ -189,10 +188,10 @@ MonoBehaviour:
       Data: BarnItem, Assembly-CSharp
     - Name: itemSeed
       Entry: 10
-      Data: 4
+      Data: 3
     - Name: itemRarity
       Entry: 10
-      Data: 5
+      Data: 4
     - Name: 
       Entry: 8
       Data: 

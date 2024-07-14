@@ -7255,6 +7255,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2342010183885117768}
   - component: {fileID: 4043171944820129510}
+  - component: {fileID: 597988535741244771}
   m_Layer: 0
   m_Name: Screen Notifications
   m_TagString: Untagged
@@ -7298,7 +7299,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UnlockFieldPopUpSelectUI: {fileID: 6147980362736232034}
   FieldGrowInfoPopUpUI: {fileID: 4237302150484580508}
-  CropHarvestUI: {fileID: 7869088960878392214}
+  commonPopUpAndDisappearUI: {fileID: 7869088960878392214}
+  cropHarvestUI: {fileID: 597988535741244771}
+--- !u!114 &597988535741244771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5518930119851842529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fba5f349a4d4246c6bb9df7017ef21ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  puadTemplate: {fileID: 7869088960878392214}
 --- !u!1 &5568082890307787009
 GameObject:
   m_ObjectHideFlags: 0

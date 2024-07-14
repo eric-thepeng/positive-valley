@@ -14,12 +14,12 @@ public class UI_PopUpAndDisappear : MonoBehaviour
     [SerializeField] private Image backgroundFrameImage;
     
 
-    public void SetUpAndDisplay(Sprite displaySprite, string descriptionString, float stayTime, float disappearTime)
+    public void SetUpAndDisplay(Sprite displaySprite, string descriptionString, float stayTime, float disappearTime, bool punchScale = true, bool moveUpWhenFadeOut = true)
     {
         gameObject.SetActive(true);
         descriptionTMPT.text = descriptionString;
         displayImage.sprite = displaySprite;
-        StartCoroutine(Disappear(stayTime, disappearTime));
+        StartCoroutine(Disappear(stayTime, disappearTime, punchScale, moveUpWhenFadeOut));
     }
 
     public void ExitUI()
@@ -27,11 +27,11 @@ public class UI_PopUpAndDisappear : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    IEnumerator Disappear(float stayTime, float disappearTime)
+    IEnumerator Disappear(float stayTime, float disappearTime, bool punchScale, bool moveUpWhenFadeOut )
     {
-        transform.DOPunchScale(new Vector3(0.05f,0.05f,0.05f), stayTime * 0.9f);
+        if(punchScale)transform.DOPunchScale(new Vector3(0.05f,0.05f,0.05f), stayTime * 0.9f);
         yield return new WaitForSeconds(stayTime);
-        transform.DOLocalMoveY(300, disappearTime);
+        if(moveUpWhenFadeOut)transform.DOLocalMoveY(300, disappearTime);
         canvasGroup.DOFade(0, disappearTime);
         yield return new WaitForSeconds(disappearTime);
         Destroy(gameObject);

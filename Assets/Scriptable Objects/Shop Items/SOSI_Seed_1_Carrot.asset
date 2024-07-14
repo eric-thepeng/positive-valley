@@ -119,6 +119,9 @@ MonoBehaviour:
     - Name: 
       Entry: 8
       Data: 
+    - Name: unlockRequiredBarnItems
+      Entry: 6
+      Data: 
   itemName: Carrot
   itemIcon: {fileID: 739796099, guid: 1ba88ca4891124f4caef425c8e17ab65, type: 3}
   unlockLevel: 1
@@ -129,6 +132,6 @@ MonoBehaviour:
   - {fileID: -9864900, guid: 179dee3a161f04c3284fff6015997ac3, type: 3}
   - {fileID: 1623558716, guid: 179dee3a161f04c3284fff6015997ac3, type: 3}
   - {fileID: 673302667, guid: 179dee3a161f04c3284fff6015997ac3, type: 3}
-  cropGrowTime: 60
+  cropGrowTime: 5
   cropAmount: 4
   harvestExperience: 5

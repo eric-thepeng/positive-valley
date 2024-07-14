@@ -16,10 +16,10 @@ MonoBehaviour:
     SerializedFormat: 2
     SerializedBytes: 
     ReferencedUnityObjects:
-    - {fileID: 11400000, guid: af37672fa204d4a81880734cc3a5623d, type: 2}
+    - {fileID: 11400000, guid: 7d11e5f34b1674c9b9f23b2b1e0587b5, type: 2}
     - {fileID: 11400000, guid: 0a512cb7cbce24a388e782b148eedb92, type: 2}
-    - {fileID: 11400000, guid: 0c80974ab72d549b8a9d79d90f07f029, type: 2}
-    - {fileID: 11400000, guid: 91f6a2c25bac945e2a9c50b40dcf18ad, type: 2}
+    - {fileID: 11400000, guid: af37672fa204d4a81880734cc3a5623d, type: 2}
+    - {fileID: 11400000, guid: 05343f8ba39434863ad4d4af5db7ba09, type: 2}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -187,7 +187,7 @@ MonoBehaviour:
       Data: 
   itemName: Tomato
   itemIcon: {fileID: -766620013, guid: 1ba88ca4891124f4caef425c8e17ab65, type: 3}
-  unlockLevel: 5
+  unlockLevel: 7
   buyCost: 100
   unlockState: 0
   phasesSprites:

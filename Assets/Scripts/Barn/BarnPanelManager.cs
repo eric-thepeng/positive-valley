@@ -99,6 +99,12 @@ public class BarnPanelManager : MonoBehaviour
         PopUpUIManager.i.QueDisplayCropHarvestPopUpDisappear(newBarnItem);
     }
 
+    public void AddBarnItems(List<BarnItem> newBarnItems)
+    {
+        barnItemSetStorage.AddBarnItem(newBarnItems);
+        PopUpUIManager.i.DisplayCropHarvestMultipleAndDisappear(newBarnItems);
+    }
+
     public void RefreshDisplay()
     {
         barnItemSetDisplayer.Display(barnItemSetStorage);

@@ -19,11 +19,12 @@ public class PopUpUIManager : MonoBehaviour
             return instance;
         }
     }
-    // ----------
+
     // SERIALIZED PRIVATE VARIABLES
     [SerializeField] private UI_PopUpAndSelect UnlockFieldPopUpSelectUI;
     [SerializeField] private UI_PopUp FieldGrowInfoPopUpUI;
-    [SerializeField] private UI_PopUpAndDisappear CropHarvestUI;
+    [SerializeField] private UI_PopUpAndDisappear commonPopUpAndDisappearUI;
+    [SerializeField] private UI_PopUpCropHarvest cropHarvestUI;
     
     // PRIVATE VARIABLES
     private Queue<KeyValuePair<SOSI_Seed, SO_Rarity>> popUpDisappearInfoQue;
@@ -62,7 +63,7 @@ public class PopUpUIManager : MonoBehaviour
 
     private void DisplayCropHarvestPopUpDisappear(SOSI_Seed seed, SO_Rarity rarity)
     {
-        GameObject newPUD = Instantiate(CropHarvestUI.gameObject, this.transform);
+        GameObject newPUD = Instantiate(commonPopUpAndDisappearUI.gameObject, this.transform);
         newPUD.SetActive(true);
         UI_PopUpAndDisappear puad = newPUD.GetComponent<UI_PopUpAndDisappear>();
         //"[Legendary] Eggplant +1"
@@ -73,7 +74,7 @@ public class PopUpUIManager : MonoBehaviour
 
     public void DisplaySimpleTextPopUpDisappear(string text)
     {
-        GameObject newPUD = Instantiate(CropHarvestUI.gameObject, this.transform);
+        GameObject newPUD = Instantiate(commonPopUpAndDisappearUI.gameObject, this.transform);
         newPUD.SetActive(true);
         UI_PopUpAndDisappear puad = newPUD.GetComponent<UI_PopUpAndDisappear>();
         puad.SetUpAndDisplay(null, text, 0.4f, 0.4f);
@@ -82,6 +83,11 @@ public class PopUpUIManager : MonoBehaviour
     public void QueDisplayCropHarvestPopUpDisappear(BarnItem barnItem)
     {
         popUpDisappearInfoQue.Enqueue(new KeyValuePair<SOSI_Seed, SO_Rarity>(barnItem.itemSeed, barnItem.itemRarity));
+    }
+
+    public void DisplayCropHarvestMultipleAndDisappear(List<BarnItem> barnItems)
+    {
+        cropHarvestUI.SetUpAndDisplay(barnItems);
     }
 
     public void ExitUnlockFieldPopUp()

@@ -104,27 +104,42 @@ public class FieldGrowth
     {
         partialHarvest = false;
         totalHarvest = false;
-        
-        List<int> harvestIndex = new List<int>();
+
+        int harvestAmount = 0;
         for (int i = 0; i < allCropsPhases.Count; i++)
         {
             if (allCropsPhases[i] == seed.cropPhasesAmount)
             {
-                harvestIndex.Add(i);
                 allCropsPhases[i] = -1;
                 partialHarvest = true;
-                HarvestACrop();
+                harvestAmount++;
             }
         }
+        HarvestCrops(harvestAmount);
+        
         // Determine if total harvest
         if (GetAmountHarvestLeft() == 0) totalHarvest = true;
         OnPhaseChange.Invoke(this);
+    }
+
+    public void HarvestCrops(int harvestAmount)
+    {
+        if(harvestAmount == 0) return;
+        PlayerStat.experience.ChangeValue(seed.harvestExperience * harvestAmount);
+        List<BarnItem> harvestedBarnItems = new List<BarnItem>();
+        for (int i = 0; i < harvestAmount; i++)
+        {
+            SO_Rarity cropRarity = RarityManager.i.RollRarity();
+            harvestedBarnItems.Add(new BarnItem(seed, cropRarity));
+        }
+        BarnPanelManager.i.AddBarnItems(harvestedBarnItems);
     }
 
     public void HarvestACrop()
     {
         PlayerStat.experience.ChangeValue(seed.harvestExperience);
         SO_Rarity cropRarity = RarityManager.i.RollRarity();
+        List<BarnItem> harvested = new List<BarnItem>();
         BarnPanelManager.i.AddBarnItem(new BarnItem(seed,cropRarity));
     }
 

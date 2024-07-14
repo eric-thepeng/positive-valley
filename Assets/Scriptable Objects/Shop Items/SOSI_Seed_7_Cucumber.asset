@@ -16,10 +16,9 @@ MonoBehaviour:
     SerializedFormat: 2
     SerializedBytes: 
     ReferencedUnityObjects:
-    - {fileID: 11400000, guid: af37672fa204d4a81880734cc3a5623d, type: 2}
-    - {fileID: 11400000, guid: 0a512cb7cbce24a388e782b148eedb92, type: 2}
-    - {fileID: 11400000, guid: 0c80974ab72d549b8a9d79d90f07f029, type: 2}
-    - {fileID: 11400000, guid: 91f6a2c25bac945e2a9c50b40dcf18ad, type: 2}
+    - {fileID: 11400000, guid: 03dde147967144a8c9e63be198b40e73, type: 2}
+    - {fileID: 11400000, guid: 8442cf3bf3fd24e35afd3b00dfb8d300, type: 2}
+    - {fileID: 11400000, guid: 05343f8ba39434863ad4d4af5db7ba09, type: 2}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -154,7 +153,7 @@ MonoBehaviour:
       Data: 
     - Name: $v
       Entry: 3
-      Data: 1
+      Data: 2
     - Name: 
       Entry: 8
       Data: 
@@ -166,10 +165,10 @@ MonoBehaviour:
       Data: BarnItem, Assembly-CSharp
     - Name: itemSeed
       Entry: 10
-      Data: 2
+      Data: 0
     - Name: itemRarity
       Entry: 10
-      Data: 3
+      Data: 2
     - Name: 
       Entry: 8
       Data: 
@@ -187,7 +186,7 @@ MonoBehaviour:
       Data: 
   itemName: Cucumber
   itemIcon: {fileID: -766620013, guid: 1ba88ca4891124f4caef425c8e17ab65, type: 3}
-  unlockLevel: 5
+  unlockLevel: 6
   buyCost: 100
   unlockState: 0
   phasesSprites:
