@@ -4,46 +4,39 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class PlayerWorldInteractable : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler
+public class PlayerWorldInteractable : MonoBehaviour
 {
     protected virtual void OnPlayerTouchAsButton() { }
 
     protected virtual void OnPlayerTouchEnter() { }
     
-    // HANDLING CLICK
     private void OnMouseUpAsButton()
     {
-        if(!EventSystem.current.IsPointerOverGameObject()) OnPlayerTouchAsButton();
+#if UNITY_EDITOR
+        if (!EventSystem.current.IsPointerOverGameObject())
+        {
+            OnPlayerTouchAsButton();
+        }
+#else
+        if (Input.touchCount > 0 && !EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId))
+        {
+            OnPlayerTouchAsButton();
+        }
+#endif
     }
 
     private void OnMouseEnter()
     {
-        if(!EventSystem.current.IsPointerOverGameObject()) OnPlayerTouchEnter();
-    }
-    
-    // HANDLING TOUCH
-    public void OnPointerClick(PointerEventData eventData)
-    {
-        // 检查是否点击在UI元素上
-        if (EventSystem.current.IsPointerOverGameObject(eventData.pointerId))
+#if UNITY_EDITOR
+        if (!EventSystem.current.IsPointerOverGameObject())
         {
-            return;
+            OnPlayerTouchEnter();
         }
-
-        // 处理点击事件
-        OnPlayerTouchAsButton();
-    }
-
-    // 处理鼠标进入事件
-    public void OnPointerEnter(PointerEventData eventData)
-    {
-        // 检查是否进入在UI元素上
-        if (EventSystem.current.IsPointerOverGameObject(eventData.pointerId))
+#else
+        if (Input.touchCount > 0 && !EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId))
         {
-            return;
+            OnPlayerTouchEnter();
         }
-
-        // 处理鼠标进入事件
-        OnPlayerTouchEnter();
+#endif
     }
 }
