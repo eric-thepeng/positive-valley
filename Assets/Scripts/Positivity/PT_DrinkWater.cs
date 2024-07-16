@@ -11,13 +11,13 @@ public class PT_DrinkWater : PositivityTask
     // CLASSES
     public class CurrentState
     {
-        public DateTime lastChangedDateTime;
+        public DateTime saveTime;
         public int currentDayCount;
         public int maxCountPerDay = 8;
 
         public CurrentState()
         {
-            lastChangedDateTime = DateTime.Now;
+            saveTime = DateTime.Now;
             currentDayCount = 0;
         }
 
@@ -42,10 +42,53 @@ public class PT_DrinkWater : PositivityTask
 
     private void OnEnable()
     {
-        if (currentState == null) { currentState = new CurrentState(); }
+        LoadGameFile();
+        if (currentState == null) currentState = new CurrentState();
         if(dwDisplayer == null) dwDisplayer = GetComponent<PT_DrinkWaterDisplayer>();
         RefreshDisplay();
     }
+
+    private void OnApplicationQuit()
+    {
+        SaveGameFile();
+    }
+    
+    private void OnApplicationPause(bool pauseStatus)
+    {
+        if (pauseStatus)
+        {
+            // Enter Pause
+            SaveGameFile();
+        }
+        else
+        {
+            // Resume
+            LoadGameFile();
+        }
+    }
+
+    private void SaveGameFile()
+    {
+        if (SaveLoadManager.i.GetSaveMode() == SaveLoadManager.SaveMode.DoNotSave) return;
+        //ES3.Save("playerStatMoney", money.GetValue(), SaveLoadManager.i.saveFileName);
+        ES3.Save("PT_DrinkWater//singleton//currentState", currentState, SaveLoadManager.i.saveFileName);
+    }
+
+    private void LoadGameFile()
+    {
+        if(SaveLoadManager.i.GetLoadMode() == SaveLoadManager.LoadMode.NewGame) return;
+       CurrentState lastState =
+           ES3.Load<CurrentState>("PT_DrinkWater//singleton//currentState", SaveLoadManager.i.loadFileName);
+       if (DateTime.Now.Date == lastState.saveTime.Date)
+       {
+           currentState = lastState;
+       }
+       else
+       {
+           currentState = new CurrentState();
+       }
+    }
+
     
     public void DrinkWaterButton()
     {
