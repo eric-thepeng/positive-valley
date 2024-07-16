@@ -10148,6 +10148,14 @@ PrefabInstance:
       propertyPath: idRef._Values.Array.data[2203]
       value: 
       objectReference: {fileID: 2129848646}
+    - target: {fileID: 5729439951653678785, guid: 096179893a9c549cdbaff044cea89665, type: 3}
+      propertyPath: loadFileName
+      value: build_20240716_2.es3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5729439951653678785, guid: 096179893a9c549cdbaff044cea89665, type: 3}
+      propertyPath: saveFileName
+      value: build_20240716_2.es3
+      objectReference: {fileID: 0}
     - target: {fileID: 6627002017436741602, guid: 096179893a9c549cdbaff044cea89665, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
