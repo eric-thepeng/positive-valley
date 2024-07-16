@@ -8,40 +8,45 @@ using UnityEngine.Events;
 
 public class PT_DrinkWater : PositivityTask
 {
+    // CLASSES
     public class CurrentState
     {
         public DateTime lastChangedDateTime;
-        public int countInDay;
-        public int maxCountPerDay = 2;
+        public int currentDayCount;
+        public int maxCountPerDay = 8;
 
         public CurrentState()
         {
             lastChangedDateTime = DateTime.Now;
-            countInDay = 0;
+            currentDayCount = 0;
         }
 
         public bool IsFullToday()
         {
-            return maxCountPerDay <= countInDay;
+            return maxCountPerDay <= currentDayCount;
         }
 
         public void IncreaseCount()
         {
             if(IsFullToday()) return;
-            countInDay++;
+            currentDayCount++;
         }
     }
 
+    // PUBLIC VARIABLES
     public CurrentState currentState;
+    
+    // PRIVATE VARIABLES
+    private PT_DrinkWaterDisplayer dwDisplayer;
+    
 
-    private void Start()
+    private void OnEnable()
     {
-        if (currentState == null)
-        {
-            currentState = new CurrentState();
-        }
+        if (currentState == null) { currentState = new CurrentState(); }
+        if(dwDisplayer == null) dwDisplayer = GetComponent<PT_DrinkWaterDisplayer>();
+        RefreshDisplay();
     }
-
+    
     public void DrinkWaterButton()
     {
         if (currentState.IsFullToday())
@@ -63,7 +68,7 @@ public class PT_DrinkWater : PositivityTask
         ExitUI();
         currentState.IncreaseCount();
         AddDrinkWaterBonus();
-        RefreshDisplay();
+        RefreshDisplay(currentState.currentDayCount-1);
     }
 
     public void ExitUI()
@@ -73,12 +78,13 @@ public class PT_DrinkWater : PositivityTask
 
     public void AddDrinkWaterBonus()
     {
-        //TODO
         PlayerStat.money.ChangeValue(50);
+        PopUpUIManager.i.DisplaySimpleTextPopUp("Obtained Reward: 50 Suns!");
     }
 
-    public void RefreshDisplay()
+    public void RefreshDisplay(int animationBlockIndex = -1)
     {
-        //TODO
+        dwDisplayer.Display(currentState, animationBlockIndex);
     }
+    
 }
