@@ -22,6 +22,7 @@ public class PopUpUIManager : MonoBehaviour
 
     // SERIALIZED PRIVATE VARIABLES
     [SerializeField] private UI_PopUpAndSelect UnlockFieldPopUpSelectUI;
+    [SerializeField] private UI_PopUpAndSelect DrinkWaterPopUpSelectUI;
     [SerializeField] private UI_PopUp FieldGrowInfoPopUpUI;
     [SerializeField] private UI_PopUpAndDisappear commonPopUpAndDisappearUI;
     [SerializeField] private UI_PopUpCropHarvest cropHarvestUI;
@@ -35,12 +36,30 @@ public class PopUpUIManager : MonoBehaviour
         StartCoroutine(DisplayPopUpDisappearQue());
     }
 
-    public void DisplayUnlockFieldPopUpSelect(PWI_Field tarField)
+    public UnityAction DisplayUnlockFieldPopUpSelect(PWI_Field tarField)
     {
-        UnlockFieldPopUpSelectUI.SetUpAndDisplay(
+        return UnlockFieldPopUpSelectUI.SetUpAndDisplay(
             "It takes $$" + tarField.GetUnlockCost() + " to unlock.", 
             new List<UnityAction>(){tarField.TryToUnlock}, 
             new List<string>(){"Unlock"});
+    }
+
+    public UnityAction DisplayUnlockFieldPopUpSelect(string descriptionString, UnityAction selectionActions,
+        String selectionButtonsText)
+    {
+        return UnlockFieldPopUpSelectUI.SetUpAndDisplay(
+            descriptionString, 
+            new List<UnityAction>() {selectionActions }, 
+            new List<string>(){selectionButtonsText});
+    }
+    
+    public UnityAction DisplayDrinkWaterPopUpSelect(string descriptionString, List<UnityAction> selectionActions,
+        List<String> selectionButtonsText)
+    {
+        return DrinkWaterPopUpSelectUI.SetUpAndDisplay(
+            descriptionString, 
+            selectionActions, 
+            selectionButtonsText);
     }
 
     public void DisplayFieldGrowInfoPopUp(PWI_Field tarField)
@@ -61,6 +80,12 @@ public class PopUpUIManager : MonoBehaviour
         FieldGrowInfoPopUpUI.SetUpAndDisplay(displayString);
     }
 
+    public void DisplaySimpleTextPopUp(string text)
+    {
+        string displayString = text;
+        FieldGrowInfoPopUpUI.SetUpAndDisplay(displayString);
+    }
+
     private void DisplayCropHarvestPopUpDisappear(SOSI_Seed seed, SO_Rarity rarity)
     {
         GameObject newPUD = Instantiate(commonPopUpAndDisappearUI.gameObject, this.transform);
@@ -72,14 +97,14 @@ public class PopUpUIManager : MonoBehaviour
         puad.SetBackgroundFrameColor(rarity.color);
     }
 
-    public void DisplaySimpleTextPopUpDisappear(string text)
+    public void DisplaySimpleTextPopUpDisappear(string text, float stayTime = 0.4f, float disappearTime = 0.4f, bool punchScale = false, bool move = true)
     {
         GameObject newPUD = Instantiate(commonPopUpAndDisappearUI.gameObject, this.transform);
         newPUD.SetActive(true);
         UI_PopUpAndDisappear puad = newPUD.GetComponent<UI_PopUpAndDisappear>();
-        puad.SetUpAndDisplay(null, text, 0.4f, 0.4f);
+        puad.SetUpAndDisplay(null, text, 0.4f, 0.4f, punchScale, move);
     }
-
+    
     public void QueDisplayCropHarvestPopUpDisappear(BarnItem barnItem)
     {
         popUpDisappearInfoQue.Enqueue(new KeyValuePair<SOSI_Seed, SO_Rarity>(barnItem.itemSeed, barnItem.itemRarity));
@@ -93,6 +118,11 @@ public class PopUpUIManager : MonoBehaviour
     public void ExitUnlockFieldPopUp()
     {
         UnlockFieldPopUpSelectUI.ExitUI();
+    }
+
+    public void ExitDrinkWaterPopUp()
+    {
+        DrinkWaterPopUpSelectUI.ExitUI();
     }
 
     IEnumerator DisplayPopUpDisappearQue()

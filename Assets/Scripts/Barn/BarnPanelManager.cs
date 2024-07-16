@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class BarnPanelManager : MonoBehaviour
 {
+    // SINGLETON
     static BarnPanelManager instance;
     public static BarnPanelManager i
     {

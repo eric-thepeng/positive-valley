@@ -51,7 +51,6 @@ public class SeedManager : MonoBehaviour
         {
             ES3.Save("SOSI_Seed_" + seed.name + "_unlockState",seed.unlockState,SaveLoadManager.i.saveFileName);
         }
-        //ES3.Save("BarnPanelManager_barnItemSetStorage", barnItemSetStorage, SaveLoadManager.i.saveFileName);
     }
     
     private void LoadGameFile()
@@ -59,11 +58,9 @@ public class SeedManager : MonoBehaviour
         if(SaveLoadManager.i.GetLoadMode() == SaveLoadManager.LoadMode.NewGame) return;
         foreach (var seed in allSeeds)
         {
-            ES3.Save("SOSI_Seed_" + seed.name + "_unlockState",seed.unlockState,SaveLoadManager.i.saveFileName);
             seed.unlockState = ES3.Load<SOSI_Seed.UnlockState>("SOSI_Seed_" + seed.name + "_unlockState",
                 SaveLoadManager.i.loadFileName);
         }
-        //barnItemSetStorage = ES3.Load<BarnItemSet>("BarnPanelManager_barnItemSetStorage", SaveLoadManager.i.loadFileName);
     }
 
 }

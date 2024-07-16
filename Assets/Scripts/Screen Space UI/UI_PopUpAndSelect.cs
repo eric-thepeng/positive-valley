@@ -11,7 +11,7 @@ public class UI_PopUpAndSelect : MonoBehaviour
     [SerializeField] private TMP_Text descriptionTMPT;
     [SerializeField] private List<Button> selectionButtons;
 
-    public void SetUpAndDisplay(string descriptionString, List<UnityAction> selectionActions, List<String> selectionButtonsText)
+    public UnityAction SetUpAndDisplay(string descriptionString, List<UnityAction> selectionActions, List<String> selectionButtonsText)
     {
         gameObject.SetActive(true);
         descriptionTMPT.text = descriptionString;
@@ -21,6 +21,8 @@ public class UI_PopUpAndSelect : MonoBehaviour
             selectionButtons[i].onClick.AddListener(selectionActions[i]);
             selectionButtons[i].GetComponentInChildren<TMP_Text>().text = selectionButtonsText[i];
         }
+
+        return ExitUI;
     }
 
     public void ExitUI()
