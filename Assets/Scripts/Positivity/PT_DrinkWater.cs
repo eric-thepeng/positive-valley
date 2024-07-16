@@ -48,6 +48,11 @@ public class PT_DrinkWater : PositivityTask
         RefreshDisplay();
     }
 
+    private void OnDisable()
+    {
+        SaveGameFile();
+    }
+
     private void OnApplicationQuit()
     {
         SaveGameFile();

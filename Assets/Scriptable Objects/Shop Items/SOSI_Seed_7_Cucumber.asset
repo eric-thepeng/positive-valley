@@ -17,8 +17,11 @@ MonoBehaviour:
     SerializedBytes: 
     ReferencedUnityObjects:
     - {fileID: 11400000, guid: 03dde147967144a8c9e63be198b40e73, type: 2}
+    - {fileID: 11400000, guid: fa6e7cc5940ae48e49702ac5cc8f026e, type: 2}
+    - {fileID: 11400000, guid: 0c80974ab72d549b8a9d79d90f07f029, type: 2}
     - {fileID: 11400000, guid: 8442cf3bf3fd24e35afd3b00dfb8d300, type: 2}
-    - {fileID: 11400000, guid: 05343f8ba39434863ad4d4af5db7ba09, type: 2}
+    - {fileID: 11400000, guid: 35f8871875ff24892a4c79e9e0d1e96d, type: 2}
+    - {fileID: 11400000, guid: 13dd043868309411ea984700f0c421e5, type: 2}
     SerializedBytesString: 
     Prefab: {fileID: 0}
     PrefabModificationsReferencedUnityObjects: []
@@ -135,7 +138,7 @@ MonoBehaviour:
       Data: 
     - Name: 
       Entry: 12
-      Data: 2
+      Data: 4
     - Name: 
       Entry: 7
       Data: 
@@ -153,7 +156,7 @@ MonoBehaviour:
       Data: 
     - Name: $v
       Entry: 3
-      Data: 2
+      Data: 1
     - Name: 
       Entry: 8
       Data: 
@@ -165,10 +168,52 @@ MonoBehaviour:
       Data: BarnItem, Assembly-CSharp
     - Name: itemSeed
       Entry: 10
-      Data: 0
+      Data: 2
     - Name: itemRarity
       Entry: 10
-      Data: 2
+      Data: 3
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: $v
+      Entry: 3
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 7
+      Data: BarnItem, Assembly-CSharp
+    - Name: itemSeed
+      Entry: 10
+      Data: 4
+    - Name: itemRarity
+      Entry: 10
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: $v
+      Entry: 3
+      Data: 1
+    - Name: 
+      Entry: 8
+      Data: 
+    - Name: 
+      Entry: 7
+      Data: 
+    - Name: $k
+      Entry: 7
+      Data: BarnItem, Assembly-CSharp
+    - Name: itemSeed
+      Entry: 10
+      Data: 5
+    - Name: itemRarity
+      Entry: 10
+      Data: 3
     - Name: 
       Entry: 8
       Data: 
@@ -185,7 +230,7 @@ MonoBehaviour:
       Entry: 8
       Data: 
   itemName: Cucumber
-  itemIcon: {fileID: -766620013, guid: 1ba88ca4891124f4caef425c8e17ab65, type: 3}
+  itemIcon: {fileID: -2060735568, guid: 1ba88ca4891124f4caef425c8e17ab65, type: 3}
   unlockLevel: 6
   buyCost: 100
   unlockState: 0
