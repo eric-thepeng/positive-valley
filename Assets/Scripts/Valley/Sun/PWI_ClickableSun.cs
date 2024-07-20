@@ -79,6 +79,7 @@ public class PWI_ClickableSun : PlayerWorldInteractable
 
     protected override void OnPlayerTouchEnter()
     {
+        base.OnPlayerTouchEnter();
         TryTriggerGainSun();
     }
 }

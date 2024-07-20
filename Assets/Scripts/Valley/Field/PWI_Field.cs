@@ -189,8 +189,8 @@ public class PWI_Field : PlayerWorldInteractable
     }
 
     protected override void OnPlayerTouchAsButton()
-    {
-        print("Player Touch");
+    { 
+        base.OnPlayerTouchAsButton();
         if (PlayerState.shopStatus == PlayerState.ShopStatus.Shopping) 
         {
             //SHOPPING
@@ -237,7 +237,7 @@ public class PWI_Field : PlayerWorldInteractable
 
     protected override void OnPlayerTouchEnter()
     {
-        print("Player Touch");
+        base.OnPlayerTouchEnter();
         if (PlayerState.shopStatus == PlayerState.ShopStatus.Shopping) 
         {
             //SHOPPING

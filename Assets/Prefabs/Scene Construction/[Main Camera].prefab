@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 800443825893719469}
+  - component: {fileID: 3773927616212377037}
   - component: {fileID: 7054974250117243810}
   - component: {fileID: 5436468820254857856}
   m_Layer: 0
@@ -33,6 +34,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3773927616212377037
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5288117655704719886}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a089f01210f63de4da17d6b6db138d28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tarCamera: {fileID: 7054974250117243810}
+  smoothSpeed: 0.125
 --- !u!20 &7054974250117243810
 Camera:
   m_ObjectHideFlags: 0
@@ -43,7 +58,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.57416904, g: 0.754717, b: 0.52331793, a: 0}
+  m_BackGroundColor: {r: 0.8930817, g: 0.8930817, b: 0.8930817, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
