@@ -24,7 +24,7 @@ public class PlayerWorldInteractable : MonoBehaviour
 
     protected virtual void OnPlayerTouchExit()
     {
-        isDragging = false;
+        //isDragging = false;
     }
     
     protected virtual void OnPlayerTouchUp()
@@ -89,7 +89,7 @@ public class PlayerWorldInteractable : MonoBehaviour
 
     private void OnMouseUp()
     {
-        OnPlayerTouchExit();
+        OnPlayerTouchUp();
     }
     
     private void OnMouseUpAsButton()
