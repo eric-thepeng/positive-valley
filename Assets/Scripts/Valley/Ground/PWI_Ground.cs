@@ -10,4 +10,3 @@ public class PWI_Ground : PlayerWorldInteractable
         CameraMovement.i.MoveCamera(deltaDrag);
     }
 }
-    

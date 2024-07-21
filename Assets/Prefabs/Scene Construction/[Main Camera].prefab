@@ -47,7 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tarCamera: {fileID: 7054974250117243810}
-  smoothSpeed: 0.125
+  smoothSpeed: 25
 --- !u!20 &7054974250117243810
 Camera:
   m_ObjectHideFlags: 0
