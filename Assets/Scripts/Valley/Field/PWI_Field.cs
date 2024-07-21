@@ -116,9 +116,11 @@ public class PWI_Field : PlayerWorldInteractable
             GrowCrop((float)timeAway.TotalSeconds);
         }
     }
+   
 
-    private void Update()
+    protected override void Update()
     {
+        base.Update();
         // Grow Crop
         GrowCrop(Time.deltaTime);
     }

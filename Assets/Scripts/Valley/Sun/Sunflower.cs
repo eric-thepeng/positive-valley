@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class Sunflower : PlayerWorldInteractable
+public class Sunflower : MonoBehaviour
 {
     //[SerializeField] private float clickableSunSpawnInterval;
     [SerializeField] private float clickableSunGrowTime;

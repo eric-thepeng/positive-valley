@@ -18,7 +18,7 @@ public class PlayerValleyInteractionManager : MonoBehaviour
         }
     }
     
-    public enum ValleyInteraction {None, MovingValley, PlantingSeeds, InspectingField}
+    public enum ValleyInteraction {None, MovingValley, PlantingSeeds, InspectingField, HarvestingSuns}
     private ValleyInteraction currentValleyInteraction = ValleyInteraction.None;
 
     public bool CheckCurrentInteractionNone(ValleyInteraction valleyInteractionToCheck)

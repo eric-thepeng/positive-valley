@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3023077843095902853}
   m_Layer: 0
-  m_Name: Ground
+  m_Name: Buildings
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -33,7 +33,6 @@ Transform:
   - {fileID: 6548341364198293435}
   - {fileID: 4339193347744986077}
   - {fileID: 5624728908478602306}
-  - {fileID: 4614542152237375305}
   m_Father: {fileID: 5704301875971708378}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &587724153544329566
@@ -94,12 +93,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1405006588237202639}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 1}
   m_LocalScale: {x: 9, y: 13, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 3023077843095902853}
+  m_Father: {fileID: 5704301875971708378}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1588901600656103332
 MonoBehaviour:
@@ -259,7 +258,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &9170638371939539859
 Transform:
   m_ObjectHideFlags: 0
@@ -268,13 +267,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2126628072506031548}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: -0.38268343, w: 0.92387956}
-  m_LocalPosition: {x: -0.1, y: -0.1, z: 1}
-  m_LocalScale: {x: 6, y: 15, z: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 1}
+  m_LocalScale: {x: 10, y: 15, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5704301875971708378}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -45}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &6658247664963926868
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -449,6 +448,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 9170638371939539859}
+  - {fileID: 4614542152237375305}
   - {fileID: 7574375863913544176}
   - {fileID: 3023077843095902853}
   m_Father: {fileID: 0}
