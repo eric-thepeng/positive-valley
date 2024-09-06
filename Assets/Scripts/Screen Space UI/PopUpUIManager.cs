@@ -23,6 +23,7 @@ public class PopUpUIManager : MonoBehaviour
     // SERIALIZED PRIVATE VARIABLES
     [SerializeField] private UI_PopUpAndSelect UnlockFieldPopUpSelectUI;
     [SerializeField] private UI_PopUpAndSelect DrinkWaterPopUpSelectUI;
+    [SerializeField] private UI_PopUpAndSelect UniversalPopUpSelectUI;
     [SerializeField] private UI_PopUp FieldGrowInfoPopUpUI;
     [SerializeField] private UI_PopUpAndDisappear commonPopUpAndDisappearUI;
     [SerializeField] private UI_PopUpCropHarvest cropHarvestUI;
@@ -57,6 +58,15 @@ public class PopUpUIManager : MonoBehaviour
         List<String> selectionButtonsText)
     {
         return DrinkWaterPopUpSelectUI.SetUpAndDisplay(
+            descriptionString, 
+            selectionActions, 
+            selectionButtonsText);
+    }
+    
+    public UnityAction DisplayUniversalPopUpSelect(string descriptionString, List<UnityAction> selectionActions,
+        List<String> selectionButtonsText)
+    {
+        return UniversalPopUpSelectUI.SetUpAndDisplay(
             descriptionString, 
             selectionActions, 
             selectionButtonsText);
@@ -123,6 +133,11 @@ public class PopUpUIManager : MonoBehaviour
     public void ExitDrinkWaterPopUp()
     {
         DrinkWaterPopUpSelectUI.ExitUI();
+    }
+    
+    public void ExitUniversalPopUp()
+    {
+        UniversalPopUpSelectUI.ExitUI();
     }
 
     IEnumerator DisplayPopUpDisappearQue()
