@@ -100,7 +100,7 @@ public class PT_DrinkWater : PositivityTask
         if (currentState.IsFullToday())
         {
             //PopUpUIManager.i.DisplaySimpleTextPopUpDisappear("Today's Water Goal Reached Already!",3,0.5f,false, false);
-            PopUpUIManager.i.DisplaySimpleTextPopUp("Today's water goal already reached!");
+            PopUpUIManager.i.DisplayUniversalTextPopUp("Today's water goal already reached!");
         }
         else
         {
@@ -127,7 +127,7 @@ public class PT_DrinkWater : PositivityTask
     public void AddDrinkWaterBonus()
     {
         PlayerStat.money.ChangeValue(50);
-        PopUpUIManager.i.DisplaySimpleTextPopUp("Obtained Reward: 50 Suns!");
+        PopUpUIManager.i.DisplayUniversalTextPopUp("Obtained Reward: 50 Suns!");
     }
 
     public void RefreshDisplay(int animationBlockIndex = -1)

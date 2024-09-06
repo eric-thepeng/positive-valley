@@ -88,6 +88,7 @@ public class TomatoClockDisplayer : MonoBehaviour
     public void EnterSetting()
     {
         panel.SetActive(true);
+        UpdateCenterText("");
         PopUpUIManager.i.DisplayUniversalPopUpSelect(
             "Start a 25 minutes tomato clock?",
             new List<UnityAction>(){PT_TomatoClock.i.StartClock, Exit},
@@ -103,6 +104,11 @@ public class TomatoClockDisplayer : MonoBehaviour
     public void UpdateCenterText(string newText)
     {
         centerTextTMPT.text = newText;
+    }
+
+    public void ExitButtonClick()
+    {
+        PT_TomatoClock.i.ExitButtonClick();
     }
     
     /*

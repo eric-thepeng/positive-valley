@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -90,10 +91,9 @@ public class PopUpUIManager : MonoBehaviour
         FieldGrowInfoPopUpUI.SetUpAndDisplay(displayString);
     }
 
-    public void DisplaySimpleTextPopUp(string text)
+    public void DisplayUniversalTextPopUp(string text, UnityAction actionAtExit = null)
     {
-        string displayString = text;
-        FieldGrowInfoPopUpUI.SetUpAndDisplay(displayString);
+        FieldGrowInfoPopUpUI.SetUpAndDisplay(text, actionAtExit);
     }
 
     private void DisplayCropHarvestPopUpDisappear(SOSI_Seed seed, SO_Rarity rarity)
