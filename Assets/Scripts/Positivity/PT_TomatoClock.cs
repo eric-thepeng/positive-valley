@@ -82,7 +82,6 @@ public class PT_TomatoClock : MonoBehaviour
     IEnumerator CountDownClock()
     {
         int totalSeconds = 25 * 60;
-        totalSeconds = 5;
         
         while (totalSeconds > 0)
         {
