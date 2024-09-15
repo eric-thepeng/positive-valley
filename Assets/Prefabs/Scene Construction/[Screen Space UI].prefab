@@ -1723,6 +1723,7 @@ MonoBehaviour:
   generateEmptyBlocks: 1
   displaySetting:
     sellPrice: 0
+    stackAmount: 1
 --- !u!223 &8266840207230285766
 Canvas:
   m_ObjectHideFlags: 0
@@ -15006,6 +15007,7 @@ MonoBehaviour:
   generateEmptyBlocks: 0
   displaySetting:
     sellPrice: 1
+    stackAmount: 0
 --- !u!1 &8861740745189433622
 GameObject:
   m_ObjectHideFlags: 0

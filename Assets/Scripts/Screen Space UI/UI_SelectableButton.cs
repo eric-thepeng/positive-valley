@@ -40,13 +40,13 @@ public class UI_SelectableButton : MonoBehaviour
         if(selected)
         {
             selected = false;
-            OnUnselected.Invoke(this);
+            OnUnselected?.Invoke(this);
             button.targetGraphic.DOColor(button.colors.normalColor,0.1f);
         }
         else
         {
             selected = true;
-            OnSelected.Invoke(this);
+            OnSelected?.Invoke(this);
             button.targetGraphic.DOColor(button.colors.selectedColor,0.1f);
         }
     }

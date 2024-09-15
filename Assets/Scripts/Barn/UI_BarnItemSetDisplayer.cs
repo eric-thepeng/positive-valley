@@ -39,7 +39,7 @@ public class UI_BarnItemSetDisplayer : MonoBehaviour
                 }
                 else // generate empty block
                 {
-                    if(generateEmptyBlocks)newGO.GetComponent<UI_BarnItemDisplayer>().SetUp(totalCount);
+                    if(generateEmptyBlocks)newGO.GetComponent<UI_BarnItemDisplayer>().SetUpAsEmpty(totalCount);
                     else newGO.SetActive(false);
                 }
                 
